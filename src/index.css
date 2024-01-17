@@ -56,7 +56,12 @@ body {
   background-repeat: no-repeat;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }
+
+code {
+  font-family: 'Poppins', sans-serif; }
+=======
 
 :root {
   /** WelcomePage */
@@ -131,4 +136,5 @@ body {
   --boardTitleText: #fff;
 
   --boardBgColor: #1f1f1f;
+
 }
