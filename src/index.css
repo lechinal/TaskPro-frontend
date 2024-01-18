@@ -1,5 +1,9 @@
 @import-normalize; /* bring in normalize.css styles */
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import url('../src/fonts/fonts.css');
 
 * {
@@ -46,7 +50,7 @@ img {
 }
 
 code {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--fontFamily), sans-serif;
 }
 
 body {
@@ -58,10 +62,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
 }
-
-code {
-  font-family: 'Poppins', sans-serif; }
-=======
 
 :root {
   /** WelcomePage */
@@ -136,5 +136,4 @@ code {
   --boardTitleText: #fff;
 
   --boardBgColor: #1f1f1f;
-
 }
