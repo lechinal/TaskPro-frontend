@@ -1,6 +1,6 @@
 import React from 'react';
 import icons from '../../images/sprite.svg';
-import css from './Intro.module.css';
+import css from './WelcomePage.module.css';
 import { Button } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -49,7 +49,7 @@ function Intro() {
                 height: '49px',
               }}
             >
-              <NavLink className={css.buttonLinkRegister} to={'/register'}>
+              <NavLink className={css.buttonLinkRegister} to={'/auth/register'}>
                 Registration
               </NavLink>
             </Button>
@@ -64,7 +64,7 @@ function Intro() {
                 height: '49px',
               }}
             >
-              <NavLink className={css.buttonLinkLogin} to={'/login'}>
+              <NavLink className={css.buttonLinkLogin} to={'/auth/login'}>
                 Log In
               </NavLink>
             </Button>

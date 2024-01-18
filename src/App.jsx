@@ -1,9 +1,9 @@
-import Intro from 'components/Intro/Intro';
+import WelcomePage from 'components/WelcomePage/WelcomePage';
 
 export const App = () => {
   return (
     <>
-      <Intro></Intro>
+      <WelcomePage />
     </>
   );
 };
