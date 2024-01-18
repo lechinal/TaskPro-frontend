@@ -5,9 +5,11 @@ import ScreensPage from 'pages/ScreensPage/ScreensPage';
 
 import { Routes, Route } from 'react-router-dom';
 
+
 export const App = () => {
   return (
     <>
+    
       <Routes>
         <Route path="/welcome" element={<WelcomePage />} />
         <Route path="/auth/:id" element={<AuthPage />} />
