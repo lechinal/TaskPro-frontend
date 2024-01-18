@@ -1,7 +1,8 @@
 import React from 'react';
 
 function ScreensPage() {
-  return <div>BoardPage</div>;
+
+  return <div>ScreensPage</div>;
 }
 
 export default ScreensPage;
