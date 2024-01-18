@@ -1,7 +1,7 @@
 import React from 'react';
 
-function BoardPage() {
-  return <div>BoardPage</div>;
+function ScreensPage() {
+  return <div>ScreensPage</div>;
 }
 
-export default BoardPage;
+export default ScreensPage;
