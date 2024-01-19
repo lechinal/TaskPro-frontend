@@ -44,7 +44,7 @@ export const Header = () => {
           >
             <MenuIcon />
           </IconButton>
-          <div>
+          <div className={styles.themeHeader}>
             <Button
               id="demo-customized-button"
               aria-controls={open ? 'demo-customized-menu' : undefined}
@@ -70,7 +70,9 @@ export const Header = () => {
               <MenuItem onClick={handleClose} disableRipple>
                 Dark
               </MenuItem>
-              <MenuItem onClick={handleClose} disableRipple></MenuItem>
+              <MenuItem onClick={handleClose} disableRipple>
+                Light
+              </MenuItem>
 
               <MenuItem onClick={handleClose} disableRipple>
                 Violet
@@ -98,24 +100,6 @@ export const Header = () => {
               >
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-              </Menu>
             </div>
           )}
         </Toolbar>
