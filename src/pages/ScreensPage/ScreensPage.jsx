@@ -8,7 +8,6 @@ function ScreensPage() {
   return (
     <div className={css.screensPage}>
       <HeaderDashboard />
-
       <MainDashboard />
     </div>
   );
