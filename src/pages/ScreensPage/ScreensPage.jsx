@@ -1,7 +1,17 @@
 import React from 'react';
+import css from '../ScreensPage/ScreensPage.module.css';
 
-function BoardPage() {
-  return <div>BoardPage</div>;
+import HeaderDashboard from '../../components/HeaderDashboard/HeaderDashboard';
+import MainDashboard from '../../components/MainDashboard/MainDashboard';
+
+function ScreensPage() {
+  return (
+    <div className={css.screensPage}>
+      <HeaderDashboard />
+
+      <MainDashboard />
+    </div>
+  );
 }
 
-export default BoardPage;
+export default ScreensPage;

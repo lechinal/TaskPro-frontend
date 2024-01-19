@@ -1,0 +1,33 @@
+.headerDashboard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 100%;
+  background-color: #1f1f1f;
+
+  padding: 14px 20px 39px;
+}
+.headerDashboardTitle {
+  color: #fff;
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.28px;
+}
+
+@media (min-width: 768px) {
+  .headerDashboard {
+    padding: 26px 32px 26px;
+  }
+  .headerDashboardTitle {
+    font-size: 18px;
+    letter-spacing: -0.36px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .headerDashboard {
+    padding: 26px 32px 10px;
+  }
+}

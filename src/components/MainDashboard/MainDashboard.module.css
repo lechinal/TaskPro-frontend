@@ -1,0 +1,60 @@
+.mainDashboard {
+  display: flex;
+  justify-content: center;
+}
+
+.mainDashboardButton {
+  background-color: #121212;
+  color: #fff;
+
+  border-radius: 8px;
+  border: none;
+  text-transform: none;
+
+  padding: 14px 79px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.28px;
+}
+.mainDashboardButton:hover {
+  background-color: #bedbb0;
+  color: #161616;
+}
+
+.iconPlus {
+  fill: #fff;
+  width: 28px;
+  height: 28px;
+}
+
+.iconPlus:hover {
+  fill: black;
+}
+
+@media (max-width: 375px) {
+  .mainDashboardButton {
+    padding: 10px 39px;
+    font-size: 12px;
+  }
+  .iconPlus {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (min-width: 768px) {
+  .mainDashboard {
+    justify-content: flex-start;
+  }
+  .mainDashboardButton {
+    margin-left: 32px;
+  }
+}
+
+@media (min-width: 1440px) {
+}
