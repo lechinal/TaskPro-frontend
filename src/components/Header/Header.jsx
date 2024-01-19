@@ -84,7 +84,7 @@ export const Header = () => {
             component="div"
             sx={{ flexGrow: 1, textAlign: 'right', color: 'white' }}
           >
-            Name
+            User
           </Typography>
 
           {auth && (
