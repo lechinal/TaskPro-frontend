@@ -1,6 +1,7 @@
 import React from 'react';
 import css from '../ScreensPage/ScreensPage.module.css';
 
+
 import HeaderDashboard from '../../components/HeaderDashboard/HeaderDashboard';
 import MainDashboard from '../../components/MainDashboard/MainDashboard';
 
@@ -12,6 +13,7 @@ function ScreensPage() {
       <MainDashboard />
     </div>
   );
-}
+
+
 
 export default ScreensPage;
