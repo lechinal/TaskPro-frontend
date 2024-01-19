@@ -1,5 +1,9 @@
 @import-normalize; /* bring in normalize.css styles */
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import url('../src/fonts/fonts.css');
 
 * {
@@ -135,3 +139,4 @@ body {
 
   --boardBgColor: #1f1f1f;
 }
+
