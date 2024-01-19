@@ -29,6 +29,8 @@ export default function ModalHelp({ visible, onClose }) {
          <input  type='email' name='email' placeholder='Email address' className='font-normal text-sm py-[14px] pl-[18px] pr-[239px] rounded-[8px] w-[352px] bg-transparent   border border-white' ></input>
          <input  type='text' placeholder='Comment' className='font-normal text-sm pt-[14px] pb-[80px] pl-[18px] pr-[239px] rounded-[8px] w-[352px] bg-transparent border border-white'></input>
          <button className=' rounded-[8px] px-[159px] py-[14px] bg-[#BEDBB0] font-medium'>Send</button>
+
+         <button className=' rounded-[6px] px-[159px] py-[14px] bg-[#fff] font-medium'>Send</button>
         </form> 
         </div>
       </div>
