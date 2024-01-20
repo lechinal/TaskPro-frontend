@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { useParams } from 'react-router-dom';
 import LoginForm from 'components/LoginForm/LoginForm';
 import RegisterForm from 'components/RegisterForm/RegisterForm';
@@ -17,3 +18,4 @@ function AuthPage() {
 };
 
 export default AuthPage;
+
