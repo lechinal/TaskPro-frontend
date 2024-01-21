@@ -5,17 +5,37 @@ import HomePage from 'pages/HomePage/HomePage';
 import ScreensPage from 'pages/ScreensPage/ScreensPage';
 
 import { Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useAuth } from './hooks';
+import { refresh } from './redux/auth/authOperations';
+import Loader from './components/Loader/Loader';
+ 
 
 export const App = () => {
-  return (
+
+  const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
+
+  useEffect(() => {
+    dispatch(refresh());
+  }, [dispatch]);
+
+  return (    
     <>
-      <Routes>
+    {isRefreshing ? (
+      <Loader/>
+    ) : (
+      <Routes>     
+      
         <Route path="/" element={<WelcomePage />} />
         <Route path="/auth/:id" element={<AuthPage />} />
         <Route path="/home" exact element={<HomePage />} />
         <Route path="/home/:boardName" element={<ScreensPage />} />
       </Routes>
+      )}
     </>
+    
   );
 };
 

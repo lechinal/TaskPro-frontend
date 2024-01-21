@@ -3,29 +3,18 @@
   justify-content: center;
 }
 
-.mainDashboardButton.mainDashboardButton {
-  background-color: #161616;
-  color: #fff;
+/* afisare iconPlusBlack la hover  */
 
-  border-radius: 8px;
-  border: none;
-  text-transform: none;
-
-  padding: 14px 79px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-
-  font-family: Poppins;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: -0.28px;
-
-  margin-bottom: 24px;
+.iconPlusBlack {
+  display: none;
 }
-.mainDashboardButton:hover {
-  background-color: #bedbb0;
-  color: #161616;
+
+.mainDashboardButton:hover .iconPlusWhite {
+  display: none;
+}
+
+.mainDashboardButton:hover .iconPlusBlack {
+  display: inline-block;
 }
 
 .iconPlus {

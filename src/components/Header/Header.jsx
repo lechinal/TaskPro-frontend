@@ -12,10 +12,14 @@ import Avatar from '@mui/material/Avatar';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { styled } from '@mui/system';
 import styles from '../Header/Header.module.css';
+import { useAuth } from '../../hooks/useAuth';
+ 
+
 const StyledMenu = styled(Menu)({});
 
 export const Header = () => {
   const [auth] = React.useState(true);
+  const [setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleMenu = event => {
@@ -25,11 +29,16 @@ export const Header = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
 
   const open = Boolean(anchorEl);
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
+
+  const { user } = useAuth();   
 
   return (
     <Box className={styles.headerContainer}>
@@ -41,6 +50,7 @@ export const Header = () => {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            onClick={handleDrawerOpen}
           >
             <MenuIcon />
           </IconButton>
@@ -54,7 +64,12 @@ export const Header = () => {
               disableElevation
               onClick={handleClick}
               endIcon={<KeyboardArrowDownIcon />}
-              sx={{ backgroundColor: '#161616', color: 'white' }}
+              sx={{
+                backgroundColor: '#161616',
+                color: 'white',
+                font: 'Poppins',
+                fontSize: '14px',
+              }}
             >
               Theme
             </Button>
@@ -82,9 +97,16 @@ export const Header = () => {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, textAlign: 'right', color: 'white' }}
+            sx={{
+              flexGrow: 1,
+              textAlign: 'right',
+              color: 'white',
+              font: 'Poppins',
+              fontSize: '14px',
+              fontWeight: '500',
+            }}
           >
-            User
+            {user.name}
           </Typography>
 
           {auth && (
