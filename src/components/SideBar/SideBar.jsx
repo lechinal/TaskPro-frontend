@@ -25,7 +25,7 @@ import {
 import Help from 'components/Help/Help';
 const SideBar = ({ active, onClick }) => {
   const [setOpenAddModal] = useState(false);
-  const isSidebarOpen = {};
+  
   const theme = useTheme();
 
   const drawerContent = (
