@@ -1,0 +1,102 @@
+.modalBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(0, 0, 0);
+  /* z-index: 1200; */
+}
+
+.modalContainer {
+  width: 335px;
+  height: 433px;
+  background-color: #161616;
+  padding: 24px;
+  border-radius: 8px;
+  border: 1px solid rgba(190, 219, 176, 0.5);
+
+  padding-right: 1px;
+}
+.closeBtnBox {
+  display: flex;
+
+  justify-content: flex-end;
+}
+.closeBtn {
+}
+.modalTitle {
+  color: #fff;
+
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.36px;
+}
+.iconsTitle h6,
+.backgroundsTitle h6 {
+  color: #fff;
+
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.28px;
+}
+
+.projectIcons,
+.backgrounds {
+  color: #fff;
+}
+
+.iconClose,
+.iconPlus {
+  width: 28px;
+  height: 28px;
+}
+.createBtn {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #bedbb0;
+  border-radius: 8px;
+  padding: 10px 0 10px 0;
+  width: 287px;
+
+  color: #161616;
+  text-transform: none;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.28px;
+}
+
+.createBtn:hover {
+  color: #fff;
+  background-color: rgba(0, 0, 0);
+}
+/* afisare iconPlusWhite la hover  */
+
+.iconPlusWhite {
+  display: none;
+}
+
+.createBtn:hover .iconPlusBlack {
+  display: none;
+}
+
+.createBtn:hover .iconPlusWhite {
+  display: inline-block;
+}

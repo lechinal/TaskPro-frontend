@@ -3,27 +3,18 @@
   justify-content: center;
 }
 
-.mainDashboardButton {
-  background-color: #121212;
-  color: #fff;
+/* afisare iconPlusBlack la hover  */
 
-  border-radius: 8px;
-  border: none;
-  text-transform: none;
-
-  padding: 14px 79px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-
-  font-family: Poppins;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: -0.28px;
+.iconPlusBlack {
+  display: none;
 }
-.mainDashboardButton:hover {
-  background-color: #bedbb0;
-  color: #161616;
+
+.mainDashboardButton:hover .iconPlusWhite {
+  display: none;
+}
+
+.mainDashboardButton:hover .iconPlusBlack {
+  display: inline-block;
 }
 
 .iconPlus {
@@ -37,7 +28,7 @@
 }
 
 @media (max-width: 375px) {
-  .mainDashboardButton {
+  .mainDashboardButton.mainDashboardButton {
     padding: 10px 39px;
     font-size: 12px;
   }
@@ -51,7 +42,7 @@
   .mainDashboard {
     justify-content: flex-start;
   }
-  .mainDashboardButton {
+  .mainDashboardButton.mainDashboardButton {
     margin-left: 32px;
   }
 }

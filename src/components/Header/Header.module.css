@@ -1,0 +1,17 @@
+.headerContainer {
+  background-color: #161616;
+}
+
+.themeHeader {
+  margin-left: 35%;
+}
+@media (min-width: 768px) {
+  .themeHeader {
+    margin-left: 65%;
+  }
+}
+@media (min-width: 968px) {
+  .themeHeader {
+    margin-left: 75%;
+  }
+}
