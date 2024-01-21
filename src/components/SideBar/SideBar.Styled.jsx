@@ -37,6 +37,7 @@ export const PlusIcon = styled.svg`
   height: 20px;
   fill: black;
   background: #bedbb0;
+
 `;
 
 export const LogoutIcon = styled.svg`
