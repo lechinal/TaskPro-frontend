@@ -137,6 +137,7 @@ export const IconButton = styled.button`
   align-items: center;
   justify-content: center;
   background: transparent;
+  border: none;
 `;
 
 export const IconLink = styled.button`
@@ -144,6 +145,7 @@ export const IconLink = styled.button`
   align-items: center;
   justify-content: center;
   background: transparent;
+  border: none;
 `;
 export const IconPuzzle = styled.svg`
   width: 16px;
