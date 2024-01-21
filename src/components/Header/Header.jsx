@@ -12,6 +12,7 @@ import Avatar from '@mui/material/Avatar';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { styled } from '@mui/system';
 import styles from '../Header/Header.module.css';
+
 const StyledMenu = styled(Menu)({});
 
 export const Header = () => {
@@ -26,13 +27,15 @@ export const Header = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
 
   const open = Boolean(anchorEl);
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
+  };
+  const handleDrawerOpen = () => {
+    if (window.innerWidth <= 1280) {
+      setOpen(true);
+    }
   };
 
   return (
@@ -115,7 +118,11 @@ export const Header = () => {
                 color="inherit"
                 sx={{ marginLeft: 'auto' }}
               >
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar
+                  variant="rounded"
+                  alt="Remy Sharp"
+                  src="/static/images/avatar/2.jpg"
+                />
               </IconButton>
             </div>
           )}
