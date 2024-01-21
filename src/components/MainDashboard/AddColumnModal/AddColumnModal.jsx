@@ -1,23 +1,83 @@
 import React from 'react';
 import css from '../AddColumnModal/AddColumnModal.module.css';
 import icons from '../../../images/sprite.svg';
-// import Button from '@mui/material/Button';
-import { StyledEngineProvider } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import OutlinedInput from '@mui/material/OutlinedInput';
+import { outlinedInputClasses } from '@mui/material/OutlinedInput';
+
+const theme = createTheme({
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#bedbb0',
+          color: '#161616',
+          borderRadius: '8px',
+          textTransform: 'none',
+          fontFamily: 'Poppins',
+          fontSize: '14px',
+          fontWeight: '500',
+          letterSpacing: '-0.28px',
+          padding: '10px 0 10px 0',
+
+          '&:hover': {
+            backgroundColor: '#151515',
+            color: '#fff',
+          },
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          '&.Mui-focused': {
+            color: 'rgba(255, 255, 255, 0.3)',
+          },
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        notchedOutline: {
+          border: '1px solid #BEDBB0;',
+          borderRadius: '8px',
+          opacity: '0.4',
+        },
+        root: {
+          [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+            borderColor: 'rgba(255, 255, 255, 0.3)',
+          },
+          [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
+            borderColor: 'rgba(255, 255, 255, 0.3)',
+          },
+          color: '#fff',
+          fontFamily: 'Poppins',
+          fontSize: '14px',
+          fontWeight: '400',
+        },
+      },
+    },
+  },
+});
 
 function AddColumnModal({ closeModal }) {
   return (
-    <StyledEngineProvider injectFirst>
+    <ThemeProvider theme={theme}>
       <div className={css.modalBackground}>
         <div className={css.modalContainer}>
           <div className={css.closeBtnBox}>
-            <button className={css.closeBtn} onClick={() => closeModal(false)}>
+            <IconButton
+              className={css.closeBtn}
+              onClick={() => closeModal(false)}
+            >
               <svg className={css.iconClose}>
                 <use href={`${icons}#icon-close`} />
               </svg>
-            </button>
+            </IconButton>
           </div>
           <div className={css.body}>
             <div className={css.titleBox}>
@@ -29,8 +89,7 @@ function AddColumnModal({ closeModal }) {
                 <InputLabel
                   className={css.input}
                   sx={{
-                    color: '#fff',
-                    opacity: '0.4',
+                    color: 'rgba(255, 255, 255, 0.3)',
                   }}
                 >
                   Title
@@ -38,34 +97,28 @@ function AddColumnModal({ closeModal }) {
                 <OutlinedInput
                   label="Title"
                   fullWidth
-                  sx={{
-                    border: '1px solid #BEDBB0;',
-                    borderRadius: '8px',
-                    width: '287px',
-                    boxShadow: '0px 4px 16px 0px rgba(22, 22, 22, 0.08)',
-                    fontFamily: 'Poppins',
-                    fontSize: '14px',
-                    fontWeight: '400',
-                    letterSpacing: '-0.28px',
-                    color: '#fff',
-                    opacity: '0.4',
-                  }}
+                  sx={{ width: '287px' }}
                 />
               </FormControl>
             </div>
 
             <div className={css.addBtnBox}>
-              <button className={css.addColumnBtn}>
-                <svg className={css.iconPlus}>
+              <Button className={css.addColumnBtn}>
+                <svg className={`${css.iconPlus} ${css.iconPlusBlack}`}>
                   <use href={`${icons}#icon-plus-black`} />
                 </svg>
+
+                <svg className={`${css.iconPlus} ${css.iconPlusWhite}`}>
+                  <use href={`${icons}#icon-plus`} />
+                </svg>
+
                 <p>Add</p>
-              </button>
+              </Button>
             </div>
           </div>
         </div>
       </div>
-    </StyledEngineProvider>
+    </ThemeProvider>
   );
 }
 
