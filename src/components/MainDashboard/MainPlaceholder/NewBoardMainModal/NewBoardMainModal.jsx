@@ -47,7 +47,7 @@ function NewBoardMainModal({ setOpenModal }) {
         </div>
         <div className={css.backgrounds}>bg1 bg2 bg3</div>
 
-        <div>
+        <div className={css.createBtnBox}>
           <button type="submit" className={css.createBtn}>
             <svg className={`${css.iconPlus} ${css.iconPlusBlack}`}>
               <use href={`${icons}#icon-plus-black`} />
