@@ -1,7 +1,7 @@
 import React from 'react';
 import icons from '../../images/sprite.svg';
 import css from './WelcomePage.module.css';
-import { Button } from '@mui/material';
+
 import { NavLink } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
