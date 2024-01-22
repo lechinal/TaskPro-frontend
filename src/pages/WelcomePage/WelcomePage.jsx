@@ -1,7 +1,6 @@
 import React from 'react';
 import icons from '../../images/sprite.svg';
-import css from './WelcomePage.module.css';
-
+import css from './WelcomePage.module.css'; 
 import { NavLink } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -20,7 +19,7 @@ const theme = createTheme({
   },
 });
 
-function Intro() {
+function WelcomePage() {
   return (
     <ThemeProvider theme={theme}>
       <section className={css.introContainer}>
@@ -50,4 +49,4 @@ function Intro() {
   );
 }
 
-export default Intro;
+export default WelcomePage;

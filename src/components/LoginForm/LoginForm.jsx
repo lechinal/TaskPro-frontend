@@ -12,6 +12,13 @@ import FormControl from '@mui/material/FormControl';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 
+
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../redux/auth/authOperations';
+ 
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { selectIsAuthLoading } from '../../redux/auth/authSelectors';
+import  Loader  from '../Loader/Loader';
 const theme = createTheme({
   components: {
     MuiButton: {
@@ -56,10 +63,30 @@ const theme = createTheme({
 });
 
 function LoginForm() {
+  const dispatch = useDispatch();
+   
+  const authOperation = useSelector(selectIsAuthLoading);
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword(show => !show);
   const handleMouseDownPassword = event => {
     event.preventDefault();
+  };
+
+  const handleSubmit = async event => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    try {
+      await dispatch(
+        login({
+          email: form.elements.email.value,
+          password: form.elements.password.value,
+        })
+      ).unwrap();
+      Notify.success(`Welcome, ${form.elements.email.value}!`);
+      form.reset();
+    } catch (error) {
+      Notify.failure('Login failed. Please enter correct data!');
+    }
   };
 
   return (
@@ -75,6 +102,8 @@ function LoginForm() {
                 padding: '24px 5px',                 
               },             
           }}
+           
+          onSubmit={handleSubmit}          
         >
           <NavLink>
             <Link
@@ -155,7 +184,7 @@ function LoginForm() {
                 marginTop: '20px',
               }}
             >
-              Log In Now
+              {authOperation === 'login' ? <Loader /> : <>Log In Now</>}
             </Button>
           </Box>
         </Box>

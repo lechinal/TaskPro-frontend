@@ -12,6 +12,14 @@ import FormControl from '@mui/material/FormControl';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { register } from '../../redux/auth/authOperations';
+ 
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { selectIsAuthLoading } from '../../redux/auth/authSelectors';
+import  Loader  from '../Loader/Loader';
+
+
 const theme = createTheme({
   components: {
     MuiButton: {
@@ -55,16 +63,39 @@ const theme = createTheme({
   },
 });
 function RegisterForm() {
+
+  const dispatch = useDispatch();
+  const authOperation = useSelector(selectIsAuthLoading);
+
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword(show => !show);
   const handleMouseDownPassword = event => {
     event.preventDefault();
   };
 
+  const handleSubmit = async event => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    try {
+      await dispatch(
+        register({
+          name: form.elements.name.value,
+          email: form.elements.email.value,
+          password: form.elements.password.value,
+        })
+      ).unwrap();
+      form.reset();
+      Notify.success('Congratulations, you have successfully registered!');
+    } catch (error) {
+      Notify.failure('User already exist');
+    }
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <section className={css.loginSection}>
         <Box
+          onSubmit={handleSubmit}
           sx={{
             mt: 1,
             background: 'rgba(21, 21, 21, 1)',
@@ -160,7 +191,7 @@ function RegisterForm() {
                 marginTop: '20px',
               }}
             >
-              Register Now
+              {authOperation === 'register' ? <Loader /> : <>Register Now</>}
             </Button>
           </Box>
         </Box>

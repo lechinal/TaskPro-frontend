@@ -12,6 +12,7 @@ import Avatar from '@mui/material/Avatar';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { styled } from '@mui/system';
 import styles from '../Header/Header.module.css';
+import { useAuth } from '../../hooks/useAuth'; 
 
 const StyledMenu = styled(Menu)({});
 
@@ -28,16 +29,17 @@ export const Header = () => {
     setAnchorEl(null);
   };
 
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
   const open = Boolean(anchorEl);
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
-  const handleDrawerOpen = () => {
-    if (window.innerWidth <= 1280) {
-      setOpen(true);
-    }
-  };
 
+  const { user } = useAuth(); 
+  
   return (
     <Box className={styles.headerContainer}>
       <AppBar position="static" style={{ background: '#161616' }}>
@@ -104,7 +106,7 @@ export const Header = () => {
               fontWeight: '500',
             }}
           >
-            User
+            {user.name}
           </Typography>
 
           {auth && (
