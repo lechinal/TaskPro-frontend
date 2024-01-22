@@ -19,7 +19,7 @@ const theme = createTheme({
   },
 });
 
-function Intro() {
+function WelcomePage() {
   return (
     <ThemeProvider theme={theme}>
       <section className={css.introContainer}>
@@ -49,4 +49,4 @@ function Intro() {
   );
 }
 
-export default Intro;
+export default WelcomePage;
