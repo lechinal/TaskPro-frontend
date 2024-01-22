@@ -12,8 +12,7 @@ import Avatar from '@mui/material/Avatar';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { styled } from '@mui/system';
 import styles from '../Header/Header.module.css';
-import { useAuth } from '../../hooks/useAuth';
- 
+import { useAuth } from '../../hooks/useAuth'; 
 
 const StyledMenu = styled(Menu)({});
 
@@ -29,6 +28,7 @@ export const Header = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -38,8 +38,8 @@ export const Header = () => {
     setAnchorEl(event.currentTarget);
   };
 
-  const { user } = useAuth();   
-
+  const { user } = useAuth(); 
+  
   return (
     <Box className={styles.headerContainer}>
       <AppBar position="static" style={{ background: '#161616' }}>
@@ -120,7 +120,11 @@ export const Header = () => {
                 color="inherit"
                 sx={{ marginLeft: 'auto' }}
               >
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar
+                  variant="rounded"
+                  alt="Remy Sharp"
+                  src="/static/images/avatar/2.jpg"
+                />
               </IconButton>
             </div>
           )}

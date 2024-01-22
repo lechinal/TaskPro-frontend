@@ -1,4 +1,4 @@
 .screensPage {
   background: #1f1f1f;
-  /* height: 752px; */
+  height: calc(100vh - 68px);
 }

@@ -3,14 +3,24 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { Box, Button, Typography, Drawer } from '@mui/material';
 import { useTheme } from '@mui/material';
 import { useState } from 'react';
-
 import icon from '../../images/sprite.svg';
+
 import {
   SideBarStyled,
   LogoIcon,
   PlusIcon,
   Thumb,
   LogoutIcon,
+  BoardsContainer,
+  BoardsList,
+  TitleBox,
+  IconTitle,
+  IconsBox,
+  Edit,
+  Delete,
+  IconLink,
+  Title,
+  IconButton,
 } from './SideBar.Styled';
 import Help from 'components/Help/Help';
 const SideBar = ({ active, onClick }) => {
@@ -98,6 +108,29 @@ const SideBar = ({ active, onClick }) => {
             </PlusIcon>
           </Button>
         </Box>
+        <BoardsContainer>
+          <BoardsList theme={theme}>
+            <TitleBox>
+              <Title theme={theme}>Project Name</Title>{' '}
+              <IconTitle>
+                <use href={icon + '#icon-project'}></use>
+              </IconTitle>
+            </TitleBox>
+
+            <IconsBox theme={theme}>
+              <IconLink>
+                <Delete>
+                  <use href={icon + '#icon-trash'}></use>
+                </Delete>
+              </IconLink>
+              <IconButton type="button">
+                <Edit>
+                  <use href={icon + '#icon-pencil-01'}></use>
+                </Edit>
+              </IconButton>
+            </IconsBox>
+          </BoardsList>
+        </BoardsContainer>
       </Thumb>
       <Help />
       <Thumb>
@@ -152,45 +185,15 @@ const SideBar = ({ active, onClick }) => {
         <CssBaseline />
 
         <Drawer
-          variant="temporary"
-          open={active}
-          onClose={onClick}
-          ModalProps={{
-            keepMounted: true,
-          }}
-          sx={{
-            '@media (min-width: 1440px)': {
-              display: { xs: 'block', sm: 'none' },
-            },
-
-            '& .MuiDrawer-paper': {
-              boxSizing: 'border-box',
-              width: 225,
-            },
-
-            '@media (min-width: 768px)': {
-              '& .MuiDrawer-paper': {
-                boxSizing: 'border-box',
-                width: 260,
-              },
-            },
-          }}
-        >
-          {drawerContent}
-        </Drawer>
-
-        <Drawer
           variant="permanent"
           sx={{
-            '@media (max-width: 1439px)': {
+            '@media (max-width: 1279px)': {
               display: 'none',
             },
-
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: 225,
             },
-
             '@media (min-width: 768px)': {
               '& .MuiDrawer-paper': {
                 boxSizing: 'border-box',
