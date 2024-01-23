@@ -17,7 +17,9 @@ function HomePage() {
 
   return (
     <div>
-      <ProfileEditModal />
+      <Header onOpenSidebar={handleOpenSidebar} />
+      <SideBar active={isSidebarOpen} onClick={handleCloseSidebar} />
+      <ScreensPage />
     </div>
   );
 }

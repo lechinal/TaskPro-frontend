@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
-import Typography from '@mui/material';
+import { Typography } from '@mui/material';
 import { NavLink, Link } from 'react-router-dom';
 import InputAdornment from '@mui/material/InputAdornment';
 import Avatar from '@mui/material/Avatar';
