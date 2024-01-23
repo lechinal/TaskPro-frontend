@@ -10,25 +10,27 @@
   align-items: center;
 
   background-color: rgba(0, 0, 0);
-  /* z-index: 1200; */
 }
 
 .modalContainer {
   width: 335px;
-  height: 433px;
+  min-height: 433px;
+
   background-color: #161616;
   padding: 24px;
   border-radius: 8px;
   border: 1px solid rgba(190, 219, 176, 0.5);
-
-  padding-right: 1px;
+  padding-right: 0px;
 }
 .closeBtnBox {
   display: flex;
-
   justify-content: flex-end;
 }
-.closeBtn {
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 .modalTitle {
   color: #fff;
@@ -100,3 +102,9 @@
 .createBtn:hover .iconPlusWhite {
   display: inline-block;
 }
+
+/* @media (min-width: 375px) {
+  .modalContainer {
+    width: 320px;
+  }
+} */
