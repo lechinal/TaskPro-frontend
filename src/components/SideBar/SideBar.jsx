@@ -110,7 +110,7 @@ const SideBar = ({ active, onClick }) => {
         <BoardsContainer>
           <BoardsList theme={theme}>
             <TitleBox>
-              <Title theme={theme}>Project Name</Title>{' '}
+              <Title theme={theme}>Project Name</Title>
               <IconTitle>
                 <use href={icon + '#icon-project'}></use>
               </IconTitle>

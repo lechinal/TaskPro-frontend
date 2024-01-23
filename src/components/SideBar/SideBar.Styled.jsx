@@ -51,7 +51,7 @@ export const BoardsContainer = styled.div`
   height: 61px;
   display: flex;
   align-items: center;
-  width: 260px;
+  width: 250px;
 `;
 
 export const BoardsList = styled.ul`

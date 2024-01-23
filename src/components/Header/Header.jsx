@@ -18,7 +18,7 @@ const StyledMenu = styled(Menu)({});
 
 export const Header = ({ onOpenSidebar }) => {
   const [auth] = useState(true);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleMenu = event => {
