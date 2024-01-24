@@ -9,15 +9,15 @@
   background-size: cover;
   flex-direction: column;
 }
- 
+
 .registerLink {
-    margin-right: 14px;
-    letter-spacing: -0.02em;
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 18px;
-    font-weight: 500;
-    font-style: normal;
-    line-height: 27px;   
+  margin-right: 14px;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 27px;
 }
 
 .registerLink:hover,
@@ -26,13 +26,12 @@
 }
 
 .loginLink {
-    top: 40px;
-    left: 160px;
-    letter-spacing: -0.02em;
-    color: var(--lightColor);
-    font-size: 18px;
-    font-weight: 500;
-    font-style: normal;
-    line-height: 27px;
+  top: 40px;
+  left: 160px;
+  letter-spacing: -0.02em;
+  color: var(--lightColor);
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 27px;
 }
- 

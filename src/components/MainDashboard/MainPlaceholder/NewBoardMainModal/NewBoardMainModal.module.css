@@ -64,6 +64,7 @@
   width: 28px;
   height: 28px;
 }
+
 .createBtn {
   display: flex;
   gap: 8px;
@@ -101,6 +102,34 @@
 
 .createBtn:hover .iconPlusWhite {
   display: inline-block;
+}
+
+.iconsTitle,
+.backgroundsTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.projectIcons {
+  display: flex;
+  gap: 8px;
+}
+
+.svg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.5);
+}
+
+.input_svg,
+.input_png {
+  display: none;
+}
+
+.projectBackgrounds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 /* @media (min-width: 375px) {

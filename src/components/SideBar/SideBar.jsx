@@ -2,7 +2,7 @@ import React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Box, Button, Typography, Drawer } from '@mui/material';
 import { useTheme } from '@mui/material';
-import { useState } from 'react';
+// import { useState } from 'react';
 import icon from '../../images/sprite.svg';
 
 import {
@@ -26,8 +26,7 @@ import {
 } from './SideBar.Styled';
 import Help from 'components/Help/Help';
 const SideBar = ({ active, onClick }) => {
-  const [setOpenAddModal] = useState(false);
-
+  // const [openAddModal, setOpenAddModal] = useState(false);
   const theme = useTheme();
 
   const drawerContent = (
@@ -98,7 +97,7 @@ const SideBar = ({ active, onClick }) => {
             Create a new board
           </Typography>
           <Button
-            onClick={() => setOpenAddModal(true)}
+            // onClick={() => setOpenAddModal(true)}
             sx={{
               backgroundColor: '#bedbb0',
               padding: '8px 10px',
