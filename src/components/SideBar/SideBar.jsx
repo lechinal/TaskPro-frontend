@@ -26,7 +26,8 @@ import {
 } from './SideBar.Styled';
 import Help from 'components/Help/Help';
 const SideBar = ({ active, onClick }) => {
-  const [openAddModal, setOpenAddModal] = useState(false);
+  const [setOpenAddModal] = useState(false);
+
   const theme = useTheme();
 
   const drawerContent = (
@@ -109,6 +110,7 @@ const SideBar = ({ active, onClick }) => {
             </PlusIcon>
           </Button>
         </Box>
+
         <BoardsContainer>
           <BoardsList theme={theme}>
             <TitleBox>

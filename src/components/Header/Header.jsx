@@ -24,9 +24,6 @@ export const Header = ({ onOpenSidebar, onOpenEdit }) => {
     setProfileModalOpen(true);
   };
 
-  const handleCloseModal = () => {
-    setProfileModalOpen(false);
-  };
   const handleClose = () => {
     setAnchorEl(null);
   };
