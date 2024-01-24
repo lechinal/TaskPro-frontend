@@ -17,14 +17,15 @@ import ProfileEditModal from 'components/ProfileEditModal/ProfileEditModal';
 
 export const Header = ({ onOpenSidebar, onOpenEdit }) => {
   const [auth] = useState(true);
-
+  const [isProfileModalOpen, setProfileModalOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleOpen = () => {
-    onOpenEdit(true);
+    setProfileModalOpen(true);
   };
+
   const handleCloseModal = () => {
-    onOpenEdit(false);
+    setProfileModalOpen(false);
   };
   const handleClose = () => {
     setAnchorEl(null);
@@ -178,8 +179,8 @@ export const Header = ({ onOpenSidebar, onOpenEdit }) => {
           )}
         </Toolbar>
         <ProfileEditModal
-          active={onOpenEdit}
-          onClick={handleCloseModal}
+          active={isProfileModalOpen}
+          onClick={() => setProfileModalOpen(false)}
         ></ProfileEditModal>
       </AppBar>
     </Box>

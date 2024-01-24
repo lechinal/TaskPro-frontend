@@ -56,7 +56,7 @@ const theme = createTheme({
   },
 });
 
-function ProfileEditModal(active, onClick) {
+function ProfileEditModal({ onClick, active }) {
   return (
     <ThemeProvider theme={theme}>
       <section className={css.section_profileEdit}>
@@ -65,7 +65,7 @@ function ProfileEditModal(active, onClick) {
             mt: 1,
             background: 'rgba(21, 21, 21, 1)',
             borderRadius: '8px',
-
+            display: active ? 'block' : 'none',
             padding: '40px',
             '@media (max-width: 375px)': {
               padding: '24px 5px',
@@ -94,7 +94,7 @@ function ProfileEditModal(active, onClick) {
               Edit Profile
             </Typography>
 
-            <Button>
+            <Button onClick={() => onClick(false)}>
               <CloseIcon
                 sx={{
                   fill: 'white',
