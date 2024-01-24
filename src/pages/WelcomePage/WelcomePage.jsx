@@ -1,6 +1,6 @@
 import React from 'react';
 import icons from '../../images/sprite.svg';
-import css from './WelcomePage.module.css'; 
+import css from './WelcomePage.module.css';
 import { NavLink } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -35,13 +35,21 @@ function WelcomePage() {
             Supercharge your productivity and take control of your tasks with
             Task Pro - Don't wait, start achieving your goals now!
           </p>
-          <div className={css.authWrapper}>            
-              <NavLink className={css.buttonLinkRegister} id="register" to={'/auth/register'}>
-                Registration
-              </NavLink>            
-              <NavLink className={css.buttonLinkLogin} id="login" to={'/auth/login'}>
-                Log In
-              </NavLink>             
+          <div className={css.authWrapper}>
+            <NavLink
+              className={css.buttonLinkRegister}
+              id="register"
+              to={'/auth/register'}
+            >
+              Registration
+            </NavLink>
+            <NavLink
+              className={css.buttonLinkLogin}
+              id="login"
+              to={'/auth/login'}
+            >
+              Log In
+            </NavLink>
           </div>
         </div>
       </section>

@@ -12,14 +12,14 @@ import Avatar from '@mui/material/Avatar';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { styled } from '@mui/system';
 import styles from '../Header/Header.module.css';
-import { useAuth } from '../../hooks/useAuth'; 
-
+import { useAuth } from '../../hooks/useAuth';
+import { useState } from 'react';
 const StyledMenu = styled(Menu)({});
 
-export const Header = () => {
-  const [auth] = React.useState(true);
-  const [setOpen] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+export const Header = ({ onOpenSidebar }) => {
+  const [auth] = useState(true);
+
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleMenu = event => {
     setAnchorEl(event.currentTarget);
@@ -30,7 +30,11 @@ export const Header = () => {
   };
 
   const handleDrawerOpen = () => {
-    setOpen(true);
+    if (typeof onOpenSidebar === 'function') {
+      onOpenSidebar();
+    } else {
+      console.error('onOpenSidebar is not a valid function');
+    }
   };
 
   const open = Boolean(anchorEl);
@@ -38,8 +42,8 @@ export const Header = () => {
     setAnchorEl(event.currentTarget);
   };
 
-  const { user } = useAuth(); 
-  
+  const { user } = useAuth();
+
   return (
     <Box className={styles.headerContainer}>
       <AppBar position="static" style={{ background: '#161616' }}>
@@ -48,7 +52,7 @@ export const Header = () => {
             size="large"
             edge="start"
             color="inherit"
-            aria-label="menu"
+            aria-label="open drawer"
             sx={{ mr: 2 }}
             onClick={handleDrawerOpen}
           >

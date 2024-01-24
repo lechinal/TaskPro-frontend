@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
 import css from './LoginForm.module.css';
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -12,13 +12,12 @@ import FormControl from '@mui/material/FormControl';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 
-
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/auth/authOperations';
- 
+
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { selectIsAuthLoading } from '../../redux/auth/authSelectors';
-import  Loader  from '../Loader/Loader';
+import Loader from '../Loader/Loader';
 const theme = createTheme({
   components: {
     MuiButton: {
@@ -64,7 +63,7 @@ const theme = createTheme({
 
 function LoginForm() {
   const dispatch = useDispatch();
-   
+
   const authOperation = useSelector(selectIsAuthLoading);
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword(show => !show);
@@ -99,24 +98,22 @@ function LoginForm() {
             borderRadius: '8px',
             padding: '40px',
             '@media (max-width: 375px)': {
-                padding: '24px 5px',                 
-              },             
+              padding: '24px 5px',
+            },
           }}
-           
-          onSubmit={handleSubmit}          
+          onSubmit={handleSubmit}
         >
-          <NavLink>
-            <Link
-              className={css.registerLink}
-              to="/auth/register"
-              underline="none"
-            >
-              Registration
-            </Link>
-            <Link className={css.loginLink} to="/login" underline="none">
-              Log In
-            </Link>
-          </NavLink>
+          <Link
+            className={css.registerLink}
+            to="/auth/register"
+            underline="none"
+          >
+            Registration
+          </Link>
+          <Link className={css.loginLink} to="/login" underline="none">
+            Log In
+          </Link>
+
           <Box
             component="form"
             noValidate

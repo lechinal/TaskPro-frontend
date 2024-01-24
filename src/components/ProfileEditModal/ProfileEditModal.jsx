@@ -1,23 +1,17 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
-import css from './RegisterForm.module.css';
-import { Link } from 'react-router-dom';
+import { Typography } from '@mui/material';
+
 import InputAdornment from '@mui/material/InputAdornment';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
-
-import { useDispatch, useSelector } from 'react-redux';
-import { register } from '../../redux/auth/authOperations';
-
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { selectIsAuthLoading } from '../../redux/auth/authSelectors';
-import Loader from '../Loader/Loader';
+import CloseIcon from '@mui/icons-material/Close';
+import { useDispatch } from 'react-redux';
 
 const theme = createTheme({
   components: {
@@ -61,39 +55,14 @@ const theme = createTheme({
     },
   },
 });
-function RegisterForm() {
-  const dispatch = useDispatch();
-  const authOperation = useSelector(selectIsAuthLoading);
 
-  const [showPassword, setShowPassword] = React.useState(false);
-  const handleClickShowPassword = () => setShowPassword(show => !show);
-  const handleMouseDownPassword = event => {
-    event.preventDefault();
-  };
-
-  const handleSubmit = async event => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    try {
-      await dispatch(
-        register({
-          name: form.elements.name.value,
-          email: form.elements.email.value,
-          password: form.elements.password.value,
-        })
-      ).unwrap();
-      form.reset();
-      Notify.success('Congratulations, you have successfully registered!');
-    } catch (error) {
-      Notify.failure('User already exist');
-    }
-  };
+function ProfileEditModal() {
+  // const dispatch = useDispatch();
 
   return (
     <ThemeProvider theme={theme}>
-      <section className={css.loginSection}>
+      <section>
         <Box
-          onSubmit={handleSubmit}
           sx={{
             mt: 1,
             background: 'rgba(21, 21, 21, 1)',
@@ -104,13 +73,17 @@ function RegisterForm() {
             },
           }}
         >
-          <Link className={css.registerLink} to="/register" underline="none">
-            Registration
-          </Link>
-          <Link className={css.loginLink} to="/auth/login" underline="none">
-            Log In
-          </Link>
-
+          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+            Edit Profile
+          </Typography>
+          <Button>
+            <CloseIcon></CloseIcon>
+          </Button>
+          <Avatar
+            variant="rounded"
+            alt="Remy Sharp"
+            src="/static/images/avatar/2.jpg"
+          />
           <Box
             component="form"
             noValidate
@@ -119,7 +92,7 @@ function RegisterForm() {
               display: 'flex',
               flexDirection: 'column',
               gap: '20px',
-              marginTop: '25px',
+              marginTop: '30px',
             }}
           >
             <FormControl variant="outlined">
@@ -128,7 +101,7 @@ function RegisterForm() {
                   color: 'rgba(255, 255, 255, 0.3)',
                 }}
               >
-                Enter your name
+                Name
               </InputLabel>
               <OutlinedInput label="Enter your email" fullWidth />
             </FormControl>
@@ -138,7 +111,7 @@ function RegisterForm() {
                   color: 'rgba(255, 255, 255, 0.3)',
                 }}
               >
-                Enter your email
+                email
               </InputLabel>
               <OutlinedInput label="Enter your email" fullWidth />
             </FormControl>
@@ -149,24 +122,19 @@ function RegisterForm() {
                   color: 'rgba(255, 255, 255, 0.3)',
                 }}
               >
-                Create a password
+                password
               </InputLabel>
               <OutlinedInput
                 id="outlined-adornment-password"
-                type={showPassword ? 'text' : 'password'}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
                       aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
                       edge="end"
                       sx={{
                         color: 'rgba(255, 255, 255, 0.3)',
                       }}
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
+                    ></IconButton>
                   </InputAdornment>
                 }
                 label="Confirm a password"
@@ -174,7 +142,6 @@ function RegisterForm() {
               />
             </FormControl>
             <Button
-              className={css.btnRegister}
               variant="text"
               type="submit"
               sx={{
@@ -188,7 +155,8 @@ function RegisterForm() {
                 marginTop: '20px',
               }}
             >
-              {authOperation === 'register' ? <Loader /> : <>Register Now</>}
+              {' '}
+              Send
             </Button>
           </Box>
         </Box>
@@ -197,4 +165,4 @@ function RegisterForm() {
   );
 }
 
-export default RegisterForm;
+export default ProfileEditModal;

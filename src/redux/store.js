@@ -9,9 +9,11 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+
 import storage from 'redux-persist/lib/storage';
- 
+
 import { authReducer } from './auth/authSlice';
+import boardReducers from './boards/boardSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -19,10 +21,16 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
+const boardsPersistConfig = {
+  key: 'boards',
+  storage,
+  whitelist: ['items', 'currentBoard'],
+};
+
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-   
+    boards: persistReducer(boardsPersistConfig, boardReducers),
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
