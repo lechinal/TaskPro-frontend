@@ -5,29 +5,28 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-/* import MenuItem from '@mui/material/MenuItem';
+import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import { Button } from '@mui/material'; */
+import { Button } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
-/* import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'; */
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import styles from '../Header/Header.module.css';
 import { useAuth } from '../../hooks/useAuth';
 import { useState } from 'react';
-import { ThemeComponent } from 'components/Theme/ThemeComponent';
 import ProfileEditModal from 'components/ProfileEditModal/ProfileEditModal';
 
 export const Header = ({ onOpenSidebar, onOpenEdit }) => {
   const [auth] = useState(true);
   const [isProfileModalOpen, setProfileModalOpen] = useState(false);
-  /* const [anchorEl, setAnchorEl] = useState(null); */
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleOpen = () => {
     setProfileModalOpen(true);
   };
 
-  /*  const handleClose = () => {
+  const handleClose = () => {
     setAnchorEl(null);
-  }; */
+  };
 
   const handleDrawerOpen = () => {
     if (typeof onOpenSidebar === 'function') {
@@ -37,10 +36,10 @@ export const Header = ({ onOpenSidebar, onOpenEdit }) => {
     }
   };
 
-  /*   const open = Boolean(anchorEl);
+  const open = Boolean(anchorEl);
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
-  }; */
+  };
 
   const { user } = useAuth();
 
@@ -59,9 +58,6 @@ export const Header = ({ onOpenSidebar, onOpenEdit }) => {
             <MenuIcon />
           </IconButton>
           <div className={styles.themeHeader}>
-            <ThemeComponent />
-          </div>
-          {/*           <div className={styles.themeHeader}>
             <Button
               id="demo-customized-button"
               aria-controls={open ? 'demo-customized-menu' : undefined}
@@ -143,7 +139,7 @@ export const Header = ({ onOpenSidebar, onOpenEdit }) => {
                 Violet
               </MenuItem>
             </Menu>
-          </div> */}
+          </div>
           <Typography
             variant="h6"
             component="div"
