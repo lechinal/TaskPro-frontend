@@ -97,7 +97,7 @@ const SideBar = ({ active, onClick }) => {
             Create a new board
           </Typography>
           <Button
-            onClick={() => setOpenAddModal(true)}
+            // onClick={() => setOpenAddModal(true)}
             sx={{
               backgroundColor: '#bedbb0',
               padding: '8px 10px',
