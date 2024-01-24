@@ -24,8 +24,7 @@ import {
 } from './SideBar.Styled';
 import Help from 'components/Help/Help';
 const SideBar = ({ active, onClick }) => {
-  const [setOpenAddModal] = useState(false);
-
+  const [openAddModal, setOpenAddModal] = useState(false);
   const theme = useTheme();
 
   const drawerContent = (
@@ -76,7 +75,7 @@ const SideBar = ({ active, onClick }) => {
             justifyContent: 'space-between',
             borderBottom: '1px solid',
             borderTop: '1px solid',
-            borderColor: 'primary.contrastText',
+            borderColor: '#FFFFFF1A',
             padding: '14px 0',
             marginTop: '8px',
             marginBottom: '40px',
@@ -111,7 +110,7 @@ const SideBar = ({ active, onClick }) => {
         <BoardsContainer>
           <BoardsList theme={theme}>
             <TitleBox>
-              <Title theme={theme}>Project Name</Title>{' '}
+              <Title theme={theme}>Project Name</Title>
               <IconTitle>
                 <use href={icon + '#icon-project'}></use>
               </IconTitle>
@@ -184,6 +183,33 @@ const SideBar = ({ active, onClick }) => {
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
 
+        <Drawer
+          variant="temporary"
+          open={active}
+          onClose={onClick}
+          ModalProps={{
+            keepMounted: true,
+          }}
+          sx={{
+            '@media (min-width: 1440px)': {
+              display: { xs: 'block', sm: 'none' },
+            },
+
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
+              width: 225,
+            },
+
+            '@media (min-width: 768px)': {
+              '& .MuiDrawer-paper': {
+                boxSizing: 'border-box',
+                width: 260,
+              },
+            },
+          }}
+        >
+          {drawerContent}
+        </Drawer>
         <Drawer
           variant="permanent"
           sx={{
