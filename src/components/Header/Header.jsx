@@ -39,7 +39,7 @@ export const Header = () => {
   };
 
   const { user } = useAuth(); 
-  
+
   return (
     <Box className={styles.headerContainer}>
       <AppBar position="static" style={{ background: '#161616' }}>
@@ -81,6 +81,7 @@ export const Header = () => {
               anchorEl={anchorEl}
               open={open}
               onClose={handleClose}
+              
             >
               <MenuItem onClick={handleClose} disableRipple>
                 Dark

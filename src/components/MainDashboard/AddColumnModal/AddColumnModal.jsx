@@ -117,6 +117,15 @@ function AddColumnModal({ closeModal }) {
             </div>
           </div>
         </div>
+        <Button className={css.addColumnBtn}>
+          <svg className={`${css.iconPlus} ${css.iconPlusBlack}`}>
+            <use href={`${icons}#icon-plus-black`} />
+          </svg>
+          <svg className={`${css.iconPlus} ${css.iconPlusWhite}`}>
+            <use href={`${icons}#icon-plus`} />
+          </svg>
+          <p>Add another card</p>
+        </Button>
       </div>
     </ThemeProvider>
   );

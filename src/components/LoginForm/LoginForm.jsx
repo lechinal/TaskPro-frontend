@@ -1,17 +1,17 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
 import css from './LoginForm.module.css';
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import FormControl from '@mui/material/FormControl';
+// import InputLabel from '@mui/material/InputLabel';
+// import FormControl from '@mui/material/FormControl';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
-
+import { TextField } from '@mui/material';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/auth/authOperations';
@@ -103,9 +103,9 @@ function LoginForm() {
               },             
           }}
            
-          onSubmit={handleSubmit}          
+                
         >
-          <NavLink>
+          
             <Link
               className={css.registerLink}
               to="/auth/register"
@@ -116,9 +116,10 @@ function LoginForm() {
             <Link className={css.loginLink} to="/login" underline="none">
               Log In
             </Link>
-          </NavLink>
+        
           <Box
             component="form"
+            onSubmit={handleSubmit}   
             noValidate
             sx={{
               mt: 1,
@@ -128,47 +129,36 @@ function LoginForm() {
               marginTop: '30px',
             }}
           >
-            <FormControl variant="outlined">
-              <InputLabel
-                sx={{
-                  color: 'rgba(255, 255, 255, 0.3)',
-                }}
-              >
-                Enter your email
-              </InputLabel>
-              <OutlinedInput label="Enter your email" fullWidth />
-            </FormControl>
-            <FormControl variant="outlined">
-              <InputLabel
-                htmlFor="outlined-adornment-password"
-                sx={{
-                  color: 'rgba(255, 255, 255, 0.3)',
-                }}
-              >
-                Confirm a password
-              </InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-password"
-                type={showPassword ? 'text' : 'password'}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                      sx={{
-                        color: 'rgba(255, 255, 255, 0.3)',
-                      }}
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                label="Confirm a password"
-                fullWidth
-              />
-            </FormControl>
+             <TextField
+              required
+              id="email"
+              label="Email"
+              name="email"
+              variant="outlined"
+            />
+
+<OutlinedInput
+              name="password"
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                    sx={{
+                      color: 'rgba(255, 255, 255, 0.3)',
+                    }}
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              label="Confirm a password"
+              fullWidth
+            />
             <Button
               className={css.btnRegister}
               variant="text"
