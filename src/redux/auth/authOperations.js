@@ -73,7 +73,6 @@ export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   } catch (e) {
     return thunkAPI.rejectWithValue(e.message);
   }
-
 });
 
 export const updateUserTheme = createAsyncThunk(
@@ -99,6 +98,3 @@ export const updateUserTheme = createAsyncThunk(
     }
   }
 );
-
-});
-
