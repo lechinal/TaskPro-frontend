@@ -10,21 +10,22 @@ import Menu from '@mui/material/Menu';
 import { Button } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { styled } from '@mui/system';
 import styles from '../Header/Header.module.css';
 import { useAuth } from '../../hooks/useAuth';
 import { useState } from 'react';
-const StyledMenu = styled(Menu)({});
+import ProfileEditModal from 'components/ProfileEditModal/ProfileEditModal';
 
-export const Header = ({ onOpenSidebar }) => {
+export const Header = ({ onOpenSidebar, onOpenEdit }) => {
   const [auth] = useState(true);
 
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleMenu = event => {
-    setAnchorEl(event.currentTarget);
+  const handleOpen = () => {
+    onOpenEdit(true);
   };
-
+  const handleCloseModal = () => {
+    onOpenEdit(false);
+  };
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -71,13 +72,18 @@ export const Header = ({ onOpenSidebar }) => {
               sx={{
                 backgroundColor: '#161616',
                 color: 'white',
-                font: 'Poppins',
+                opacity: '80%',
+                fontFamily: 'Poppins',
                 fontSize: '14px',
+                textTransform: 'none',
+                '&:hover': {
+                  backgroundColor: '#161616',
+                },
               }}
             >
               Theme
             </Button>
-            <StyledMenu
+            <Menu
               id="demo-customized-menu"
               MenuListProps={{
                 'aria-labelledby': 'demo-customized-button',
@@ -86,17 +92,55 @@ export const Header = ({ onOpenSidebar }) => {
               open={open}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose} disableRipple>
-                Dark
-              </MenuItem>
-              <MenuItem onClick={handleClose} disableRipple>
+              <MenuItem
+                sx={{
+                  backgroundColor: '#161616',
+                  color: 'white',
+                  '&:hover': {
+                    backgroundColor: '#161616',
+                  },
+                  fontFamily: 'Poppins',
+                  fontSize: '14px',
+                  textTransform: 'none',
+                }}
+                onClick={handleClose}
+                disableRipple
+              >
                 Light
               </MenuItem>
-
-              <MenuItem onClick={handleClose} disableRipple>
+              <MenuItem
+                sx={{
+                  backgroundColor: '#161616',
+                  color: '#BEDBB0',
+                  '&:hover': {
+                    backgroundColor: '#161616',
+                  },
+                  fontFamily: 'Poppins',
+                  fontSize: '14px',
+                  textTransform: 'none',
+                }}
+                onClick={handleClose}
+                disableRipple
+              >
+                Dark
+              </MenuItem>
+              <MenuItem
+                sx={{
+                  backgroundColor: '#161616',
+                  color: 'white',
+                  '&:hover': {
+                    backgroundColor: '#161616',
+                  },
+                  fontFamily: 'Poppins',
+                  fontSize: '14px',
+                  textTransform: 'none',
+                }}
+                onClick={handleClose}
+                disableRipple
+              >
                 Violet
               </MenuItem>
-            </StyledMenu>
+            </Menu>
           </div>
           <Typography
             variant="h6"
@@ -120,9 +164,9 @@ export const Header = ({ onOpenSidebar }) => {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={handleMenu}
+                onClick={handleOpen}
                 color="inherit"
-                sx={{ marginLeft: 'auto' }}
+                sx={{ marginLeft: 'auto', position: 'relative' }}
               >
                 <Avatar
                   variant="rounded"
@@ -133,6 +177,10 @@ export const Header = ({ onOpenSidebar }) => {
             </div>
           )}
         </Toolbar>
+        <ProfileEditModal
+          active={onOpenEdit}
+          onClick={handleCloseModal}
+        ></ProfileEditModal>
       </AppBar>
     </Box>
   );

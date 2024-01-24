@@ -47,11 +47,11 @@ export const LogoutIcon = styled.svg`
   background-color: transparent;
 `;
 export const BoardsContainer = styled.div`
-  background: #1f1f1f;
   height: 61px;
   display: flex;
   align-items: center;
-  width: 250px;
+  width: 260px;
+  background: #1f1f1f;
 `;
 
 export const BoardsList = styled.ul`
@@ -122,6 +122,7 @@ export const IconsBox = styled.div`
   position: absolute;
   top: 50%;
   right: 24px;
+
   transform: translateY(-50%);
   display: flex;
   align-items: center;
@@ -149,8 +150,23 @@ export const IconLink = styled.button`
   border: none;
 `;
 export const IconPuzzle = styled.svg`
-  width: 16px;
-  height: 16px;
-  stroke: transaprent;
+  width: 18px;
+  height: 18px;
+
   margin-right: 8px;
+  stroke: #ffffff80;
+`;
+export const SectionLight = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding: 20px 10px;
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: -0.02em;
+  text-align: left;
+  align-items: center;
+  opacity: 50%;
+  color: #ffffff80;
 `;
