@@ -1,7 +1,12 @@
-import { login, logout, refresh, register } from './authOperations';
+import {
+  login,
+  logout,
+  refresh,
+  register,
+  updateUserTheme,
+} from './authOperations';
 import { createSlice } from '@reduxjs/toolkit';
 
- 
 const handleRejected = (state, action) => {
   state.isAuthLoading = false;
   state.authError = action.payload;
@@ -72,6 +77,11 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         state.isAuthLoading = false;
         // state.authError = payload;
+      })
+      .addCase(updateUserTheme.fulfilled, (state, action) => {
+        state.user.theme = action.payload.theme;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
       });
   },
 });

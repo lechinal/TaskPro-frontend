@@ -74,3 +74,27 @@ export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(e.message);
   }
 });
+
+export const updateUserTheme = createAsyncThunk(
+  'auth/theme',
+  async (credentials, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+    try {
+      setAuthHeader(persistedToken);
+      const payload = {
+        theme: credentials,
+      };
+      const res = await axios.patch('/user/theme', payload);
+      console.log('res', res);
+      console.log('res.data', res.data);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
