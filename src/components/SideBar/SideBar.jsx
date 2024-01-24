@@ -2,7 +2,7 @@ import React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Box, Button, Typography, Drawer } from '@mui/material';
 import { useTheme } from '@mui/material';
-import { useState } from 'react';
+// import { useState } from 'react';
 import icon from '../../images/sprite.svg';
 
 import {
@@ -21,11 +21,12 @@ import {
   IconLink,
   Title,
   IconButton,
+  IconPuzzle,
+  SectionLight,
 } from './SideBar.Styled';
 import Help from 'components/Help/Help';
 const SideBar = ({ active, onClick }) => {
-  const [setOpenAddModal] = useState(false);
-
+  // const [openAddModal, setOpenAddModal] = useState(false);
   const theme = useTheme();
 
   const drawerContent = (
@@ -76,7 +77,7 @@ const SideBar = ({ active, onClick }) => {
             justifyContent: 'space-between',
             borderBottom: '1px solid',
             borderTop: '1px solid',
-            borderColor: 'primary.contrastText',
+            borderColor: '#FFFFFF1A',
             padding: '14px 0',
             marginTop: '8px',
             marginBottom: '40px',
@@ -96,7 +97,7 @@ const SideBar = ({ active, onClick }) => {
             Create a new board
           </Typography>
           <Button
-            onClick={() => setOpenAddModal(true)}
+            // onClick={() => setOpenAddModal(true)}
             sx={{
               backgroundColor: '#bedbb0',
               padding: '8px 10px',
@@ -108,10 +109,11 @@ const SideBar = ({ active, onClick }) => {
             </PlusIcon>
           </Button>
         </Box>
+
         <BoardsContainer>
           <BoardsList theme={theme}>
             <TitleBox>
-              <Title theme={theme}>Project Name</Title>{' '}
+              <Title theme={theme}>Project Name</Title>
               <IconTitle>
                 <use href={icon + '#icon-project'}></use>
               </IconTitle>
@@ -131,9 +133,16 @@ const SideBar = ({ active, onClick }) => {
             </IconsBox>
           </BoardsList>
         </BoardsContainer>
+        <SectionLight>
+          <IconPuzzle>
+            <use href={icon + '#icon-puzzle'}></use>
+          </IconPuzzle>
+          <p>Neon Light Project</p>
+        </SectionLight>
       </Thumb>
-      <Help />
+
       <Thumb>
+        <Help />
         <Box
           sx={{
             marginTop: '24px',
@@ -184,6 +193,33 @@ const SideBar = ({ active, onClick }) => {
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
 
+        <Drawer
+          variant="temporary"
+          open={active}
+          onClose={onClick}
+          ModalProps={{
+            keepMounted: true,
+          }}
+          sx={{
+            '@media (min-width: 1440px)': {
+              display: { xs: 'block', sm: 'none' },
+            },
+
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
+              width: 225,
+            },
+
+            '@media (min-width: 768px)': {
+              '& .MuiDrawer-paper': {
+                boxSizing: 'border-box',
+                width: 260,
+              },
+            },
+          }}
+        >
+          {drawerContent}
+        </Drawer>
         <Drawer
           variant="permanent"
           sx={{

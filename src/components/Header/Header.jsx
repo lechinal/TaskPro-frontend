@@ -10,19 +10,18 @@ import Menu from '@mui/material/Menu';
 import { Button } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { styled } from '@mui/system';
 import styles from '../Header/Header.module.css';
-import { useAuth } from '../../hooks/useAuth'; 
+import { useAuth } from '../../hooks/useAuth';
+import { useState } from 'react';
+import ProfileEditModal from 'components/ProfileEditModal/ProfileEditModal';
 
-const StyledMenu = styled(Menu)({});
+export const Header = ({ onOpenSidebar, onOpenEdit }) => {
+  const [auth] = useState(true);
+  const [isProfileModalOpen, setProfileModalOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
 
-export const Header = () => {
-  const [auth] = React.useState(true);
-  const [setOpen] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleMenu = event => {
-    setAnchorEl(event.currentTarget);
+  const handleOpen = () => {
+    setProfileModalOpen(true);
   };
 
   const handleClose = () => {
@@ -30,7 +29,11 @@ export const Header = () => {
   };
 
   const handleDrawerOpen = () => {
-    setOpen(true);
+    if (typeof onOpenSidebar === 'function') {
+      onOpenSidebar();
+    } else {
+      console.error('onOpenSidebar is not a valid function');
+    }
   };
 
   const open = Boolean(anchorEl);
@@ -38,7 +41,7 @@ export const Header = () => {
     setAnchorEl(event.currentTarget);
   };
 
-  const { user } = useAuth(); 
+  const { user } = useAuth();
 
   return (
     <Box className={styles.headerContainer}>
@@ -48,7 +51,7 @@ export const Header = () => {
             size="large"
             edge="start"
             color="inherit"
-            aria-label="menu"
+            aria-label="open drawer"
             sx={{ mr: 2 }}
             onClick={handleDrawerOpen}
           >
@@ -67,13 +70,18 @@ export const Header = () => {
               sx={{
                 backgroundColor: '#161616',
                 color: 'white',
-                font: 'Poppins',
+                opacity: '80%',
+                fontFamily: 'Poppins',
                 fontSize: '14px',
+                textTransform: 'none',
+                '&:hover': {
+                  backgroundColor: '#161616',
+                },
               }}
             >
               Theme
             </Button>
-            <StyledMenu
+            <Menu
               id="demo-customized-menu"
               MenuListProps={{
                 'aria-labelledby': 'demo-customized-button',
@@ -81,19 +89,56 @@ export const Header = () => {
               anchorEl={anchorEl}
               open={open}
               onClose={handleClose}
-              
             >
-              <MenuItem onClick={handleClose} disableRipple>
-                Dark
-              </MenuItem>
-              <MenuItem onClick={handleClose} disableRipple>
+              <MenuItem
+                sx={{
+                  backgroundColor: '#161616',
+                  color: 'white',
+                  '&:hover': {
+                    backgroundColor: '#161616',
+                  },
+                  fontFamily: 'Poppins',
+                  fontSize: '14px',
+                  textTransform: 'none',
+                }}
+                onClick={handleClose}
+                disableRipple
+              >
                 Light
               </MenuItem>
-
-              <MenuItem onClick={handleClose} disableRipple>
+              <MenuItem
+                sx={{
+                  backgroundColor: '#161616',
+                  color: '#BEDBB0',
+                  '&:hover': {
+                    backgroundColor: '#161616',
+                  },
+                  fontFamily: 'Poppins',
+                  fontSize: '14px',
+                  textTransform: 'none',
+                }}
+                onClick={handleClose}
+                disableRipple
+              >
+                Dark
+              </MenuItem>
+              <MenuItem
+                sx={{
+                  backgroundColor: '#161616',
+                  color: 'white',
+                  '&:hover': {
+                    backgroundColor: '#161616',
+                  },
+                  fontFamily: 'Poppins',
+                  fontSize: '14px',
+                  textTransform: 'none',
+                }}
+                onClick={handleClose}
+                disableRipple
+              >
                 Violet
               </MenuItem>
-            </StyledMenu>
+            </Menu>
           </div>
           <Typography
             variant="h6"
@@ -117,9 +162,9 @@ export const Header = () => {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={handleMenu}
+                onClick={handleOpen}
                 color="inherit"
-                sx={{ marginLeft: 'auto' }}
+                sx={{ marginLeft: 'auto', position: 'relative' }}
               >
                 <Avatar
                   variant="rounded"
@@ -130,6 +175,10 @@ export const Header = () => {
             </div>
           )}
         </Toolbar>
+        <ProfileEditModal
+          active={isProfileModalOpen}
+          onClick={() => setProfileModalOpen(false)}
+        ></ProfileEditModal>
       </AppBar>
     </Box>
   );

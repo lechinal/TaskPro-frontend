@@ -104,13 +104,13 @@ function RegisterForm() {
             },
           }}
         >
-          <Link className={css.registerLink} to="/register" underline="none">
-            Registration
-          </Link>
-          <Link className={css.loginLink} to="/auth/login" underline="none">
-            Log In
-          </Link>
-
+            <Link className={css.registerLink} to="/register" underline="none">
+              Registration
+            </Link>
+            <Link className={css.loginLink} to="/auth/login" underline="none">
+              Log In
+            </Link>
+          
           <Box
             onSubmit={handleSubmit}
             component="form"
