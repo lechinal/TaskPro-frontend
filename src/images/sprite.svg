@@ -76,10 +76,8 @@
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.5" d="M16.867 11.533l4.466 4.467-4.466 4.467"></path>
 </symbol>
 
-<symbol id="icon-plus" viewBox="0 0 28 28">
-<path d="M22 0H6C2.68629 0 0 2.68629 0 6V22C0 25.3137 2.68629 28 6 28H22C25.3137 28 28 25.3137 28 22V6C28 2.68629 25.3137 0 22 0Z" fill="white"/>
-<path d="M14 9.9165V18.0832" stroke="#121212" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M9.91675 14H18.0834" stroke="#121212" stroke-linecap="round" stroke-linejoin="round"/>
+<symbol id="icon-plus" viewBox="0 0 20 20">
+<path d="M16 10c0 0.553-0.048 1-0.601 1h-4.399v4.399c0 0.552-0.447 0.601-1 0.601s-1-0.049-1-0.601v-4.399h-4.399c-0.552 0-0.601-0.447-0.601-1s0.049-1 0.601-1h4.399v-4.399c0-0.553 0.447-0.601 1-0.601s1 0.048 1 0.601v4.399h4.399c0.553 0 0.601 0.447 0.601 1z"></path>
 </symbol>
 
 <symbol id="icon-plus-black" viewBox="0 0 28 28">
