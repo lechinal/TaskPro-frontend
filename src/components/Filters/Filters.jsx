@@ -56,7 +56,7 @@ export default function BasicModal() {
               position: 'absolute',
               right: 8,
               top: 8,
-              color: "rgba(255, 255, 255, 1)",
+              color: 'rgba(255, 255, 255, 1)',
             }}
           >
             <CloseIcon />
