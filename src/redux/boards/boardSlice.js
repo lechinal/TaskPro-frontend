@@ -17,11 +17,13 @@ const initialState = {
 
 const handlePending = (state, action) => {
   state.isLoading = true;
+  return state;
 };
 
 const handleRejected = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
+  return state;
 };
 
 const boardSlice = createSlice({
