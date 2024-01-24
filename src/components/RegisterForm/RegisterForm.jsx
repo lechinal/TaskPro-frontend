@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
 import css from './RegisterForm.module.css';
-import { Link } from 'react-router-dom';
+import {Link } from 'react-router-dom';
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -14,10 +14,11 @@ import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../redux/auth/authOperations';
-
+ 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { selectIsAuthLoading } from '../../redux/auth/authSelectors';
-import Loader from '../Loader/Loader';
+import  Loader  from '../Loader/Loader';
+
 
 const theme = createTheme({
   components: {
@@ -62,6 +63,7 @@ const theme = createTheme({
   },
 });
 function RegisterForm() {
+
   const dispatch = useDispatch();
   const authOperation = useSelector(selectIsAuthLoading);
 
@@ -100,17 +102,18 @@ function RegisterForm() {
             borderRadius: '8px',
             padding: '40px',
             '@media (max-width: 375px)': {
-              padding: '24px 5px',
-            },
+                padding: '24px 5px',                 
+              },
           }}
         >
-          <Link className={css.registerLink} to="/register" underline="none">
-            Registration
-          </Link>
-          <Link className={css.loginLink} to="/auth/login" underline="none">
-            Log In
-          </Link>
-
+       
+            <Link className={css.registerLink} to="/register" underline="none">
+              Registration
+            </Link>
+            <Link className={css.loginLink} to="/auth/login" underline="none">
+              Log In
+            </Link>
+          
           <Box
             component="form"
             noValidate
