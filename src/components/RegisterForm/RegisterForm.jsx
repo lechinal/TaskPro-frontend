@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
 import css from './RegisterForm.module.css';
-import { NavLink, Link } from 'react-router-dom';
+import {Link } from 'react-router-dom';
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -106,14 +106,14 @@ function RegisterForm() {
               },
           }}
         >
-          <NavLink>
+       
             <Link className={css.registerLink} to="/register" underline="none">
               Registration
             </Link>
             <Link className={css.loginLink} to="/auth/login" underline="none">
               Log In
             </Link>
-          </NavLink>
+          
           <Box
             component="form"
             noValidate
