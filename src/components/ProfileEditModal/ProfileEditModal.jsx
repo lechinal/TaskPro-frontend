@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
 import { Typography } from '@mui/material';
-import { NavLink, Link } from 'react-router-dom';
 import InputAdornment from '@mui/material/InputAdornment';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
@@ -11,7 +10,8 @@ import FormControl from '@mui/material/FormControl';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import CloseIcon from '@mui/icons-material/Close';
-import { useDispatch, useSelector } from 'react-redux';
+
+import css from './ProfileEditModal.module.css';
 
 const theme = createTheme({
   components: {
@@ -56,33 +56,61 @@ const theme = createTheme({
   },
 });
 
-function ProfileEditModal() {
-  const dispatch = useDispatch();
-
+function ProfileEditModal({ onClick, active }) {
   return (
     <ThemeProvider theme={theme}>
-      <section>
+      <section className={css.section_profileEdit}>
         <Box
           sx={{
             mt: 1,
             background: 'rgba(21, 21, 21, 1)',
             borderRadius: '8px',
+            display: active ? 'block' : 'none',
             padding: '40px',
             '@media (max-width: 375px)': {
               padding: '24px 5px',
             },
           }}
         >
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            Edit Profile
-          </Typography>
-          <Button>
-            <CloseIcon></CloseIcon>
-          </Button>
+          <Box
+            sx={{
+              mt: 1,
+              display: 'flex',
+              flexDirection: 'row',
+            }}
+          >
+            <Typography
+              sx={{
+                fontSize: 18,
+
+                color: '#fff',
+                fontFamily: 'Poppins',
+                flexGrow: '1',
+                fontWeight: '500',
+              }}
+              color="text.secondary"
+              gutterBottom
+            >
+              Edit Profile
+            </Typography>
+
+            <Button onClick={() => onClick(false)}>
+              <CloseIcon
+                sx={{
+                  fill: 'white',
+                }}
+              ></CloseIcon>
+            </Button>
+          </Box>
           <Avatar
             variant="rounded"
             alt="Remy Sharp"
             src="/static/images/avatar/2.jpg"
+            sx={{
+              marginLeft: '40%',
+              width: '68px',
+              height: '68px',
+            }}
           />
           <Box
             component="form"
@@ -111,7 +139,7 @@ function ProfileEditModal() {
                   color: 'rgba(255, 255, 255, 0.3)',
                 }}
               >
-                email
+                Email
               </InputLabel>
               <OutlinedInput label="Enter your email" fullWidth />
             </FormControl>
@@ -122,7 +150,7 @@ function ProfileEditModal() {
                   color: 'rgba(255, 255, 255, 0.3)',
                 }}
               >
-                password
+                Password
               </InputLabel>
               <OutlinedInput
                 id="outlined-adornment-password"
@@ -143,6 +171,7 @@ function ProfileEditModal() {
             </FormControl>
             <Button
               variant="text"
+              className={css.btnSend}
               type="submit"
               sx={{
                 mb: 1,
@@ -155,7 +184,6 @@ function ProfileEditModal() {
                 marginTop: '20px',
               }}
             >
-              {' '}
               Send
             </Button>
           </Box>

@@ -21,10 +21,13 @@ import {
   IconLink,
   Title,
   IconButton,
+  IconPuzzle,
+  SectionLight,
 } from './SideBar.Styled';
 import Help from 'components/Help/Help';
 const SideBar = ({ active, onClick }) => {
-  const [openAddModal, setOpenAddModal] = useState(false);
+  const [setOpenAddModal] = useState(false);
+
   const theme = useTheme();
 
   const drawerContent = (
@@ -107,6 +110,7 @@ const SideBar = ({ active, onClick }) => {
             </PlusIcon>
           </Button>
         </Box>
+
         <BoardsContainer>
           <BoardsList theme={theme}>
             <TitleBox>
@@ -130,9 +134,16 @@ const SideBar = ({ active, onClick }) => {
             </IconsBox>
           </BoardsList>
         </BoardsContainer>
+        <SectionLight>
+          <IconPuzzle>
+            <use href={icon + '#icon-puzzle'}></use>
+          </IconPuzzle>
+          <p>Neon Light Project</p>
+        </SectionLight>
       </Thumb>
-      <Help />
+
       <Thumb>
+        <Help />
         <Box
           sx={{
             marginTop: '24px',
