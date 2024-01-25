@@ -4,7 +4,13 @@ import { Box, Button, Typography, Drawer } from '@mui/material';
 import { useTheme } from '@mui/material';
 import { useState } from 'react';
 import icon from '../../images/sprite.svg';
+
 import NewBoardMainModal from 'components/MainDashboard/MainPlaceholder/NewBoardMainModal/NewBoardMainModal';
+
+import { logout } from '../../redux/auth/authOperations';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
+
 import {
   SideBarStyled,
   LogoIcon,
@@ -26,7 +32,17 @@ import {
 } from './SideBar.Styled';
 import Help from 'components/Help/Help';
 const SideBar = ({ active, onClick }) => {
+
   const [openModal, setOpenModal] = useState(false);
+
+  const dispatch = useDispatch();
+  
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/');
+  };
+
   const theme = useTheme();
 
   const handleOpenModal = () => {
@@ -160,6 +176,7 @@ const SideBar = ({ active, onClick }) => {
             fontSize: '12px',
             letterSpacing: 0.7,
           }}
+          onClick={handleLogout}
         >
           <Button
             sx={{
@@ -174,6 +191,7 @@ const SideBar = ({ active, onClick }) => {
                 border: 0,
               },
             }}
+            onClick={handleLogout}
           >
             <LogoutIcon theme={theme}>
               <use href={icon + '#icon-logout'}></use>
