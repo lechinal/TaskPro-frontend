@@ -50,7 +50,7 @@ export const login = createAsyncThunk(
 // headers: Authorization: Bearer token
 export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await axios.post('/users/logout');
+    await axios.post('/user/logout');
     clearAuthHeader();
   } catch (e) {
     return thunkAPI.rejectWithValue(e.message);
