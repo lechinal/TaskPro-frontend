@@ -18,14 +18,12 @@
 }
 
 .iconPlus {
+  stroke: #000;
   fill: #fff;
   width: 28px;
   height: 28px;
 }
 
-.iconPlus:hover {
-  fill: black;
-}
 
 @media (max-width: 375px) {
   .mainDashboardButton.mainDashboardButton {

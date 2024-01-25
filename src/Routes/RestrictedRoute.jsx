@@ -1,15 +1,11 @@
- 
-// import { Navigate, Outlet } from "react-router-dom";
-// import { Suspense } from "react";
-// import { useAuth } from '../hooks/useAuth';
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+import { selectIsLoggedIn } from '../redux/auth/authSelectors';
 
-// export const RestrictedRoute = () => {
-    
-//     const {isLoggedIn} = useAuth();
-//     return isLoggedIn ?
-//     <Navigate to='/home' />
-//     :
-//     <Suspense fallback={<div>Loading...</div>}>
-//         <Outlet/> 
-//     </Suspense> 
-// }
+const RestrictedRoute = ({ component: Component, redirectTo = '/' }) => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  return isLoggedIn ? <Navigate to={redirectTo} /> : Component;
+};
+
+export default RestrictedRoute;

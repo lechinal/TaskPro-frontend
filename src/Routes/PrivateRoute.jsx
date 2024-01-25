@@ -1,10 +1,15 @@
-import { useAuth } from '../hooks/useAuth';
 import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import {
+  selectIsLoggedIn,
+  selectIsRefreshing,
+} from '../redux/auth/authSelectors';
 
-const PrivateRoute = ({ children }) => {
-  const { isLoggedIn } = useAuth();
+const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isRefreshing = useSelector(selectIsRefreshing);
 
-  return !isLoggedIn ? children : <Navigate to={'/auth/login'} />;
+  const shouldRedirect = !isLoggedIn && !isRefreshing;
+  return shouldRedirect ? <Navigate to={redirectTo} /> : Component;
 };
-
 export default PrivateRoute;

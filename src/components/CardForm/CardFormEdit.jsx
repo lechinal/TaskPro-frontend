@@ -12,7 +12,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
  import RadioLabel from  "./RadioLabel"
 
-export const CardForm = () => { 
+export const CardFormAdd = () => { 
  
   const theme = createTheme({
     components: {
@@ -85,7 +85,7 @@ export const CardForm = () => {
               marginBottom: '20px',
             }}
           >
-            Add card
+            Edit card
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
             <TextField
@@ -161,7 +161,7 @@ export const CardForm = () => {
                 textTransform: 'none',
               }}
             >
-              Add
+              Edit
             </Typography>
           </Button>
         </Box>

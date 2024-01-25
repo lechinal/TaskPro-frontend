@@ -116,7 +116,7 @@ function AddColumnModal({ closeModal }) {
               </Button>
             </div>
           </div>
-        </div>       
+        </div>
       </div>
     </ThemeProvider>
   );

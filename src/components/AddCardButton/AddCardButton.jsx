@@ -5,7 +5,7 @@ import { Box, Typography } from '@mui/material';
 import Modal from '@mui/material/Modal';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import {CardForm} from "../CardForm/CardForm";
+import {CardForm} from "../CardForm/CardFormAdd";
 
 
 const style = {
