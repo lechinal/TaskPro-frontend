@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:4000//';
+axios.defaults.baseURL = 'http://localhost:4000/api';
 
 // To add JWT
 const setAuthHeader = token => {
@@ -98,4 +98,3 @@ export const updateUserTheme = createAsyncThunk(
     }
   }
 );
-
