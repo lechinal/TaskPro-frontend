@@ -1,24 +1,24 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
 import css from './RegisterForm.module.css';
-import {Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import FormControl from '@mui/material/FormControl';
+// import InputLabel from '@mui/material/InputLabel';
+// import FormControl from '@mui/material/FormControl';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
+import { TextField } from '@mui/material';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../redux/auth/authOperations';
- 
+
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { selectIsAuthLoading } from '../../redux/auth/authSelectors';
-import  Loader  from '../Loader/Loader';
-
+import Loader from '../Loader/Loader';
 
 const theme = createTheme({
   components: {
@@ -63,7 +63,6 @@ const theme = createTheme({
   },
 });
 function RegisterForm() {
-
   const dispatch = useDispatch();
   const authOperation = useSelector(selectIsAuthLoading);
 
@@ -95,18 +94,16 @@ function RegisterForm() {
     <ThemeProvider theme={theme}>
       <section className={css.loginSection}>
         <Box
-          onSubmit={handleSubmit}
           sx={{
             mt: 1,
             background: 'rgba(21, 21, 21, 1)',
             borderRadius: '8px',
             padding: '40px',
             '@media (max-width: 375px)': {
-                padding: '24px 5px',                 
-              },
+              padding: '24px 5px',
+            },
           }}
         >
-       
             <Link className={css.registerLink} to="/register" underline="none">
               Registration
             </Link>
@@ -115,6 +112,7 @@ function RegisterForm() {
             </Link>
           
           <Box
+            onSubmit={handleSubmit}
             component="form"
             noValidate
             sx={{
@@ -125,57 +123,46 @@ function RegisterForm() {
               marginTop: '25px',
             }}
           >
-            <FormControl variant="outlined">
-              <InputLabel
-                sx={{
-                  color: 'rgba(255, 255, 255, 0.3)',
-                }}
-              >
-                Enter your name
-              </InputLabel>
-              <OutlinedInput label="Enter your email" fullWidth />
-            </FormControl>
-            <FormControl variant="outlined">
-              <InputLabel
-                sx={{
-                  color: 'rgba(255, 255, 255, 0.3)',
-                }}
-              >
-                Enter your email
-              </InputLabel>
-              <OutlinedInput label="Enter your email" fullWidth />
-            </FormControl>
-            <FormControl variant="outlined">
-              <InputLabel
-                htmlFor="outlined-adornment-password"
-                sx={{
-                  color: 'rgba(255, 255, 255, 0.3)',
-                }}
-              >
-                Create a password
-              </InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-password"
-                type={showPassword ? 'text' : 'password'}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                      sx={{
-                        color: 'rgba(255, 255, 255, 0.3)',
-                      }}
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                label="Confirm a password"
-                fullWidth
-              />
-            </FormControl>
+            <TextField
+              name="name"
+              required
+              fullWidth
+              id="name"
+              label="Name"
+              variant="outlined"
+              autoFocus
+            />
+            <TextField
+              required
+              id="email"
+              label="Email"
+              name="email"
+              variant="outlined"
+            />
+
+            <OutlinedInput
+              name="password"
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                    sx={{
+                      color: 'rgba(255, 255, 255, 0.3)',
+                    }}
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              label="Confirm a password"
+              fullWidth
+            />
+
             <Button
               className={css.btnRegister}
               variant="text"
