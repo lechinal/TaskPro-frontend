@@ -1,11 +1,12 @@
-import React from 'react';
-import WelcomePage from './pages/WelcomePage/WelcomePage';
-import AuthPage from './pages/AuthPage/AuthPage';
-import HomePage from './pages/HomePage/HomePage';
-import ScreensPage from './pages/ScreensPage/ScreensPage';
-
-// import PrivateRoute from './Routes/PrivateRoute';
-// import RestrictedRoute from './Routes/RestrictedRoute';
+import React, { Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { lazy, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import PrivateRoute from './Routes/PrivateRoute';
+import RestrictedRoute from 'Routes/RestrictedRoute';
+// import { useAuth } from './hooks';
+import { refresh } from './redux/auth/authOperations';
+import Loader from './components/Loader/Loader';
 
 // import { selectIsLoggedIn } from './redux/auth/authSelectors';
 // import {
@@ -13,29 +14,20 @@ import ScreensPage from './pages/ScreensPage/ScreensPage';
 //   selectBoardsList,
 // } from './redux/boards/boardSelectors';
 
-import { Routes, Route } from 'react-router-dom';
-// Navigate, useNavigate;
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { useAuth } from './hooks';
-import { refresh } from './redux/auth/authOperations';
-
-import Loader from './components/Loader/Loader';
+const WelcomePage = lazy(() => import('./pages/WelcomePage/WelcomePage'));
+const AuthPage = lazy(() => import('./pages/AuthPage/AuthPage'));
+const RegisterForm = lazy(() =>
+  import('./components/RegisterForm/RegisterForm')
+);
+const LoginForm = lazy(() => import('./components/LoginForm/LoginForm'));
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 
 export const App = () => {
-  // const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
-  const { isRefreshing } = useAuth();
-
-  // const allBoards = useSelector(selectBoardsList);
-  // const activeBoard = useSelector(selectActiveBoard);
-  // const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(refresh());
   }, [dispatch]);
-
   // useEffect(() => {
   //   if (
   //     isLoggedIn &&
@@ -51,59 +43,32 @@ export const App = () => {
   // }, [navigate, allBoards, activeBoard, isLoggedIn]);
 
   return (
-    <>
-      {isRefreshing ? (
-        <Loader />
-      ) : (
-        <Routes>
-          <Route path="/" element={<WelcomePage />} />
-          <Route path="/auth/:id" element={<AuthPage />} />
-          <Route path="/home" exact element={<HomePage />} />
-          <Route path="/home/:boardName" element={<ScreensPage />} />
-        </Routes>
-        // <Routes>
-        //   <Route
-        //     path="/"
-        //     element={
-        //       <RestrictedRoute
-        //         redirectTo="/home"
-        //         component={<Navigate to="/welcome" />}
-        //       />
-        //     }
-        //   />
-        //   <Route
-        //     path="/welcome"
-        //     element={
-        //       <RestrictedRoute redirectTo="/home" component={<WelcomePage />} />
-        //     }
-        //   />
-
-        //   <Route path="/auth" element={<Navigate to="/auth/login" />} />
-        //   <Route
-        //     path="/auth/:id"
-        //     element={
-        //       <RestrictedRoute redirectTo="/home" component={<AuthPage />} />
-        //     }
-        //   />
-
-        //   <Route
-        //     path="/home"
-        //     element={
-        //       <PrivateRoute redirectTo="/auth" component={<HomePage />} />
-        //     }
-        //   />
-
-        //   <Route
-        //     path="/home/:boardName"
-        //     element={
-        //       <PrivateRoute redirectTo="/auth" component={<HomePage />} />
-        //     }
-        //   />
-
-        //   <Route path="*" element={<Navigate to="/" />} />
-        // </Routes>
-      )}
-    </>
+    <Suspense fallback={<Loader />}>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <RestrictedRoute redirectTo="/home" component={<WelcomePage />} />
+          }
+        />
+        <Route
+          path="/home"
+          element={<PrivateRoute redirectTo="/" component={<HomePage />} />}
+        />
+        <Route
+          path="/home/:boardName"
+          element={<PrivateRoute redirectTo="/" component={<HomePage />} />}
+        />
+        <Route
+          path="/auth/:id"
+          element={
+            <RestrictedRoute redirectTo="/home" component={<AuthPage />} />
+          }
+        />
+        <Route path="/register" element={<RegisterForm />} />
+        <Route path="/login" element={<LoginForm />} />
+      </Routes>
+    </Suspense>
   );
 };
 
