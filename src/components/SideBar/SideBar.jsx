@@ -2,9 +2,9 @@ import React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Box, Button, Typography, Drawer } from '@mui/material';
 import { useTheme } from '@mui/material';
-// import { useState } from 'react';
+import { useState } from 'react';
 import icon from '../../images/sprite.svg';
-
+import NewBoardMainModal from 'components/MainDashboard/MainPlaceholder/NewBoardMainModal/NewBoardMainModal';
 import {
   SideBarStyled,
   LogoIcon,
@@ -26,8 +26,12 @@ import {
 } from './SideBar.Styled';
 import Help from 'components/Help/Help';
 const SideBar = ({ active, onClick }) => {
-  // const [openAddModal, setOpenAddModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const theme = useTheme();
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
 
   const drawerContent = (
     <SideBarStyled>
@@ -97,7 +101,7 @@ const SideBar = ({ active, onClick }) => {
             Create a new board
           </Typography>
           <Button
-            // onClick={() => setOpenAddModal(true)}
+            onClick={handleOpenModal}
             sx={{
               backgroundColor: '#bedbb0',
               padding: '8px 10px',
@@ -109,7 +113,12 @@ const SideBar = ({ active, onClick }) => {
             </PlusIcon>
           </Button>
         </Box>
-
+        {openModal && (
+          <NewBoardMainModal
+            onClick={() => setOpenModal(false)}
+            active={openModal}
+          />
+        )}
         <BoardsContainer>
           <BoardsList theme={theme}>
             <TitleBox>
