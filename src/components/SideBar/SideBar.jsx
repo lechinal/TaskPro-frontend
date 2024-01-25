@@ -4,6 +4,8 @@ import { Box, Button, Typography, Drawer } from '@mui/material';
 import { useTheme } from '@mui/material';
 // import { useState } from 'react';
 import icon from '../../images/sprite.svg';
+import { logout } from '../../redux/auth/authOperations';
+import { useDispatch } from 'react-redux';
 
 import {
   SideBarStyled,
@@ -27,6 +29,8 @@ import {
 import Help from 'components/Help/Help';
 const SideBar = ({ active, onClick }) => {
   // const [openAddModal, setOpenAddModal] = useState(false);
+  const dispatch = useDispatch();
+
   const theme = useTheme();
 
   const drawerContent = (
@@ -165,6 +169,7 @@ const SideBar = ({ active, onClick }) => {
                 border: 0,
               },
             }}
+            onClick={() => dispatch(logout())} 
           >
             <LogoutIcon theme={theme}>
               <use href={icon + '#icon-logout'}></use>
