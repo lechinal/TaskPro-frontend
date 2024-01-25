@@ -7,8 +7,8 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
-// import InputLabel from '@mui/material/InputLabel';
-// import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import { TextField } from '@mui/material';
@@ -38,6 +38,7 @@ const theme = createTheme({
           '&.Mui-focused': {
             color: 'rgba(255, 255, 255, 0.3)',
           },
+          color: 'rgba(255, 255, 255, 0.3)',
         },
       },
     },
@@ -104,17 +105,18 @@ function RegisterForm() {
             },
           }}
         >
-            <Link className={css.registerLink} to="/register" underline="none">
-              Registration
-            </Link>
-            <Link className={css.loginLink} to="/auth/login" underline="none">
-              Log In
-            </Link>
-          
+          <Link className={css.registerLink} to="/register" underline="none">
+            Registration
+          </Link>
+          <Link className={css.loginLink} to="/auth/login" underline="none">
+            Log In
+          </Link>
+
           <Box
             onSubmit={handleSubmit}
             component="form"
             noValidate
+            autoComplete="off"
             sx={{
               mt: 1,
               display: 'flex',
@@ -126,43 +128,43 @@ function RegisterForm() {
             <TextField
               name="name"
               required
-              fullWidth
               id="name"
-              label="Name"
+              label="Enter your name"
               variant="outlined"
               autoFocus
             />
             <TextField
               required
               id="email"
-              label="Email"
+              label="Enter your email"
               name="email"
               variant="outlined"
             />
-
-            <OutlinedInput
-              name="password"
-              id="password"
-              type={showPassword ? 'text' : 'password'}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                    sx={{
-                      color: 'rgba(255, 255, 255, 0.3)',
-                    }}
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              label="Confirm a password"
-              fullWidth
-            />
-
+            <Box>
+            <FormControl sx={{width: "345px"}} variant="outlined">
+              <InputLabel htmlFor="password" required>
+                Create a password
+              </InputLabel>
+              <OutlinedInput
+                 name="password"
+                 id="password"
+                type={showPassword ? 'text' : 'password'}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton sx={{color: "rgba(255, 255, 255, 0.3)"}}
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Create a password*"
+                required              />
+            </FormControl>
+            </Box>
             <Button
               className={css.btnRegister}
               variant="text"
