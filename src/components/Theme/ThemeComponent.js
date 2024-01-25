@@ -42,6 +42,7 @@ export const ThemeComponent = () => {
         display: 'flex',
         justifyContent: 'left',
         width: '100px',
+        background: '#161616',
       }}
     >
       <Button
