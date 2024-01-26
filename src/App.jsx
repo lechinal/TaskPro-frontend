@@ -11,6 +11,9 @@ import { useAuth } from './hooks';
 import { refresh } from './redux/auth/authOperations';
 import Loader from './components/Loader/Loader';
  
+ 
+ 
+ 
 
 export const App = () => {
 
@@ -23,17 +26,25 @@ export const App = () => {
 
   return (    
     <>
+
+    
+     
+    
     {isRefreshing ? (
       <Loader/>
     ) : (
+
       <Routes>     
-      
+        
         <Route path="/" element={<WelcomePage />} />
         <Route path="/auth/:id" element={<AuthPage />} />
         <Route path="/home" exact element={<HomePage />} />
         <Route path="/home/:boardName" element={<ScreensPage />} />
+        
       </Routes>
       )}
+
+       
     </>
     
   );

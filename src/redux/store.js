@@ -11,7 +11,8 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
  
-import { authReducer } from './auth/authSlice';
+import { authReducer, } from './auth/authSlice';
+import { messagerReduce } from './help/messageSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -19,9 +20,12 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
+
+
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
+    message: messagerReduce,
    
   },
   middleware: getDefaultMiddleware =>
