@@ -50,15 +50,17 @@ export const BoardsContainer = styled.div`
   height: 61px;
   display: flex;
   align-items: center;
-  width: 260px;
+  width: 234px;
   background: #1f1f1f;
+  border-radius: 4px;
+  border-right: 4px solid rgba(190, 219, 176, 1);
 `;
 
 export const BoardsList = styled.ul`
   position: relative;
   width: 260px;
   top: 0;
-  left: -24px;
+  // left: -24px;
   gap: 4px;
   background: #1f1f1f;
   height: 61px;

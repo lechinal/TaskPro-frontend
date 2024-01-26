@@ -12,6 +12,9 @@ import HomePage from 'pages/HomePage/HomePage';
 import AuthPage from 'pages/AuthPage/AuthPage';
 import RegisterForm from 'components/RegisterForm/RegisterForm';
 import LoginForm from 'components/LoginForm/LoginForm';
+import SideBar from 'components/SideBar/SideBar';
+import MainDashboard from 'components/MainDashboard/MainDashboard';
+import HeaderDashboard from 'components/HeaderDashboard/HeaderDashboard';
  
  
 
@@ -41,7 +44,7 @@ export const App = () => {
         <Route
           path="/"
           element={
-            <RestrictedRoute redirectTo="/home" component={<WelcomePage />} />
+            <RestrictedRoute redirectTo="/home" component={<HomePage />} />
           }
         />
         <Route
