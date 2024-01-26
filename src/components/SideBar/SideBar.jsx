@@ -5,6 +5,12 @@ import { useTheme } from '@mui/material';
 import { useState } from 'react';
 import icon from '../../images/sprite.svg';
 
+import NewBoardMainModal from 'components/MainDashboard/MainPlaceholder/NewBoardMainModal/NewBoardMainModal';
+
+import { logout } from '../../redux/auth/authOperations';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
+
 import {
   SideBarStyled,
   LogoIcon,
@@ -21,12 +27,27 @@ import {
   IconLink,
   Title,
   IconButton,
+  IconPuzzle,
+  SectionLight,
 } from './SideBar.Styled';
 import Help from 'components/Help/Help';
 const SideBar = ({ active, onClick }) => {
-  const [setOpenAddModal] = useState(false);
+
+  const [openModal, setOpenModal] = useState(false);
+
+  const dispatch = useDispatch();
+  
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/');
+  };
 
   const theme = useTheme();
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
 
   const drawerContent = (
     <SideBarStyled>
@@ -76,7 +97,7 @@ const SideBar = ({ active, onClick }) => {
             justifyContent: 'space-between',
             borderBottom: '1px solid',
             borderTop: '1px solid',
-            borderColor: 'primary.contrastText',
+            borderColor: '#FFFFFF1A',
             padding: '14px 0',
             marginTop: '8px',
             marginBottom: '40px',
@@ -96,7 +117,7 @@ const SideBar = ({ active, onClick }) => {
             Create a new board
           </Typography>
           <Button
-            onClick={() => setOpenAddModal(true)}
+            onClick={handleOpenModal}
             sx={{
               backgroundColor: '#bedbb0',
               padding: '8px 10px',
@@ -108,10 +129,16 @@ const SideBar = ({ active, onClick }) => {
             </PlusIcon>
           </Button>
         </Box>
+        {openModal && (
+          <NewBoardMainModal
+            onClick={() => setOpenModal(false)}
+            active={openModal}
+          />
+        )}
         <BoardsContainer>
           <BoardsList theme={theme}>
             <TitleBox>
-              <Title theme={theme}>Project Name</Title>{' '}
+              <Title theme={theme}>Project Name</Title>
               <IconTitle>
                 <use href={icon + '#icon-project'}></use>
               </IconTitle>
@@ -131,9 +158,16 @@ const SideBar = ({ active, onClick }) => {
             </IconsBox>
           </BoardsList>
         </BoardsContainer>
+        <SectionLight>
+          <IconPuzzle>
+            <use href={icon + '#icon-puzzle'}></use>
+          </IconPuzzle>
+          <p>Neon Light Project</p>
+        </SectionLight>
       </Thumb>
-      <Help />
+
       <Thumb>
+        <Help />
         <Box
           sx={{
             marginTop: '24px',
@@ -142,6 +176,7 @@ const SideBar = ({ active, onClick }) => {
             fontSize: '12px',
             letterSpacing: 0.7,
           }}
+          onClick={handleLogout}
         >
           <Button
             sx={{
@@ -156,6 +191,7 @@ const SideBar = ({ active, onClick }) => {
                 border: 0,
               },
             }}
+            onClick={handleLogout}
           >
             <LogoutIcon theme={theme}>
               <use href={icon + '#icon-logout'}></use>
@@ -184,6 +220,33 @@ const SideBar = ({ active, onClick }) => {
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
 
+        <Drawer
+          variant="temporary"
+          open={active}
+          onClose={onClick}
+          ModalProps={{
+            keepMounted: true,
+          }}
+          sx={{
+            '@media (min-width: 1440px)': {
+              display: { xs: 'block', sm: 'none' },
+            },
+
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
+              width: 225,
+            },
+
+            '@media (min-width: 768px)': {
+              '& .MuiDrawer-paper': {
+                boxSizing: 'border-box',
+                width: 260,
+              },
+            },
+          }}
+        >
+          {drawerContent}
+        </Drawer>
         <Drawer
           variant="permanent"
           sx={{

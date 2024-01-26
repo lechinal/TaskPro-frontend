@@ -1,24 +1,20 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
-import css from './LoginForm.module.css';
-import { Link } from 'react-router-dom';
+import { Typography } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
-import { TextField } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import { selectUser } from '../../redux/auth/authSelectors';
+import { useSelector } from 'react-redux';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../redux/auth/authOperations';
+import css from './ProfileEditModal.module.css';
 
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { selectIsAuthLoading } from '../../redux/auth/authSelectors';
-import Loader from '../Loader/Loader';
 const theme = createTheme({
   components: {
     MuiButton: {
@@ -37,7 +33,6 @@ const theme = createTheme({
           '&.Mui-focused': {
             color: 'rgba(255, 255, 255, 0.3)',
           },
-          color: 'rgba(255, 255, 255, 0.3)',
         },
       },
     },
@@ -63,60 +58,65 @@ const theme = createTheme({
   },
 });
 
-function LoginForm() {
-  const dispatch = useDispatch();
-
-  const authOperation = useSelector(selectIsAuthLoading);
-  const [showPassword, setShowPassword] = React.useState(false);
-  const handleClickShowPassword = () => setShowPassword(show => !show);
-  const handleMouseDownPassword = event => {
-    event.preventDefault();
-  };
-
-  const handleSubmit = async event => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    try {
-      await dispatch(
-        login({
-          email: form.elements.email.value,
-          password: form.elements.password.value,
-        })
-      ).unwrap();
-      Notify.success(`Welcome, ${form.elements.email.value}!`);
-      form.reset();
-    } catch (error) {
-      Notify.failure('Login failed. Please enter correct data!');
-    }
-  };
-
+function ProfileEditModal({ onClick, active }) {
+  const userAvatar = useSelector(selectUser);
   return (
     <ThemeProvider theme={theme}>
-      <section className={css.loginSection}>
+      <section className={css.section_profileEdit}>
         <Box
           sx={{
             mt: 1,
             background: 'rgba(21, 21, 21, 1)',
             borderRadius: '8px',
+            display: active ? 'block' : 'none',
             padding: '40px',
             '@media (max-width: 375px)': {
               padding: '24px 5px',
             },
           }}
         >
-          <Link
-            className={css.registerLink}
-            to="/auth/register"
-            underline="none"
+          <Box
+            sx={{
+              mt: 1,
+              display: 'flex',
+              flexDirection: 'row',
+            }}
           >
-            Registration
-          </Link>
-          <Link className={css.loginLink} to="/login" underline="none">
-            Log In
-          </Link>
+            <Typography
+              sx={{
+                fontSize: 18,
+
+                color: '#fff',
+                fontFamily: 'Poppins',
+                flexGrow: '1',
+                fontWeight: '500',
+              }}
+              color="text.secondary"
+              gutterBottom
+            >
+              Edit Profile
+            </Typography>
+
+            <Button onClick={() => onClick(false)}>
+              <CloseIcon
+                sx={{
+                  fill: 'white',
+                }}
+              ></CloseIcon>
+            </Button>
+          </Box>
+          <Avatar
+            variant="rounded"
+            src={userAvatar.avatarUrl}
+            alt={userAvatar.name}
+            sx={{
+              marginLeft: '40%',
+              width: '68px',
+              height: '68px',
+            }}
+          />
           <Box
             component="form"
-            onSubmit={handleSubmit}
             noValidate
             sx={{
               mt: 1,
@@ -126,41 +126,55 @@ function LoginForm() {
               marginTop: '30px',
             }}
           >
-            <TextField
-              required
-              id="email"
-              label="Email"
-              name="email"
-              variant="outlined"
-            />
-              <Box>
-            <FormControl sx={{width: "345px"}} variant="outlined">
-              <InputLabel htmlFor="password" required>
-                Confirm a password
+            <FormControl variant="outlined">
+              <InputLabel
+                sx={{
+                  color: 'rgba(255, 255, 255, 0.3)',
+                }}
+              >
+                Name
+              </InputLabel>
+              <OutlinedInput label="Enter your email" fullWidth />
+            </FormControl>
+            <FormControl variant="outlined">
+              <InputLabel
+                sx={{
+                  color: 'rgba(255, 255, 255, 0.3)',
+                }}
+              >
+                Email
+              </InputLabel>
+              <OutlinedInput label="Enter your email" fullWidth />
+            </FormControl>
+            <FormControl variant="outlined">
+              <InputLabel
+                htmlFor="outlined-adornment-password"
+                sx={{
+                  color: 'rgba(255, 255, 255, 0.3)',
+                }}
+              >
+                Password
               </InputLabel>
               <OutlinedInput
-                 name="password"
-                 id="password"
-                type={showPassword ? 'text' : 'password'}
+                id="outlined-adornment-password"
                 endAdornment={
                   <InputAdornment position="end">
-                    <IconButton sx={{color: "rgba(255, 255, 255, 0.3)"}}
+                    <IconButton
                       aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
                       edge="end"
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
+                      sx={{
+                        color: 'rgba(255, 255, 255, 0.3)',
+                      }}
+                    ></IconButton>
                   </InputAdornment>
                 }
                 label="Confirm a password"
-                required              />
+                fullWidth
+              />
             </FormControl>
-            </Box>
             <Button
-              className={css.btnRegister}
               variant="text"
+              className={css.btnSend}
               type="submit"
               sx={{
                 mb: 1,
@@ -173,7 +187,7 @@ function LoginForm() {
                 marginTop: '20px',
               }}
             >
-              {authOperation === 'login' ? <Loader /> : <>Log In Now</>}
+              Send
             </Button>
           </Box>
         </Box>
@@ -182,4 +196,4 @@ function LoginForm() {
   );
 }
 
-export default LoginForm;
+export default ProfileEditModal;

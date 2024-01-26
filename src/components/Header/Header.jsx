@@ -5,41 +5,34 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import { Button } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { styled } from '@mui/system';
 import styles from '../Header/Header.module.css';
-import { useAuth } from '../../hooks/useAuth'; 
+import { useAuth } from '../../hooks/useAuth';
+import { useState } from 'react';
+import { ThemeComponent } from 'components/Theme/ThemeComponent';
+import ProfileEditModal from 'components/ProfileEditModal/ProfileEditModal';
+import { selectUser } from '../../redux/auth/authSelectors';
+import { useSelector } from 'react-redux';
 
-const StyledMenu = styled(Menu)({});
+export const Header = ({ onOpenSidebar, onOpenEdit }) => {
+  const [auth] = useState(true);
+  const [isProfileModalOpen, setProfileModalOpen] = useState(false);
+  const userAvatar = useSelector(selectUser);
 
-export const Header = () => {
-  const [auth] = React.useState(true);
-  const [setOpen] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleMenu = event => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleOpen = () => {
+    setProfileModalOpen(true);
   };
 
   const handleDrawerOpen = () => {
-    setOpen(true);
+    if (typeof onOpenSidebar === 'function') {
+      onOpenSidebar();
+    } else {
+      console.error('onOpenSidebar is not a valid function');
+    }
   };
 
-  const open = Boolean(anchorEl);
-  const handleClick = event => {
-    setAnchorEl(event.currentTarget);
-  };
+  const { user } = useAuth();
 
-  const { user } = useAuth(); 
-  
   return (
     <Box className={styles.headerContainer}>
       <AppBar position="static" style={{ background: '#161616' }}>
@@ -48,51 +41,14 @@ export const Header = () => {
             size="large"
             edge="start"
             color="inherit"
-            aria-label="menu"
+            aria-label="open drawer"
             sx={{ mr: 2 }}
             onClick={handleDrawerOpen}
           >
             <MenuIcon />
           </IconButton>
           <div className={styles.themeHeader}>
-            <Button
-              id="demo-customized-button"
-              aria-controls={open ? 'demo-customized-menu' : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? 'true' : undefined}
-              variant="contained"
-              disableElevation
-              onClick={handleClick}
-              endIcon={<KeyboardArrowDownIcon />}
-              sx={{
-                backgroundColor: '#161616',
-                color: 'white',
-                font: 'Poppins',
-                fontSize: '14px',
-              }}
-            >
-              Theme
-            </Button>
-            <StyledMenu
-              id="demo-customized-menu"
-              MenuListProps={{
-                'aria-labelledby': 'demo-customized-button',
-              }}
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-            >
-              <MenuItem onClick={handleClose} disableRipple>
-                Dark
-              </MenuItem>
-              <MenuItem onClick={handleClose} disableRipple>
-                Light
-              </MenuItem>
-
-              <MenuItem onClick={handleClose} disableRipple>
-                Violet
-              </MenuItem>
-            </StyledMenu>
+            <ThemeComponent />
           </div>
           <Typography
             variant="h6"
@@ -116,19 +72,23 @@ export const Header = () => {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={handleMenu}
+                onClick={handleOpen}
                 color="inherit"
-                sx={{ marginLeft: 'auto' }}
+                sx={{ marginLeft: 'auto', position: 'relative' }}
               >
                 <Avatar
                   variant="rounded"
-                  alt="Remy Sharp"
-                  src="/static/images/avatar/2.jpg"
+                  src={userAvatar.avatarUrl}
+                  alt={user.name}
                 />
               </IconButton>
             </div>
           )}
         </Toolbar>
+        <ProfileEditModal
+          active={isProfileModalOpen}
+          onClick={() => setProfileModalOpen(false)}
+        ></ProfileEditModal>
       </AppBar>
     </Box>
   );

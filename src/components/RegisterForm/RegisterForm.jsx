@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
 import css from './RegisterForm.module.css';
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -11,14 +11,15 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
+import { TextField } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../redux/auth/authOperations';
- 
+
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { selectIsAuthLoading } from '../../redux/auth/authSelectors';
-import  Loader  from '../Loader/Loader';
-
+import Loader from '../Loader/Loader';
 
 const theme = createTheme({
   components: {
@@ -38,6 +39,7 @@ const theme = createTheme({
           '&.Mui-focused': {
             color: 'rgba(255, 255, 255, 0.3)',
           },
+          color: 'rgba(255, 255, 255, 0.3)',
         },
       },
     },
@@ -63,8 +65,8 @@ const theme = createTheme({
   },
 });
 function RegisterForm() {
-
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const authOperation = useSelector(selectIsAuthLoading);
 
   const [showPassword, setShowPassword] = React.useState(false);
@@ -86,6 +88,7 @@ function RegisterForm() {
       ).unwrap();
       form.reset();
       Notify.success('Congratulations, you have successfully registered!');
+      navigate('/auth/login');
     } catch (error) {
       Notify.failure('User already exist');
     }
@@ -95,28 +98,28 @@ function RegisterForm() {
     <ThemeProvider theme={theme}>
       <section className={css.loginSection}>
         <Box
-          onSubmit={handleSubmit}
           sx={{
             mt: 1,
             background: 'rgba(21, 21, 21, 1)',
             borderRadius: '8px',
             padding: '40px',
             '@media (max-width: 375px)': {
-                padding: '24px 5px',                 
-              },
+              padding: '24px 5px',
+            },
           }}
         >
-          <NavLink>
-            <Link className={css.registerLink} to="/register" underline="none">
-              Registration
-            </Link>
-            <Link className={css.loginLink} to="/auth/login" underline="none">
-              Log In
-            </Link>
-          </NavLink>
+          <Link className={css.registerLink} to="/register" underline="none">
+            Registration
+          </Link>
+          <Link className={css.loginLink} to="/auth/login" underline="none">
+            Log In
+          </Link>
+
           <Box
+            onSubmit={handleSubmit}
             component="form"
             noValidate
+            autoComplete="off"
             sx={{
               mt: 1,
               display: 'flex',
@@ -125,57 +128,48 @@ function RegisterForm() {
               marginTop: '25px',
             }}
           >
-            <FormControl variant="outlined">
-              <InputLabel
-                sx={{
-                  color: 'rgba(255, 255, 255, 0.3)',
-                }}
-              >
-                Enter your name
-              </InputLabel>
-              <OutlinedInput label="Enter your email" fullWidth />
-            </FormControl>
-            <FormControl variant="outlined">
-              <InputLabel
-                sx={{
-                  color: 'rgba(255, 255, 255, 0.3)',
-                }}
-              >
-                Enter your email
-              </InputLabel>
-              <OutlinedInput label="Enter your email" fullWidth />
-            </FormControl>
-            <FormControl variant="outlined">
-              <InputLabel
-                htmlFor="outlined-adornment-password"
-                sx={{
-                  color: 'rgba(255, 255, 255, 0.3)',
-                }}
-              >
-                Create a password
-              </InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-password"
-                type={showPassword ? 'text' : 'password'}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                      sx={{
-                        color: 'rgba(255, 255, 255, 0.3)',
-                      }}
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                label="Confirm a password"
-                fullWidth
-              />
-            </FormControl>
+            <TextField
+              name="name"
+              required
+              id="name"
+              label="Enter your name"
+              variant="outlined"
+              autoFocus
+            />
+            <TextField
+              required
+              id="email"
+              label="Enter your email"
+              name="email"
+              variant="outlined"
+            />
+            <Box>
+              <FormControl sx={{ width: '345px' }} variant="outlined">
+                <InputLabel htmlFor="password" required>
+                  Create a password
+                </InputLabel>
+                <OutlinedInput
+                  name="password"
+                  id="password"
+                  type={showPassword ? 'text' : 'password'}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        sx={{ color: 'rgba(255, 255, 255, 0.3)' }}
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  label="Create a password*"
+                  required
+                />
+              </FormControl>
+            </Box>
             <Button
               className={css.btnRegister}
               variant="text"

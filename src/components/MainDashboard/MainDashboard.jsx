@@ -38,6 +38,8 @@ const theme = createTheme({
 function MainDashboard() {
   const [openModal, setOpenModal] = useState(false);
 
+  // const [columns, setColumns] = useState([]);
+
   return (
     <ThemeProvider theme={theme}>
       <section className={css.mainDashboard}>

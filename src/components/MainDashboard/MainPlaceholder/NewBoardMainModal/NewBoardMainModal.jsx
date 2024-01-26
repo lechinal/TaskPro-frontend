@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import css from '../NewBoardMainModal/NewBoardMainModal.module.css';
 import icons from '../../../../images/sprite.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { addBoard } from '../../../../redux/boards/boardOperations';
+import { iconsBoard } from '../../../../constants/iconsBoard';
+import { backgroundsBoard } from '../../../../constants/backgroundsBoard';
+import { selectIsBoardsLoading } from '../../../../redux/boards/boardSelectors';
 
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -66,6 +71,41 @@ const theme = createTheme({
 });
 
 function NewBoardMainModal({ setOpenModal }) {
+  const isBoardsLoading = useSelector(selectIsBoardsLoading);
+  const [title, setTitle] = useState('');
+  const [icon, setIcon] = useState('icon-project');
+  const [background, setBackground] = useState('default');
+
+  const toggleModal = () => setOpenModal(state => !state);
+
+  const dispatch = useDispatch();
+
+  const handleSubmit = () => {
+    dispatch(
+      addBoard({
+        title,
+        icon,
+        background: background || 'default',
+      })
+    ).then(() => {
+      if (!isBoardsLoading) {
+        toggleModal();
+        setTitle('');
+        setIcon('icon-project');
+        setBackground('default');
+      }
+    });
+  };
+
+  const handleCreate = async () => {
+    if (title.trim() === '') {
+      alert('Title cannot be empty');
+      return;
+    }
+    dispatch(addBoard(title));
+    handleSubmit();
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <div className={css.modalBackground}>
@@ -97,24 +137,80 @@ function NewBoardMainModal({ setOpenModal }) {
                 </InputLabel>
                 <OutlinedInput
                   label="Title"
+                  value={title}
                   fullWidth
                   sx={{ width: '287px' }}
+                  onChange={e => setTitle(e.target.value)}
                 />
               </FormControl>
             </div>
 
             <div className={css.iconsTitle}>
               <h6>Icons</h6>
-              <div className={css.projectIcons}>icon1 icon2 icon3</div>
+
+              <div className={css.projectIcons}>
+                {iconsBoard.map(iconItem => (
+                  <div key={iconItem.value}>
+                    <input
+                      className={css.input_svg}
+                      id={iconItem.value}
+                      type="radio"
+                      name={iconItem.value}
+                      value={iconItem.value}
+                      checked={icon === iconItem.value}
+                      onChange={() => setIcon(iconItem.value)}
+                    />
+                    <label
+                      className={css.label_svg}
+                      htmlFor={iconItem.value}
+                      onClick={() => setIcon(iconItem.value)}
+                    >
+                      <svg className={css.svg} width="18" height="18">
+                        <use href={`${icons}#${iconItem.value}`} />
+                      </svg>
+                    </label>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div className={css.backgroundsTitle}>
               <h6>Background</h6>
-              <div className={css.backgrounds}>bg1 bg2 bg3</div>
+              <div className={css.projectBackgrounds}>
+                {backgroundsBoard.map(backgrounds => (
+                  <div key={backgrounds.title}>
+                    <input
+                      className={css.input_png}
+                      id={backgrounds.title}
+                      type="radio"
+                      name={backgrounds.title}
+                      checked={background === backgrounds.title}
+                      onChange={() => setBackground(backgrounds.title)}
+                    />
+                    <label
+                      className={css.label_png}
+                      htmlFor={backgrounds.title}
+                      onClick={() => setBackground(backgrounds.title)}
+                    >
+                      <img
+                        className={css.png}
+                        alt={backgrounds.title}
+                        src={backgrounds.src}
+                        width="28"
+                        height="28"
+                      />
+                    </label>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div className={css.createBtnBox}>
-              <Button type="submit" className={css.createBtn}>
+              <Button
+                type="submit"
+                onClick={handleCreate}
+                className={css.createBtn}
+              >
                 <svg className={`${css.iconPlus} ${css.iconPlusBlack}`}>
                   <use href={`${icons}#icon-plus-black`} />
                 </svg>
