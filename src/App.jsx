@@ -12,6 +12,7 @@ import HomePage from 'pages/HomePage/HomePage';
 import AuthPage from 'pages/AuthPage/AuthPage';
 import RegisterForm from 'components/RegisterForm/RegisterForm';
 import LoginForm from 'components/LoginForm/LoginForm';
+import Help from 'components/Help/Help';
  
  
 
