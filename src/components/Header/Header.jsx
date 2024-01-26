@@ -11,10 +11,13 @@ import { useAuth } from '../../hooks/useAuth';
 import { useState } from 'react';
 import { ThemeComponent } from 'components/Theme/ThemeComponent';
 import ProfileEditModal from 'components/ProfileEditModal/ProfileEditModal';
+import { selectUser } from '../../redux/auth/authSelectors';
+import { useSelector } from 'react-redux';
 
 export const Header = ({ onOpenSidebar, onOpenEdit }) => {
   const [auth] = useState(true);
   const [isProfileModalOpen, setProfileModalOpen] = useState(false);
+  const userAvatar = useSelector(selectUser);
 
   const handleOpen = () => {
     setProfileModalOpen(true);
@@ -75,8 +78,8 @@ export const Header = ({ onOpenSidebar, onOpenEdit }) => {
               >
                 <Avatar
                   variant="rounded"
-                  alt="Remy Sharp"
-                  src="/static/images/avatar/2.jpg"
+                  src={userAvatar.avatarUrl}
+                  alt={user.name}
                 />
               </IconButton>
             </div>
