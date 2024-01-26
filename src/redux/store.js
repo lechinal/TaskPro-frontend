@@ -10,20 +10,23 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { filterReducer } from './filter/filterSlice';
+import { filterReducer } from './filter/filterSlice'
 import { authReducer } from './auth/authSlice';
-import boardReducer from './boards/boardSlice';
+import { messagerReduce } from './help/messageSlice'
+import boardReducer from './boards/boardSlice'
+
 const authPersistConfig = {
   key: 'auth',
   storage,
   whitelist: ['token'],
 };
 
+
+
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    filter: filterReducer,
-    boards: boardReducer,
+   
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

@@ -7,20 +7,13 @@ import RestrictedRoute from 'Routes/RestrictedRoute';
 // import { useAuth } from './hooks';
 import { refresh } from './redux/auth/authOperations';
 import Loader from './components/Loader/Loader';
-
-// import { selectIsLoggedIn } from './redux/auth/authSelectors';
-// import {
-//   selectActiveBoard,
-//   selectBoardsList,
-// } from './redux/boards/boardSelectors';
-
-const WelcomePage = lazy(() => import('./pages/WelcomePage/WelcomePage'));
-const AuthPage = lazy(() => import('./pages/AuthPage/AuthPage'));
-const RegisterForm = lazy(() =>
-  import('./components/RegisterForm/RegisterForm')
-);
-const LoginForm = lazy(() => import('./components/LoginForm/LoginForm'));
-const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+import WelcomePage from 'pages/WelcomePage/WelcomePage';
+import HomePage from 'pages/HomePage/HomePage';
+import AuthPage from 'pages/AuthPage/AuthPage';
+import RegisterForm from 'components/RegisterForm/RegisterForm';
+import LoginForm from 'components/LoginForm/LoginForm';
+ 
+ 
 
 export const App = () => {
   const dispatch = useDispatch();
