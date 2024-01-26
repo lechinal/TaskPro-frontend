@@ -10,6 +10,8 @@ import FormControl from '@mui/material/FormControl';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import CloseIcon from '@mui/icons-material/Close';
+import { selectUser } from '../../redux/auth/authSelectors';
+import { useSelector } from 'react-redux';
 
 import css from './ProfileEditModal.module.css';
 
@@ -57,6 +59,7 @@ const theme = createTheme({
 });
 
 function ProfileEditModal({ onClick, active }) {
+  const userAvatar = useSelector(selectUser);
   return (
     <ThemeProvider theme={theme}>
       <section className={css.section_profileEdit}>
@@ -104,8 +107,8 @@ function ProfileEditModal({ onClick, active }) {
           </Box>
           <Avatar
             variant="rounded"
-            alt="Remy Sharp"
-            src="/static/images/avatar/2.jpg"
+            src={userAvatar.avatarUrl}
+            alt={userAvatar.name}
             sx={{
               marginLeft: '40%',
               width: '68px',
