@@ -1,32 +1,35 @@
 import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { lazy} from 'react';
-
+import { lazy, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import PrivateRoute from './Routes/PrivateRoute';
 import RestrictedRoute from 'Routes/RestrictedRoute';
+
 import { refresh } from './redux/auth/authOperations';
 import Loader from './components/Loader/Loader';
-import WelcomePage from 'pages/WelcomePage/WelcomePage';
-import HomePage from 'pages/HomePage/HomePage';
-import AuthPage from 'pages/AuthPage/AuthPage';
-import RegisterForm from 'components/RegisterForm/RegisterForm';
-import LoginForm from 'components/LoginForm/LoginForm';
-import Help from 'components/Help/Help';
-import SideBar from 'components/SideBar/SideBar';
-import MainDashboard from 'components/MainDashboard/MainDashboard';
-import HeaderDashboard from 'components/HeaderDashboard/HeaderDashboard';
 
- 
+const WelcomePage = lazy(() => import('./pages/WelcomePage/WelcomePage'));
+const AuthPage = lazy(() => import('./pages/AuthPage/AuthPage'));
+const RegisterForm = lazy(() =>
+  import('./components/RegisterForm/RegisterForm')
+);
+
+const LoginForm = lazy(() => import('./components/LoginForm/LoginForm'));
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 
 export const App = () => {
- 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(refresh());
+  }, [dispatch]);
+
   return (
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route
           path="/"
           element={
-            <RestrictedRoute redirectTo="/home" component={<HomePage />} />
+            <RestrictedRoute redirectTo="/home" component={<WelcomePage />} />
           }
         />
         <Route
@@ -49,5 +52,4 @@ export const App = () => {
     </Suspense>
   );
 };
-
 export default App;
