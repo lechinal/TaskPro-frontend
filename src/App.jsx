@@ -1,10 +1,9 @@
 import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { lazy, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { lazy} from 'react';
+
 import PrivateRoute from './Routes/PrivateRoute';
 import RestrictedRoute from 'Routes/RestrictedRoute';
-// import { useAuth } from './hooks';
 import { refresh } from './redux/auth/authOperations';
 import Loader from './components/Loader/Loader';
 import WelcomePage from 'pages/WelcomePage/WelcomePage';
@@ -12,32 +11,15 @@ import HomePage from 'pages/HomePage/HomePage';
 import AuthPage from 'pages/AuthPage/AuthPage';
 import RegisterForm from 'components/RegisterForm/RegisterForm';
 import LoginForm from 'components/LoginForm/LoginForm';
+import Help from 'components/Help/Help';
 import SideBar from 'components/SideBar/SideBar';
 import MainDashboard from 'components/MainDashboard/MainDashboard';
 import HeaderDashboard from 'components/HeaderDashboard/HeaderDashboard';
- 
+
  
 
 export const App = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(refresh());
-  }, [dispatch]);
-  // useEffect(() => {
-  //   if (
-  //     isLoggedIn &&
-  //     allBoards.length > 0 &&
-  //     Object.keys(activeBoard).length === 0
-  //   ) {
-  //     navigate(`/home/${allBoards[0]._id}`);
-  //   }
-
-  //   if (isLoggedIn && allBoards.length === 0) {
-  //     navigate('/home');
-  //   }
-  // }, [navigate, allBoards, activeBoard, isLoggedIn]);
-
+ 
   return (
     <Suspense fallback={<Loader />}>
       <Routes>
