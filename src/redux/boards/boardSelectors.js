@@ -4,7 +4,9 @@ export const selectActiveBoard = state => state.boards.activeBoard;
 
 export const selectBoardsError = state => state.boards.error;
 
-export const selectIsBoardsLoading = state => state.boards.isLoading;
+export const selectIsBoardsLoading = state =>
+  state.boards && state.boards.isLoading;
+// Verifică dacă obiectul este definit înainte de a accesa proprietatea
 
 // ----- coloane -----
 export const selectColumnsList = state => state.columns.columnsList;
