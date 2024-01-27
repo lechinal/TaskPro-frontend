@@ -12,8 +12,11 @@ import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import CloseIcon from '@mui/icons-material/Close';
 import { selectUser } from '../../redux/auth/authSelectors';
 import { useSelector } from 'react-redux';
-
+import { TextField } from '@mui/material';
 import css from './ProfileEditModal.module.css';
+
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 const theme = createTheme({
   components: {
@@ -60,6 +63,42 @@ const theme = createTheme({
 
 function ProfileEditModal({ onClick, active }) {
   const userAvatar = useSelector(selectUser);
+
+  const [showPassword, setShowPassword] = React.useState(false);
+  const handleClickShowPassword = () => setShowPassword(show => !show);
+  const handleMouseDownPassword = event => {
+    event.preventDefault();
+  };
+  const handlePasswordChange = newPassword => {};
+
+  //const handleSubmit = async e => {
+  // e.preventDefault();
+
+  //  try {
+  //    const response = await fetch('/api/updateUser', {
+  //     method: 'PUT',
+  //    headers: {
+  //       'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify(formData),
+  // });
+
+  // if (response.ok) {
+  //   const updatedUserData = await response.json();
+  //  onUpdate(updatedUserData.user);
+  //  setSnackbarMessage('User updated successfully');
+  //   setSnackbarOpen(true);
+  // } else {
+  //   setSnackbarMessage('Failed to update user');
+  //   setSnackbarOpen(true);
+  //  }
+  //} catch (error) {
+  //   console.error('Error updating user:', error);
+  //   setSnackbarMessage('Error updating user');
+  //   setSnackbarOpen(true);
+  // }
+  // };
+
   return (
     <ThemeProvider theme={theme}>
       <section className={css.section_profileEdit}>
@@ -113,65 +152,68 @@ function ProfileEditModal({ onClick, active }) {
               marginLeft: '40%',
               width: '68px',
               height: '68px',
+              position: 'relative',
             }}
           />
+
           <Box
             component="form"
             noValidate
+            autoComplete="off"
             sx={{
               mt: 1,
               display: 'flex',
               flexDirection: 'column',
               gap: '20px',
-              marginTop: '30px',
+              marginTop: '25px',
             }}
           >
-            <FormControl variant="outlined">
-              <InputLabel
-                sx={{
-                  color: 'rgba(255, 255, 255, 0.3)',
-                }}
-              >
-                Name
-              </InputLabel>
-              <OutlinedInput label="Enter your email" fullWidth />
-            </FormControl>
-            <FormControl variant="outlined">
-              <InputLabel
-                sx={{
-                  color: 'rgba(255, 255, 255, 0.3)',
-                }}
-              >
-                Email
-              </InputLabel>
-              <OutlinedInput label="Enter your email" fullWidth />
-            </FormControl>
-            <FormControl variant="outlined">
-              <InputLabel
-                htmlFor="outlined-adornment-password"
-                sx={{
-                  color: 'rgba(255, 255, 255, 0.3)',
-                }}
-              >
-                Password
-              </InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-password"
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      edge="end"
-                      sx={{
-                        color: 'rgba(255, 255, 255, 0.3)',
-                      }}
-                    ></IconButton>
-                  </InputAdornment>
-                }
-                label="Confirm a password"
-                fullWidth
-              />
-            </FormControl>
+            <TextField
+              name="name"
+              required
+              id="name"
+              label="Enter your name"
+              variant="outlined"
+              defaultValue={userAvatar.name}
+              autoFocus
+            />
+            <TextField
+              required
+              id="email"
+              label="Enter your email"
+              name="email"
+              variant="outlined"
+              defaultValue={userAvatar.email}
+            />
+            <Box>
+              <FormControl sx={{ width: '345px' }} variant="outlined">
+                <InputLabel htmlFor="password" required>
+                  Create a password
+                </InputLabel>
+                <OutlinedInput
+                  name="password"
+                  id="password"
+                  defaultValue={userAvatar.password}
+                  onChange={e => handlePasswordChange(e.target.value)}
+                  type={showPassword ? 'text' : 'password'}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        sx={{ color: 'rgba(255, 255, 255, 0.3)' }}
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  label="Create a password*"
+                  required
+                />
+              </FormControl>
+            </Box>
             <Button
               variant="text"
               className={css.btnSend}
