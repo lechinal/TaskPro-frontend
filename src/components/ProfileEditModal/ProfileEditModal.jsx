@@ -14,22 +14,12 @@ import { selectUser } from '../../redux/auth/authSelectors';
 import { useSelector } from 'react-redux';
 import { TextField } from '@mui/material';
 import css from './ProfileEditModal.module.css';
-
+import AddIcon from '@mui/icons-material/Add';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 const theme = createTheme({
   components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          '&:hover': {
-            backgroundColor: 'rgba(190, 219, 176, 1)',
-            color: 'rgba(22, 22, 22, 1)',
-          },
-        },
-      },
-    },
     MuiInputLabel: {
       styleOverrides: {
         root: {
@@ -136,7 +126,13 @@ function ProfileEditModal({ onClick, active }) {
               Edit Profile
             </Typography>
 
-            <Button onClick={() => onClick(false)}>
+            <Button
+              sx={{
+                marginTop: '-50px',
+                marginRight: '-25px',
+              }}
+              onClick={() => onClick(false)}
+            >
               <CloseIcon
                 sx={{
                   fill: 'white',
@@ -144,6 +140,7 @@ function ProfileEditModal({ onClick, active }) {
               ></CloseIcon>
             </Button>
           </Box>
+
           <Avatar
             variant="rounded"
             src={userAvatar.avatarUrl}
@@ -155,7 +152,9 @@ function ProfileEditModal({ onClick, active }) {
               position: 'relative',
             }}
           />
-
+          <button className={css.buttonAdd}>
+            <AddIcon sx={{ fontSize: 'small', color: 'black' }} />
+          </button>
           <Box
             component="form"
             noValidate

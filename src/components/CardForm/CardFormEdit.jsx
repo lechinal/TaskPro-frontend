@@ -10,10 +10,9 @@ import React from 'react';
 import { MyDatepicker } from './MyDatePicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
- import RadioLabel from  "./RadioLabel"
+import RadioLabel from './RadioLabel';
 
-export const CardFormAdd = () => { 
- 
+export const CardFormEdit = () => {
   const theme = createTheme({
     components: {
       MuiButton: {
@@ -102,17 +101,20 @@ export const CardFormAdd = () => {
               defaultValue=""
             />
           </Box>
-          <Typography sx={{
+          <Typography
+            sx={{
               color: 'rgba(255, 255, 255, 0.3)',
               fontFamily: 'Poppins',
               fontWeight: '400',
               fontSize: '12px',
               textTransform: 'none',
               marginTop: '15px',
-              marginBottom: "5px",
-            }}>Label color</Typography>
-                  
-          <RadioLabel/>
+              marginBottom: '5px',
+            }}
+          >
+            Label color
+          </Typography>
+          <RadioLabel />
           <Typography
             sx={{
               color: 'rgba(255, 255, 255, 0.3)',
@@ -125,10 +127,7 @@ export const CardFormAdd = () => {
           >
             Deadline
           </Typography>
-           <MyDatepicker
-              
-              
-            />
+          <MyDatepicker />
           <Button
             sx={{
               mb: 1,

@@ -10,7 +10,7 @@ import NewBoardMainModal from 'components/MainDashboard/MainPlaceholder/NewBoard
 import { logout } from '../../redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-
+import { CardFormEdit } from 'components/CardForm/CardFormEdit';
 import {
   SideBarStyled,
   LogoIcon,
@@ -32,7 +32,7 @@ import {
 import Help from 'components/Help/Help';
 const SideBar = ({ active, onClick }) => {
   const [openModal, setOpenModal] = useState(false);
-
+  const [openEditModal, setOpenEditModal] = useState(false);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -45,6 +45,9 @@ const SideBar = ({ active, onClick }) => {
 
   const handleOpenModal = () => {
     setOpenModal(true);
+  };
+  const handleOpenEditModal = () => {
+    setOpenEditModal(true);
   };
 
   const drawerContent = (
@@ -142,11 +145,17 @@ const SideBar = ({ active, onClick }) => {
           </TitleBox>
 
           <IconsBox theme={theme}>
-            <IconButton type="button">
+            <IconButton type="button" onClick={() => handleOpenEditModal()}>
               <Edit>
                 <use href={icon + '#icon-pencil-01'}></use>
               </Edit>
             </IconButton>
+            {openEditModal && (
+              <CardFormEdit
+                onClick={() => setOpenEditModal(false)}
+                active={openEditModal}
+              />
+            )}
             <IconLink>
               <Delete>
                 <use href={icon + '#icon-trash'}></use>
