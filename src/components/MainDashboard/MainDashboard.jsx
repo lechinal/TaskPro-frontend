@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+
 import css from 'components/MainDashboard/MainDashboard.module.css';
 import Button from '@mui/material/Button';
-// import { StyledEngineProvider } from '@mui/material/styles';
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddColumnModal from '../MainDashboard/AddColumnModal/AddColumnModal';
+import Column from './Column/Column';
 
 import icons from '../../images/sprite.svg';
 
@@ -16,7 +18,7 @@ const theme = createTheme({
           padding: '14px 79px',
           marginBottom: '24px',
           display: 'inline-flex',
-          aligItems: 'center',
+          alignItems: 'center',
           gap: '8px',
           textTransform: 'none',
           fontFamily: 'Poppins',
@@ -37,12 +39,18 @@ const theme = createTheme({
 
 function MainDashboard() {
   const [openModal, setOpenModal] = useState(false);
+  const [columns, setColumns] = useState([]);
 
-  // const [columns, setColumns] = useState([]);
+  const handleAddColumn = columnTitle => {
+    setColumns(prevColumns => [...prevColumns, { title: columnTitle }]);
+  };
 
   return (
     <ThemeProvider theme={theme}>
       <section className={css.mainDashboard}>
+        {columns.map((column, index) => (
+          <Column key={index} title={column.title} />
+        ))}
         <Button
           className={css.mainDashboardButton}
           onClick={() => {
@@ -58,8 +66,12 @@ function MainDashboard() {
           </svg>
           <p>Add another column</p>
         </Button>
-
-        {openModal && <AddColumnModal closeModal={setOpenModal} />}
+        {openModal && (
+          <AddColumnModal
+            closeModal={setOpenModal}
+            onAddColumn={handleAddColumn}
+          />
+        )}
       </section>
     </ThemeProvider>
   );
