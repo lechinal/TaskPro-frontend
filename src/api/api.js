@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 const BASE_URL = 'http://localhost:4000/api/';
 
@@ -16,7 +16,6 @@ const resourceApi = resource => {
   };
 };
 
-const   sendMessage = resourceApi('help');
- 
+const sendMessage = resourceApi('help');
 
 export { sendMessage };

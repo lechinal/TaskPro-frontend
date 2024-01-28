@@ -3,39 +3,48 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:4000/api';
 
+const token = localStorage.getItem('token');
+
+if (token) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+} else {
+  delete axios.defaults.headers.common['Authorization'];
+}
+
 /* -----  -----  Boards -----  -----  */
 
 export const getBoards = createAsyncThunk(
   'boards/getBoards',
-  async (_, thunkApi) => {
+  async (_, thunkAPI) => {
     try {
-      const res = await axios.get('/boards');
-      return res.data;
+      const response = await axios.get('/board');
+      return response.data;
     } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
 export const addBoard = createAsyncThunk(
   'boards/addBoards',
-  async (data, thunkApi) => {
+  async (board, thunkAPI) => {
+    const { title, background } = board;
     try {
-      await axios.post('/boards', data);
-      thunkApi.dispatch(getBoards());
-      return;
+      const response = await axios.post('/board', { title, background });
+
+      return response.data;
     } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
 
 export const getBoardById = createAsyncThunk(
   'boards/getBoardById',
-  async (id, thunkAPI) => {
+  async (boardId, thunkAPI) => {
     try {
-      const res = await axios.get(`/boards/${id}`);
-      return res.data;
+      const response = await axios.get(`/board/${boardId}`);
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -44,44 +53,33 @@ export const getBoardById = createAsyncThunk(
 
 export const updateBoard = createAsyncThunk(
   'boards/updateBoard',
-  async ({ id, data }, thunkAPI) => {
+  async ({ boardId, title, background }, thunkAPI) => {
     try {
-      await axios.put(`/boards/${id}`, data);
-      thunkAPI.dispatch(getBoards());
-      thunkAPI.dispatch(getBoardById(id));
-      return;
+      const response = await axios.put(`/board/${boardId}`, {
+        title,
+        background,
+      });
+      return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
 
 export const deleteBoard = createAsyncThunk(
   'boards/deleteBoard',
-  async (id, thunkAPI) => {
+  async (boardId, thunkAPI) => {
     try {
-      await axios.delete(`/boards/${id}`);
-      thunkAPI.dispatch(getBoards());
-      return;
+      const response = await axios.delete(`/board/${boardId}`);
+
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-export const filterBoardCards = createAsyncThunk(
-  'boards/filterBoards',
-  async ({ boardId, priority }, thunkAPI) => {
-    try {
-      const res = await axios.get(`/filter/${boardId}/${priority}`);
-      return res.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-/* -----  -----  Columns -----  -----  */
+// -----  -----  Columns -----  -----  //
 
 export const addColumn = createAsyncThunk(
   'column/addColumn',
@@ -124,23 +122,72 @@ export const deleteColumn = createAsyncThunk(
   }
 );
 
-// board: {
-//   _id,
-//     title,
-//     icon,
-//     background,
-//     filter,
-//     owner,
-//     columns: {
-//     title,
-//       _id,
-//       cards: {
-//       title,
-//         text,
-//         priority,
-//         deadline,
-//         owner,
-//         _id
-//       },
-//     },
-// }
+// -----  -----  Cards -----  -----  //
+
+// export const addCard = createAsyncThunk(
+//   'cards/addCard',
+//   async ({ boardId, columnId, data }, thunkAPI) => {
+//     try {
+//       const res = await axios.post(`/card/${boardId}/${columnId}`, data);
+//       thunkAPI.dispatch(getBoardById(res.data.board));
+//       return;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
+// export const updateCard = createAsyncThunk(
+//   'cards/updateCard',
+//   async ({ boardId, columnId, cardId, data }, thunkAPI) => {
+//     try {
+//       const res = await axios.put(
+//         `/card/${boardId}/${columnId}/${cardId}`,
+//         data
+//       );
+//       thunkAPI.dispatch(getBoardById(res.data.board));
+//       return;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
+// export const deleteCard = createAsyncThunk(
+//   'cards/deleteCard',
+//   async ({ boardId, columnId, cardId }, thunkAPI) => {
+//     try {
+//       const res = await axios.delete(`/card/${boardId}/${columnId}/${cardId}`);
+//       thunkAPI.dispatch(getBoardById(res.data.board));
+//       return;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
+// ----- ----- filters ----- ----- //
+
+// export const filterColumnCards = createAsyncThunk(
+//   'columns/filterColumnCards',
+//   async ({ boardId, columnId, priority }, thunkAPI) => {
+//     try {
+//       const res = await axios.get(`/filter/${boardId}/${columnId}/${priority}`);
+//       return res.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
+// export const filterBoardCards = createAsyncThunk(
+//   'boards/filterBoardCards',
+//   async ({ boardId, priority }, thunkAPI) => {
+//     try {
+//       const res = await axios.get(`/filter/${boardId}/${priority}`);
+//       return res.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );

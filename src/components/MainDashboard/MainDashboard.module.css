@@ -1,6 +1,8 @@
 .mainDashboard {
   display: flex;
   justify-content: center;
+  overflow-x: auto;
+  align-items: flex-start;
 }
 
 /* afisare iconPlusBlack la hover  */
@@ -23,7 +25,6 @@
   width: 28px;
   height: 28px;
 }
-
 
 @media (max-width: 375px) {
   .mainDashboardButton.mainDashboardButton {

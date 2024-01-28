@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import css from '../AddColumnModal/AddColumnModal.module.css';
 import icons from '../../../images/sprite.svg';
 import Button from '@mui/material/Button';
@@ -64,7 +64,13 @@ const theme = createTheme({
   },
 });
 
-function AddColumnModal({ closeModal }) {
+function AddColumnModal({ closeModal, onAddColumn }) {
+  const [columnTitle, setColumnTitle] = useState('');
+
+  const handleAddClick = () => {
+    onAddColumn(columnTitle);
+    closeModal(false);
+  };
   return (
     <ThemeProvider theme={theme}>
       <div className={css.modalBackground}>
@@ -91,6 +97,7 @@ function AddColumnModal({ closeModal }) {
                   sx={{
                     color: 'rgba(255, 255, 255, 0.3)',
                   }}
+                  type="text"
                 >
                   Title
                 </InputLabel>
@@ -98,12 +105,14 @@ function AddColumnModal({ closeModal }) {
                   label="Title"
                   fullWidth
                   sx={{ width: '287px' }}
+                  value={columnTitle}
+                  onChange={e => setColumnTitle(e.target.value)}
                 />
               </FormControl>
             </div>
 
             <div className={css.addBtnBox}>
-              <Button className={css.addColumnBtn}>
+              <Button className={css.addColumnBtn} onClick={handleAddClick}>
                 <svg className={`${css.iconPlus} ${css.iconPlusBlack}`}>
                   <use href={`${icons}#icon-plus-black`} />
                 </svg>
