@@ -153,18 +153,18 @@ export const deleteColumn = createAsyncThunk(
 //   }
 // );
 
-// export const deleteCard = createAsyncThunk(
-//   'cards/deleteCard',
-//   async ({ boardId, columnId, cardId }, thunkAPI) => {
-//     try {
-//       const res = await axios.delete(`/card/${boardId}/${columnId}/${cardId}`);
-//       thunkAPI.dispatch(getBoardById(res.data.board));
-//       return;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
+export const deleteCard = createAsyncThunk(
+  'cards/deleteCard',
+  async ({ boardId, columnId, cardId }, thunkAPI) => {
+    try {
+      const res = await axios.delete(`/card/${boardId}/${columnId}/${cardId}`);
+      thunkAPI.dispatch(getBoardById(res.data.board));
+      return;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 // ----- ----- filters ----- ----- //
 

@@ -74,7 +74,7 @@ export default function ModalHelp({ visible, onClose }) {
                 placeholder="Comment"
                 className=" font-normal  text-white text-sm rounded-[8px] bg-transparent border border-[#BEDBB0] p-[14px] pb-[85px]"
               ></input>
-              <button className="    rounded-[8px] text-[14px] hover:bg-green-300 transition-all duration-800  bg-[#BEDBB0] font-medium  ">
+              <button className="    rounded-[8px] text-[14px]   transition-all duration-800  bg-[#BEDBB0] font-medium  ">
                 <span className="flex justify-center px-[125px] py-[14px]">
                   {' '}
                   Send
