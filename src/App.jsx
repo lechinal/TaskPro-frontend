@@ -7,7 +7,7 @@ import RestrictedRoute from 'Routes/RestrictedRoute';
 
 import { refresh } from './redux/auth/authOperations';
 import Loader from './components/Loader/Loader';
-import CardFormColumn from 'components/CardForm/CardFormColumn';
+ 
 
 const WelcomePage = lazy(() => import('./pages/WelcomePage/WelcomePage'));
 const AuthPage = lazy(() => import('./pages/AuthPage/AuthPage'));
@@ -30,7 +30,7 @@ export const App = () => {
         <Route
           path="/"
           element={
-            <RestrictedRoute redirectTo="/home" component={<CardFormColumn />} />
+            <RestrictedRoute redirectTo="/home" component={<WelcomePage />} />
           }
         />
         <Route

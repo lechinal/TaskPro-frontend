@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import css from "./MyDatePicker.module.css";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-const newDate = new Date();
+// const newDate = new Date();
  
 export const MyDatepicker = ({ date, handleSetData }) => {
 
