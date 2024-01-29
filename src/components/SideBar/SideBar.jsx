@@ -10,7 +10,7 @@ import NewBoardMainModal from 'components/MainDashboard/MainPlaceholder/NewBoard
 import { logout } from '../../redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-
+import { CardFormEdit } from 'components/CardForm/CardFormEdit';
 import {
   SideBarStyled,
   LogoIcon,
@@ -18,7 +18,6 @@ import {
   Thumb,
   LogoutIcon,
   BoardsContainer,
-  BoardsList,
   TitleBox,
   IconTitle,
   IconsBox,
@@ -32,11 +31,10 @@ import {
 } from './SideBar.Styled';
 import Help from 'components/Help/Help';
 const SideBar = ({ active, onClick }) => {
-
   const [openModal, setOpenModal] = useState(false);
-
+  const [openEditModal, setOpenEditModal] = useState(false);
   const dispatch = useDispatch();
-  
+
   const navigate = useNavigate();
   const handleLogout = () => {
     dispatch(logout());
@@ -47,6 +45,9 @@ const SideBar = ({ active, onClick }) => {
 
   const handleOpenModal = () => {
     setOpenModal(true);
+  };
+  const handleOpenEditModal = () => {
+    setOpenEditModal(true);
   };
 
   const drawerContent = (
@@ -136,27 +137,31 @@ const SideBar = ({ active, onClick }) => {
           />
         )}
         <BoardsContainer>
-          <BoardsList theme={theme}>
-            <TitleBox>
-              <Title theme={theme}>Project Name</Title>
-              <IconTitle>
-                <use href={icon + '#icon-project'}></use>
-              </IconTitle>
-            </TitleBox>
+          <TitleBox>
+            <IconTitle>
+              <use href={icon + '#icon-project'}></use>
+            </IconTitle>
+            <Title theme={theme}>Project Name</Title>
+          </TitleBox>
 
-            <IconsBox theme={theme}>
-              <IconLink>
-                <Delete>
-                  <use href={icon + '#icon-trash'}></use>
-                </Delete>
-              </IconLink>
-              <IconButton type="button">
-                <Edit>
-                  <use href={icon + '#icon-pencil-01'}></use>
-                </Edit>
-              </IconButton>
-            </IconsBox>
-          </BoardsList>
+          <IconsBox theme={theme}>
+            <IconButton type="button" onClick={() => handleOpenEditModal()}>
+              <Edit>
+                <use href={icon + '#icon-pencil-01'}></use>
+              </Edit>
+            </IconButton>
+            {openEditModal && (
+              <CardFormEdit
+                onClick={() => setOpenEditModal(false)}
+                active={openEditModal}
+              />
+            )}
+            <IconLink>
+              <Delete>
+                <use href={icon + '#icon-trash'}></use>
+              </Delete>
+            </IconLink>
+          </IconsBox>
         </BoardsContainer>
         <SectionLight>
           <IconPuzzle>
@@ -241,6 +246,7 @@ const SideBar = ({ active, onClick }) => {
               '& .MuiDrawer-paper': {
                 boxSizing: 'border-box',
                 width: 260,
+                padding: '0px',
               },
             },
           }}

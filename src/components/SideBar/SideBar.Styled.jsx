@@ -48,38 +48,19 @@ export const LogoutIcon = styled.svg`
 `;
 export const BoardsContainer = styled.div`
   height: 61px;
+  width: 225px;
   display: flex;
   align-items: center;
-  width: 234px;
+  flex-direction: row;
   background: #1f1f1f;
   border-radius: 4px;
+  margin-left: -14px;
   border-right: 4px solid rgba(190, 219, 176, 1);
-`;
-
-export const BoardsList = styled.ul`
-  position: relative;
-  width: 260px;
-  top: 0;
-  // left: -24px;
-  gap: 4px;
-  background: #1f1f1f;
-  height: 61px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  max-height: 122px;
-  overflow-y: auto;
-
-  direction: rtl;
-`;
-
-export const BoardItem = styled.li`
-  position: relative;
-  direction: ltr;
-  height: 61px;
-  display: flex;
-  align-items: center;
+  padding-left: 20px;
+  @media screen and (min-width: 1280px) {
+    width: 260px;
+    margin-left: -24px;
+  }
 `;
 
 export const IconTitle = styled.svg`
@@ -90,7 +71,6 @@ export const IconTitle = styled.svg`
 `;
 
 export const Title = styled.div`
-  width: 200px;
   text-align: left;
   font-family: Poppins;
   font-size: 14px;
@@ -121,11 +101,10 @@ export const BoardLink = styled.link`
   font-size: 14px;
 `;
 export const IconsBox = styled.div`
-  position: absolute;
-  top: 50%;
   right: 24px;
+  gap: 5px;
+  margin-left: 40px;
 
-  transform: translateY(-50%);
   display: flex;
   align-items: center;
   justify-content: center;

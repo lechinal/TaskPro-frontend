@@ -4,39 +4,25 @@ import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import PrivateRoute from './Routes/PrivateRoute';
 import RestrictedRoute from 'Routes/RestrictedRoute';
-// import { useAuth } from './hooks';
+
 import { refresh } from './redux/auth/authOperations';
 import Loader from './components/Loader/Loader';
-import WelcomePage from 'pages/WelcomePage/WelcomePage';
-import HomePage from 'pages/HomePage/HomePage';
-import AuthPage from 'pages/AuthPage/AuthPage';
-import RegisterForm from 'components/RegisterForm/RegisterForm';
-import LoginForm from 'components/LoginForm/LoginForm';
-import SideBar from 'components/SideBar/SideBar';
-import MainDashboard from 'components/MainDashboard/MainDashboard';
-import HeaderDashboard from 'components/HeaderDashboard/HeaderDashboard';
- 
- 
+import CardFormColumn from 'components/CardForm/CardFormColumn';
+
+const WelcomePage = lazy(() => import('./pages/WelcomePage/WelcomePage'));
+const AuthPage = lazy(() => import('./pages/AuthPage/AuthPage'));
+const RegisterForm = lazy(() =>
+  import('./components/RegisterForm/RegisterForm')
+);
+
+const LoginForm = lazy(() => import('./components/LoginForm/LoginForm'));
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 
 export const App = () => {
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(refresh());
   }, [dispatch]);
-  // useEffect(() => {
-  //   if (
-  //     isLoggedIn &&
-  //     allBoards.length > 0 &&
-  //     Object.keys(activeBoard).length === 0
-  //   ) {
-  //     navigate(`/home/${allBoards[0]._id}`);
-  //   }
-
-  //   if (isLoggedIn && allBoards.length === 0) {
-  //     navigate('/home');
-  //   }
-  // }, [navigate, allBoards, activeBoard, isLoggedIn]);
 
   return (
     <Suspense fallback={<Loader />}>
@@ -44,7 +30,7 @@ export const App = () => {
         <Route
           path="/"
           element={
-            <RestrictedRoute redirectTo="/home" component={<HomePage />} />
+            <RestrictedRoute redirectTo="/home" component={<CardFormColumn />} />
           }
         />
         <Route
@@ -67,5 +53,4 @@ export const App = () => {
     </Suspense>
   );
 };
-
 export default App;

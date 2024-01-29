@@ -8,12 +8,19 @@ import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import React from 'react';
 import { MyDatepicker } from './MyDatePicker';
-import 'react-datepicker/dist/react-datepicker.css';
+// import { AddCard } from "../../redux/boards/boardOperations"
+// import { useDispatch, useSelector } from 'react-redux';
+import RadioLabel from './RadioLabel';
 
- import RadioLabel from  "./RadioLabel"
+export const CardFormAdd = () => {
 
-export const CardFormAdd = () => { 
- 
+  // const handleAddCard = () => {
+  //   const newCard = { title, description };
+  //   dispatch(addCard(newCard));
+  //   setTitle('');
+  //   setDescription('');
+  // };
+
   const theme = createTheme({
     components: {
       MuiButton: {
@@ -57,6 +64,8 @@ export const CardFormAdd = () => {
       },
     },
   });
+
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -102,17 +111,21 @@ export const CardFormAdd = () => {
               defaultValue=""
             />
           </Box>
-          <Typography sx={{
+          <Typography
+            sx={{
               color: 'rgba(255, 255, 255, 0.3)',
               fontFamily: 'Poppins',
               fontWeight: '400',
               fontSize: '12px',
               textTransform: 'none',
               marginTop: '15px',
-              marginBottom: "5px",
-            }}>Label color</Typography>
-                  
-          <RadioLabel/>
+              marginBottom: '5px',
+            }}
+          >
+            Label color
+          </Typography>
+
+          <RadioLabel />
           <Typography
             sx={{
               color: 'rgba(255, 255, 255, 0.3)',
@@ -125,10 +138,7 @@ export const CardFormAdd = () => {
           >
             Deadline
           </Typography>
-           <MyDatepicker
-              
-              
-            />
+          <MyDatepicker />
           <Button
             sx={{
               mb: 1,
