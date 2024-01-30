@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectBoardsList } from '../../redux/boards/boardSelectors';
 
 import css from 'components/MainDashboard/MainDashboard.module.css';
 import Button from '@mui/material/Button';
@@ -6,7 +8,7 @@ import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddColumnModal from '../MainDashboard/AddColumnModal/AddColumnModal';
 import Column from './Column/Column';
-
+import MainPlaceholder from '../MainDashboard/MainPlaceholder/MainPlaceholder';
 import icons from '../../images/sprite.svg';
 
 const theme = createTheme({
@@ -41,36 +43,46 @@ function MainDashboard() {
   const [openModal, setOpenModal] = useState(false);
   const [columns, setColumns] = useState([]);
 
+  const boards = useSelector(selectBoardsList);
+  console.log(boards);
+
   const handleAddColumn = columnTitle => {
     setColumns(prevColumns => [...prevColumns, { title: columnTitle }]);
   };
+  console.log('MainDashboard is rendered');
 
   return (
     <ThemeProvider theme={theme}>
       <section className={css.mainDashboard}>
-        {columns.map((column, index) => (
-          <Column key={index} title={column.title} />
-        ))}
-        <Button
-          className={css.mainDashboardButton}
-          onClick={() => {
-            setOpenModal(true);
-          }}
-        >
-          <svg className={`${css.iconPlus} ${css.iconPlusBlack}`}>
-            <use href={`${icons}#icon-plus-black`} />
-          </svg>
+        {boards.length > 0 ? (
+          <>
+            {columns.map((column, index) => (
+              <Column key={index} title={column.title} />
+            ))}
+            <Button
+              className={css.mainDashboardButton}
+              onClick={() => {
+                setOpenModal(true);
+              }}
+            >
+              <svg className={`${css.iconPlus} ${css.iconPlusBlack}`}>
+                <use href={`${icons}#icon-plus-black`} />
+              </svg>
 
-          <svg className={`${css.iconPlus} ${css.iconPlusWhite}`}>
-            <use href={`${icons}#icon-plus`} />
-          </svg>
-          <p>Add another column</p>
-        </Button>
-        {openModal && (
-          <AddColumnModal
-            closeModal={setOpenModal}
-            onAddColumn={handleAddColumn}
-          />
+              <svg className={`${css.iconPlus} ${css.iconPlusWhite}`}>
+                <use href={`${icons}#icon-plus`} />
+              </svg>
+              <p>Add another column</p>
+            </Button>
+            {openModal && (
+              <AddColumnModal
+                closeModal={setOpenModal}
+                onAddColumn={handleAddColumn}
+              />
+            )}
+          </>
+        ) : (
+          <MainPlaceholder />
         )}
       </section>
     </ThemeProvider>

@@ -28,6 +28,7 @@ import {
   IconButton,
   IconPuzzle,
   SectionLight,
+  PlusButton,
 } from './SideBar.Styled';
 import Help from 'components/Help/Help';
 const SideBar = ({ active, onClick }) => {
@@ -117,18 +118,18 @@ const SideBar = ({ active, onClick }) => {
           >
             Create a new board
           </Typography>
-          <Button
+          <PlusButton
             onClick={handleOpenModal}
             sx={{
-              backgroundColor: '#bedbb0',
+              background: '#bedbb0',
               padding: '8px 10px',
               minWidth: 0,
             }}
           >
             <PlusIcon theme={theme}>
-              <use href={icon + '#icon-plus'}></use>
+              <use href={icon + '#icon-plus1'}></use>
             </PlusIcon>
-          </Button>
+          </PlusButton>
         </Box>
         {openModal && (
           <NewBoardMainModal
