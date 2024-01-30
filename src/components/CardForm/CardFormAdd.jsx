@@ -140,7 +140,7 @@ export const CardFormAdd = () => {
           >
             Deadline
           </Typography>
-          <MyDatepicker />
+          <MyDatePicker />
           <Button
             sx={{
               mb: 1,
