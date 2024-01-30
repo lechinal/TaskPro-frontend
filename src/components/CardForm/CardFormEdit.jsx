@@ -127,7 +127,7 @@ export const CardFormEdit = () => {
           >
             Deadline
           </Typography>
-          <MyDatepicker />
+          <MyDatePicker />
           <Button
             sx={{
               mb: 1,
