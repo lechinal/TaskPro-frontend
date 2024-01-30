@@ -56,7 +56,6 @@ const boardSlice = createSlice({
     builder
 
       .addCase(getBoards.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.boardsList = action.payload;
         state.isLoading = false;
         state.error = null;

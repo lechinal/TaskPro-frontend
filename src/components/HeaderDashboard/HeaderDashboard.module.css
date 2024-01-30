@@ -26,8 +26,11 @@
     letter-spacing: -0.36px;
   }
 }
+@media (min-width: 1280px) {
+  .headerDashboardTitle {
+    margin-left: 277px;
+  }
 
-@media (min-width: 1440px) {
   .headerDashboard {
     padding: 26px 32px 10px;
   }

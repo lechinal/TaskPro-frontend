@@ -4,6 +4,8 @@ import { Header } from 'components/Header/Header';
 import SideBar from 'components/SideBar/SideBar';
 import ScreensPage from '../ScreensPage/ScreensPage';
 
+// import { selectBoardsList } from '../../redux/boards/boardSelectors';
+
 function HomePage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 

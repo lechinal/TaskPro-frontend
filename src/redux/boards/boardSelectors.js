@@ -2,6 +2,11 @@ export const selectBoardsList = state => state.boards.boardsList;
 
 export const selectActiveBoard = state => state.boards.activeBoard;
 
+// export const selectActiveBoard = state => {
+//   console.log('Active board:', state.boards.activeBoard);
+//   return state.boards.activeBoard;
+// };
+
 export const selectBoardsError = state => state.boards.error;
 
 export const selectIsBoardsLoading = state => state.boards.isLoading;
