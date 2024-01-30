@@ -62,11 +62,9 @@ const RadioColored = ({ onRadioChange, currentPriority }) => {
                     width: '14px',
                     height: '14px',
                     color: 'transparent',
-
                     backgroundColor: radioColor.static,
                     '&.Mui-checked': {
                       color: radioColor.static,
-
                       backgroundColor: radioColor.checked,
                     },
                   }}

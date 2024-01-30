@@ -28,9 +28,9 @@ export const getBoards = createAsyncThunk(
 export const addBoard = createAsyncThunk(
   'boards/addBoards',
   async (board, thunkAPI) => {
-    const { title, background } = board;
+    const { title, icon, background } = board;
     try {
-      const response = await axios.post('/board', { title, background });
+      const response = await axios.post('/board', { title, icon, background });
 
       return response.data;
     } catch (error) {
