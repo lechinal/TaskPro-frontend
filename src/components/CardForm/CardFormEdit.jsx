@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import React from 'react';
-import { MyDatePicker } from './MyDatePicker';
+import MyDatePicker from './MyDatePicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import RadioLabel from './RadioLabel';

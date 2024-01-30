@@ -24,7 +24,7 @@ const style = {
   p: 4,
 };
 
-export default function CardFormColumn({ boardId, columnId, cardId }) {
+export default function MyDatePicker({ boardId, columnId, cardId }) {
   const text =
     'Create a visually stunning and eye-catching watch dial design that embodies our brands essence of sleek aesthetics and modern elegance. Your design should be unique, innovative, and reflective of the latest trends in watch design.';
   const dispatch = useDispatch();
