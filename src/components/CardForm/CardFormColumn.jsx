@@ -98,8 +98,8 @@ export default function CardFormColumn({ boardId, columnId, cardId }) {
                 color: 'rgba(255, 255, 255, 0.7)',
                 fontSize: '12px',
                 textTransform: 'none',
-                marginTop: 'auto', // Push the button to the bottom
-                alignSelf: 'flex-end', // Align the button to the end of the container
+                marginTop: 'auto',  
+                alignSelf: 'flex-end',  
                 '&:hover': {
                   backgroundColor: 'transparent',
                 },
