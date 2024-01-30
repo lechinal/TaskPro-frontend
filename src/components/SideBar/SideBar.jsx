@@ -12,7 +12,7 @@ import { selectBoardsList } from '../../redux/boards/boardSelectors';
 import { logout } from '../../redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-
+import { CardFormEdit } from 'components/CardForm/CardFormEdit';
 import {
   SideBarStyled,
   LogoIcon,
@@ -30,12 +30,17 @@ import {
   IconButton,
   IconPuzzle,
   SectionLight,
+  PlusButton,
 } from './SideBar.Styled';
 import Help from 'components/Help/Help';
 
 const SideBar = ({ active, onClick }) => {
   const [openModal, setOpenModal] = useState(false);
+
   const boards = useSelector(selectBoardsList);
+
+
+  const [openEditModal, setOpenEditModal] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -49,6 +54,9 @@ const SideBar = ({ active, onClick }) => {
 
   const handleOpenModal = () => {
     setOpenModal(true);
+  };
+  const handleOpenEditModal = () => {
+    setOpenEditModal(true);
   };
 
   const drawerContent = (
@@ -118,18 +126,18 @@ const SideBar = ({ active, onClick }) => {
           >
             Create a new board
           </Typography>
-          <Button
+          <PlusButton
             onClick={handleOpenModal}
             sx={{
-              backgroundColor: '#bedbb0',
+              background: '#bedbb0',
               padding: '8px 10px',
               minWidth: 0,
             }}
           >
             <PlusIcon theme={theme}>
-              <use href={icon + '#icon-plus'}></use>
+              <use href={icon + '#icon-plus1'}></use>
             </PlusIcon>
-          </Button>
+          </PlusButton>
         </Box>
         {openModal && (
           <NewBoardMainModal setOpenModal={setOpenModal} active={openModal} />
@@ -153,11 +161,17 @@ const SideBar = ({ active, onClick }) => {
             <Title theme={theme}>Project Name</Title>
           </TitleBox>
           <IconsBox theme={theme}>
-            <IconButton type="button">
+            <IconButton type="button" onClick={() => handleOpenEditModal()}>
               <Edit>
                 <use href={icon + '#icon-pencil-01'}></use>
               </Edit>
             </IconButton>
+            {openEditModal && (
+              <CardFormEdit
+                onClick={() => setOpenEditModal(false)}
+                active={openEditModal}
+              />
+            )}
             <IconLink>
               <Delete>
                 <use href={icon + '#icon-trash'}></use>

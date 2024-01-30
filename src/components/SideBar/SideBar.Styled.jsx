@@ -35,9 +35,13 @@ export const LogoIcon = styled.svg`
 export const PlusIcon = styled.svg`
   width: 20px;
   height: 20px;
-  fill: black;
-  stoke: #bedbb0;
+
+  stoke: black;
+`;
+export const PlusButton = styled.button`
   background: #bedbb0;
+  padding: 8px 10px;
+  border-radius: 6px;
 `;
 
 export const LogoutIcon = styled.svg`
@@ -85,13 +89,15 @@ export const Edit = styled.svg`
   height: 16px;
   stroke: transaprent;
   margin-right: 8px;
+  opacity: 50%;
 `;
 
 export const Delete = styled.svg`
   width: 16px;
   height: 16px;
   stroke: white;
-  fill: white;
+  opacity: 50%;
+  fill: #1f1f1f;
 `;
 
 export const BoardLink = styled.link`
@@ -103,11 +109,13 @@ export const BoardLink = styled.link`
 export const IconsBox = styled.div`
   right: 24px;
   gap: 5px;
-  margin-left: 40px;
-
+  margin-left: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
+  @media screen and (min-width: 1280px) {
+    margin-left: 40px;
+  }
 `;
 export const TitleBox = styled.div`
   display: flex;

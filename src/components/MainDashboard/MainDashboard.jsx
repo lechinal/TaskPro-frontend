@@ -49,6 +49,7 @@ function MainDashboard() {
   const handleAddColumn = columnTitle => {
     setColumns(prevColumns => [...prevColumns, { title: columnTitle }]);
   };
+  console.log('MainDashboard is rendered');
 
   return (
     <ThemeProvider theme={theme}>

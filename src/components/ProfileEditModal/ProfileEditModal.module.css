@@ -1,4 +1,4 @@
-.section_profileEdit {
+/* .section_profileEdit {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,6 +8,15 @@
   background-repeat: no-repeat;
   background-size: cover;
   flex-direction: column;
+} */
+.buttonAdd {
+  width: 24px;
+  height: 24px;
+  background: #bedbb0;
+  position: absolute;
+  margin-left: 157px;
+  margin-top: -15px;
+  border-radius: 5px;
 }
 .buttonAdd {
   width: 24px;
