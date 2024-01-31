@@ -124,6 +124,24 @@ export const deleteColumn = createAsyncThunk(
 
 // -----  -----  Cards -----  -----  //
 
+  // PATCH @ /tasks/:id
+  // headers: Authorization: Bearer token
+ 
+// export const updateTaskPlace = createAsyncThunk(
+//  'cards/updateCardPlace',
+//  async ({ card, oldColumn }, thunkAPI) => {
+//    const { _id, column} = card;
+//    try {
+//      axios.patch(`/cards/${_id}`, {
+//        column,
+//      });
+//      return { card, oldColumn };
+//    } catch (error) {
+//      return thunkAPI.rejectWithValue(error.message);
+//    }
+//  }
+// );
+
 // export const addCard = createAsyncThunk(
 //   'cards/addCard',
 //   async ({ boardId, columnId, data }, thunkAPI) => {

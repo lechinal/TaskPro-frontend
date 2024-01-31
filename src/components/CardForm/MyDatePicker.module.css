@@ -5,14 +5,10 @@
   color: #bedbb0;
 }
 
-.react-datepicker {
-  background-color: #fff;
-  width: 233px;
-  font-family: inherit;
-  border: 1px solid #bedbb0;
-  border-radius: 8px;
+.myDatePickerStyle .react-datepicker__header{
+background-color: blue !important;
 }
-
+/* 
 .react-datepicker__header {
   border-bottom: none;
 }
@@ -119,8 +115,8 @@
 }
 
 .react-datepicker__navigation:hover *::before {
-  border-color: #bedbb0;
-}
+  border-color: #bedbb0; */
+/* } */
 .exampleCustomInput {
   display: flex;
   justify-content: center;

@@ -1,6 +1,6 @@
 import { Box, Typography, Button, IconButton } from '@mui/material';
 import React, { useState } from 'react';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
 import CreateTwoToneIcon from '@mui/icons-material/CreateTwoTone';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -8,8 +8,8 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import { CardFormEdit } from './CardFormEdit';
-import { useDispatch } from 'react-redux';
-import { deleteCard } from '../../redux/boards/boardOperations';
+// import { useDispatch } from 'react-redux';
+// import { deleteCard } from '../../redux/boards/boardOperations';
 
 const style = {
   position: 'absolute',
@@ -27,7 +27,7 @@ const style = {
 export default function CardFormColumn({ boardId, columnId, cardId }) {
   const text =
     'Create a visually stunning and eye-catching watch dial design that embodies our brands essence of sleek aesthetics and modern elegance. Your design should be unique, innovative, and reflective of the latest trends in watch design.';
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -39,14 +39,14 @@ export default function CardFormColumn({ boardId, columnId, cardId }) {
     setShowMore(!showMore);
   };
 
-  async function handleDelete() {
-    try {
-      await dispatch(deleteCard({ _id: boardId })).unwrap();
-      Notify.success(`Deleted from column`);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // async function handleDelete() {
+  //   try {
+  //     await dispatch(deleteCard({ _id: boardId })).unwrap();
+  //     Notify.success(`Deleted from column`);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
   return (
     <Box
       sx={{
@@ -164,7 +164,7 @@ export default function CardFormColumn({ boardId, columnId, cardId }) {
                 backgroundColor: 'rgba(18, 18, 18, 1)',
               },
             }}
-            onClick={handleDelete}
+            // onClick={handleDelete}
           >
             <DeleteOutlineRoundedIcon
               fontSize="large"

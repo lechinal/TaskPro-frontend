@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import React from 'react';
-import { MyDatepicker } from './MyDatePicker';
+import  MyDatepicker  from './MyDatePicker';
 // import { AddCard } from "../../redux/boards/boardOperations"
 // import { useDispatch, useSelector } from 'react-redux';
 import RadioLabel from './RadioLabel';

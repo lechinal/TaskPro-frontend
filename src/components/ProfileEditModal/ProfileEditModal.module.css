@@ -3,12 +3,13 @@
   align-items: center;
   justify-content: center;
   /* height: 100vh; */
-  width: 100%;
+  /* width: 100%;
   background: #1f1f1f;
   background-repeat: no-repeat;
   background-size: cover;
   flex-direction: column;
-} */
+} */  
+
 .buttonAdd {
   width: 24px;
   height: 24px;

@@ -4,6 +4,7 @@ import icons from '../../../images/sprite.svg';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
+import CardFormColumn from 'components/CardForm/CardFormColumn';
 
 const theme = createTheme({
   components: {
@@ -53,16 +54,7 @@ function Column({ title }) {
           </div>
         </div>
         <div className={css.cardListContainer}>
-          <ul className={css.cardList}>
-            <li>Card 1</li>
-            <li>Card 2</li>
-            <li>Card 3</li>
-            <li>Card 4</li>
-            <li>Card 6</li>
-            <li>Card 7</li>
-            <li>Card 8</li>
-            <li>Card 9</li>
-          </ul>
+     <CardFormColumn/>
         </div>
         <div className={css.BtnContainer}>
           <Button className={css.addCardBtn}>
