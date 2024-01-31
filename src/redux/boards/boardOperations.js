@@ -39,6 +39,18 @@ export const addBoard = createAsyncThunk(
   }
 );
 
+export const getActiveBoard = createAsyncThunk(
+  'boards/getActiveBoard',
+  async (boardId, thunkAPI) => {
+    try {
+      const response = await axios.get(`/board/${boardId}`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const getBoardById = createAsyncThunk(
   'boards/getBoardById',
   async (boardId, thunkAPI) => {

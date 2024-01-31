@@ -44,12 +44,10 @@ function MainDashboard() {
   const [columns, setColumns] = useState([]);
 
   const boards = useSelector(selectBoardsList);
-  console.log(boards);
 
   const handleAddColumn = columnTitle => {
     setColumns(prevColumns => [...prevColumns, { title: columnTitle }]);
   };
-  console.log('MainDashboard is rendered');
 
   return (
     <ThemeProvider theme={theme}>

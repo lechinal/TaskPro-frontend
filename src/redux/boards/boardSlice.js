@@ -6,6 +6,7 @@ import {
   getBoardById,
   getBoards,
   updateBoard,
+  getActiveBoard,
   // addColumn,
   // deleteColumn,
   // updateColumn,
@@ -63,7 +64,16 @@ const boardSlice = createSlice({
       .addCase(getBoards.pending, handlePending)
       .addCase(getBoards.rejected, handleRejected)
 
+      .addCase(getActiveBoard.fulfilled, (state, action) => {
+        state.activeBoard = action.payload;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getActiveBoard.pending, handlePending)
+      .addCase(getActiveBoard.rejected, handleRejected)
+
       .addCase(getBoardById.fulfilled, (state, action) => {
+        console.log('Fulfilled Action Payload:', action.payload);
         state.activeBoard = action.payload;
         state.isLoading = false;
         state.error = null;

@@ -11,6 +11,12 @@ function ScreensPage() {
   const boardTitle =
     activeBoard && activeBoard.title ? activeBoard.title : 'No title';
 
+  console.log(
+    'Boards List:',
+    useSelector(state => state.boards.boardsList)
+  );
+  console.log('Active Board:', activeBoard);
+
   return (
     <section className={css.screensPage}>
       <HeaderDashboard boardTitle={boardTitle} />

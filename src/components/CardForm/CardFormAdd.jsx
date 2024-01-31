@@ -7,15 +7,12 @@ import Box from '@mui/material/Box';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import React from 'react';
-import { MyDatePicker } from './MyDatePicker';
+import MyDatePicker from './MyDatePicker';
 // import { AddCard } from "../../redux/boards/boardOperations"
 // import { useDispatch, useSelector } from 'react-redux';
 import RadioLabel from './RadioLabel';
 
-
-
-export const CardFormAdd = () => {
-
+export const CardFormAdd = ({ onClose }) => {
   // const handleAddCard = () => {
   //   const newCard = { title, description };
   //   dispatch(addCard(newCard));
@@ -66,8 +63,6 @@ export const CardFormAdd = () => {
       },
     },
   });
-
-
 
   return (
     <ThemeProvider theme={theme}>
@@ -142,6 +137,7 @@ export const CardFormAdd = () => {
           </Typography>
           <MyDatePicker />
           <Button
+            onClick={onClose}
             sx={{
               mb: 1,
               background: 'rgba(190, 219, 176, 1)',
