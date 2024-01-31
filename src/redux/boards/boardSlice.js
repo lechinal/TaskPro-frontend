@@ -7,10 +7,10 @@ import {
   getBoards,
   updateBoard,
   getActiveBoard,
-  // addColumn,
-  // deleteColumn,
-  // updateColumn,
-  // addCard,
+  addColumn,
+  deleteColumn,
+  updateColumn,
+  addCard,
   // updateCard,
   // deleteCard,
   // filterColumnCards,
@@ -103,77 +103,76 @@ const boardSlice = createSlice({
         state.error = null;
         getBoards()(action.dispatch);
       })
-      .addCase(updateBoard.rejected, handleRejected);
+      .addCase(updateBoard.rejected, handleRejected)
 
-    // ----- coloane -----
+      // ----- coloane -----//
 
-    // .addCase(addColumn.pending, handlePending)
-    // .addCase(addColumn.fulfilled, (state, action) => {
-    //   state.activeBoard = action.payload;
-    //   state.isLoading = false;
-    //   state.error = null;
-    // })
-    // .addCase(addColumn.rejected, handleRejected)
+      .addCase(addColumn.pending, handlePending)
+      .addCase(addColumn.fulfilled, (state, action) => {
+        state.activeBoard = action.payload;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(addColumn.rejected, handleRejected)
 
-    // .addCase(updateColumn.pending, handlePending)
-    // .addCase(updateColumn.fulfilled, (state, action) => {
-    //   state.activeBoard = action.payload;
-    //   state.isLoading = false;
-    //   state.error = null;
-    // })
-    // .addCase(updateColumn.rejected, handleRejected)
+      .addCase(updateColumn.pending, handlePending)
+      .addCase(updateColumn.fulfilled, (state, action) => {
+        state.activeBoard = action.payload;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(updateColumn.rejected, handleRejected)
 
-    // .addCase(deleteColumn.pending, handlePending)
-    // .addCase(deleteColumn.fulfilled, (state, action) => {
-    //   state.activeBoard = action.payload;
-    //   state.isLoading = false;
-    //   state.error = null;
-    // })
-    // .addCase(deleteColumn.rejected, handleRejected)
+      .addCase(deleteColumn.pending, handlePending)
+      .addCase(deleteColumn.fulfilled, (state, action) => {
+        state.activeBoard = action.payload;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(deleteColumn.rejected, handleRejected)
 
-    // ----- ----- carduri ----- ----- //
+      // ----- ----- carduri ----- ----- //
+      .addCase(addCard.pending, handlePending)
+      .addCase(addCard.fulfilled, (state, action) => {
+        state.activeBoard = action.payload;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(addCard.rejected, handleRejected);
 
-    // .addCase(addCard.pending, handlePending)
-    // .addCase(addCard.fulfilled, (state, action) => {
-    //   state.activeBoard = action.payload;
-    //   state.isLoading = false;
-    //   state.error = null;
-    // })
-    // .addCase(addCard.rejected, handleRejected)
+    //     .addCase(updateCard.pending, handlePending)
+    //     .addCase(updateCard.fulfilled, (state, action) => {
+    //       state.activeBoard = action.payload;
+    //       state.isLoading = false;
+    //       state.error = null;
+    //     })
+    //     .addCase(updateCard.rejected, handleRejected)
 
-    // .addCase(updateCard.pending, handlePending)
-    // .addCase(updateCard.fulfilled, (state, action) => {
-    //   state.activeBoard = action.payload;
-    //   state.isLoading = false;
-    //   state.error = null;
-    // })
-    // .addCase(updateCard.rejected, handleRejected)
+    //     .addCase(deleteCard.pending, handlePending)
+    //     .addCase(deleteCard.fulfilled, (state, action) => {
+    //       state.activeBoard = action.payload;
+    //       state.isLoading = false;
+    //       state.error = null;
+    //     })
+    //     .addCase(deleteCard.rejected, handleRejected)
 
-    // .addCase(deleteCard.pending, handlePending)
-    // .addCase(deleteCard.fulfilled, (state, action) => {
-    //   state.activeBoard = action.payload;
-    //   state.isLoading = false;
-    //   state.error = null;
-    // })
-    // .addCase(deleteCard.rejected, handleRejected)
+    //     // ----- ----- filtre ----- ----- //
 
-    // ----- ----- filtre ----- ----- //
+    //     .addCase(filterColumnCards.pending, handlePending)
+    //     .addCase(filterColumnCards.fulfilled, (state, action) => {
+    //       state.activeBoard = action.payload;
+    //       state.isLoading = false;
+    //       state.error = null;
+    //     })
+    //     .addCase(filterColumnCards.rejected, handleRejected)
 
-    // .addCase(filterColumnCards.pending, handlePending)
-    // .addCase(filterColumnCards.fulfilled, (state, action) => {
-    //   state.activeBoard = action.payload;
-    //   state.isLoading = false;
-    //   state.error = null;
-    // })
-    // .addCase(filterColumnCards.rejected, handleRejected)
-
-    // .addCase(filterBoardCards.pending, handlePending)
-    // .addCase(filterBoardCards.fulfilled, (state, action) => {
-    //   state.activeBoard = action.payload;
-    //   state.isLoading = false;
-    //   state.error = null;
-    // })
-    // .addCase(filterBoardCards.rejected, handleRejected);
+    //     .addCase(filterBoardCards.pending, handlePending)
+    //     .addCase(filterBoardCards.fulfilled, (state, action) => {
+    //       state.activeBoard = action.payload;
+    //       state.isLoading = false;
+    //       state.error = null;
+    //     })
+    //     .addCase(filterBoardCards.rejected, handleRejected);
   },
 });
 
