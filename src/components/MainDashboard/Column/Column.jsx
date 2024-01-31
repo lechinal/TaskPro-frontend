@@ -36,7 +36,7 @@ const theme = createTheme({
   },
 });
 
-function Column({ title }) {
+function Column({ title, description }) {
   const [openModal, setOpenModal] = useState(false);
 
   const handleAddCard = () => {
@@ -84,7 +84,12 @@ function Column({ title }) {
             <p>Add another card</p>
           </Button>
           {openModal && (
-            <CardFormAdd onSubmit={handleAddCard} onClose={handleCloseModal} />
+            <div className="modalOverlay">
+              <CardFormAdd
+                onSubmit={handleAddCard}
+                onClose={handleCloseModal}
+              />
+            </div>
           )}
         </div>
       </div>

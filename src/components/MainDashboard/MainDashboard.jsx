@@ -47,6 +47,7 @@ function MainDashboard() {
 
   const handleAddColumn = columnTitle => {
     setColumns(prevColumns => [...prevColumns, { title: columnTitle }]);
+    setOpenModal(false);
   };
 
   return (
@@ -74,7 +75,7 @@ function MainDashboard() {
             </Button>
             {openModal && (
               <AddColumnModal
-                closeModal={setOpenModal}
+                closeModal={() => setOpenModal(false)}
                 onAddColumn={handleAddColumn}
               />
             )}
