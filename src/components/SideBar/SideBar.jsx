@@ -39,7 +39,6 @@ const SideBar = ({ active, onClick }) => {
 
   const boards = useSelector(selectBoardsList);
 
-
   const [openEditModal, setOpenEditModal] = useState(false);
 
   const dispatch = useDispatch();
@@ -142,8 +141,8 @@ const SideBar = ({ active, onClick }) => {
         {openModal && (
           <NewBoardMainModal setOpenModal={setOpenModal} active={openModal} />
         )}
+
         <BoardsContainer>
-          {/* alinL */}
           {boards.map(board => (
             <TitleBox key={board.title}>
               <IconTitle>
@@ -152,7 +151,6 @@ const SideBar = ({ active, onClick }) => {
               <Title theme={theme}>{board.title}</Title>
             </TitleBox>
           ))}
-          {/* alinL */}
 
           <TitleBox>
             <IconTitle>
@@ -168,7 +166,7 @@ const SideBar = ({ active, onClick }) => {
             </IconButton>
             {openEditModal && (
               <CardFormEdit
-                onClick={() => setOpenEditModal(false)}
+                setOpenModal={setOpenEditModal}
                 active={openEditModal}
               />
             )}
