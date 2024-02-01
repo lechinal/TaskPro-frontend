@@ -47,8 +47,8 @@ export const PlusButton = styled.button`
 export const LogoutIcon = styled.svg`
   width: 32px;
   height: 32px;
-  stroke: white;
-  background-color: transparent;
+  /*   stroke: white;
+  background-color: transparent; */
 `;
 export const BoardsContainer = styled.div`
   height: 61px;
@@ -56,10 +56,9 @@ export const BoardsContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: row;
-  background: #1f1f1f;
   border-radius: 4px;
   margin-left: -14px;
-  border-right: 4px solid rgba(190, 219, 176, 1);
+  border-right: 4px solid /* rgba(190, 219, 176, 1) */;
   padding-left: 20px;
   @media screen and (min-width: 1280px) {
     width: 260px;
@@ -81,7 +80,6 @@ export const Title = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  color: #ffffff;
 `;
 
 export const Edit = styled.svg`
@@ -127,7 +125,6 @@ export const IconButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
   border: none;
 `;
 
@@ -135,7 +132,6 @@ export const IconLink = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
   border: none;
 `;
 export const IconPuzzle = styled.svg`
@@ -156,5 +152,4 @@ export const SectionLight = styled.div`
   text-align: left;
   align-items: center;
   opacity: 50%;
-  color: #ffffff80;
 `;

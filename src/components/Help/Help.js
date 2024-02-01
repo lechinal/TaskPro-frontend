@@ -10,10 +10,10 @@ export default function Help() {
 
   return (
     <div className="text-2xl">
-      <div className=" bg-[#1F1F1F;] h-[238px] w-[197px] sm:h-[272px] sm:w-[212px] rounded-[8px] ">
+      <div className=" h-[238px] w-[197px] sm:h-[272px] sm:w-[212px] rounded-[8px] ">
         <div className="flex flex-col p-[14px]">
           <img
-            alt='info'
+            alt="info"
             className="mb-[14px]"
             height={'78px'}
             width={'54px'}
@@ -25,7 +25,10 @@ export default function Help() {
             support resources or reach out to our customer support team.
           </p>
 
-          <button onClick={()=> setVisibleModal(true)} className="flex  items-center text-white">
+          <button
+            onClick={() => setVisibleModal(true)}
+            className="flex  items-center text-white"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

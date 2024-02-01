@@ -5,7 +5,7 @@ import { useTheme } from '@mui/material';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import icon from '../../images/sprite.svg';
-
+import { selectUser } from '../../redux/auth/authSelectors';
 import NewBoardMainModal from 'components/MainDashboard/MainPlaceholder/NewBoardMainModal/NewBoardMainModal';
 
 import { selectBoardsList } from '../../redux/boards/boardSelectors';
@@ -50,6 +50,7 @@ const SideBar = ({ active, onClick }) => {
   };
 
   const theme = useTheme();
+  const user = useSelector(selectUser);
 
   const handleOpenModal = () => {
     setOpenModal(true);
@@ -58,8 +59,62 @@ const SideBar = ({ active, onClick }) => {
     setOpenEditModal(true);
   };
 
+  const logoSvg =
+    user.theme === 'light' && user.theme !== 'violet'
+      ? '#icon-logo-light'
+      : user.theme === 'dark'
+      ? '#icon-logo-light'
+      : '#icon-logo-violet';
+
+  const plusSvg =
+    user.theme === 'light' && user.theme !== 'violet'
+      ? '#icon-plus1'
+      : user.theme === 'dark'
+      ? '#icon-plus-2'
+      : '#icon-plus3';
+
+  const puzzleSvg =
+    user.theme === 'light' && user.theme !== 'violet'
+      ? '#icon-puzzle'
+      : user.theme === 'dark'
+      ? '#icon-puzzle-piece-02'
+      : '#icon-puzzle-piece-02';
+
+  const pencilSvg =
+    user.theme === 'light' && user.theme !== 'violet'
+      ? '#icon-pencil'
+      : user.theme === 'dark'
+      ? '#icon-pencil-1'
+      : '#icon-pencil-1';
+
+  const trashSvg =
+    user.theme === 'light' && user.theme !== 'violet'
+      ? '#icon-trash1'
+      : user.theme === 'dark'
+      ? '#icon-trash2'
+      : '#icon-trash2';
+
+  const projectSvg =
+    user.theme === 'light' && user.theme !== 'violet'
+      ? '#icon-Project'
+      : user.theme === 'dark'
+      ? '#icon-Project-2'
+      : '#icon-Project-2';
+
   const drawerContent = (
-    <SideBarStyled>
+    <SideBarStyled
+      sx={{
+        bgcolor: 'background.default',
+
+        '&::-webkit-scrollbar': {
+          backgroundColor: 'background.warning',
+          width: '8px',
+        },
+        '&::-webkit-scrollbar-thumb': {
+          backgroundColor: 'background.info',
+        },
+      }}
+    >
       <Thumb>
         <Box
           sx={{
@@ -71,7 +126,7 @@ const SideBar = ({ active, onClick }) => {
           }}
         >
           <LogoIcon>
-            <use href={icon + '#icon-logo'}></use>
+            <use href={icon + `${logoSvg}`}></use>
           </LogoIcon>
           <Typography
             variant="h2"
@@ -80,7 +135,7 @@ const SideBar = ({ active, onClick }) => {
               fontSize: '16px',
               letterSpacing: 0.7,
               fontWeight: 600,
-              color: '#FFFFFF',
+              color: 'text.disabled',
             }}
           >
             Task Pro
@@ -120,21 +175,14 @@ const SideBar = ({ active, onClick }) => {
               fontWeight: 500,
               fontSize: '14px',
               letterSpacing: 0.7,
-              color: '#FFFFFF',
+              color: 'text.disabled',
             }}
           >
             Create a new board
           </Typography>
-          <PlusButton
-            onClick={handleOpenModal}
-            sx={{
-              background: '#bedbb0',
-              padding: '8px 10px',
-              minWidth: 0,
-            }}
-          >
+          <PlusButton onClick={handleOpenModal}>
             <PlusIcon theme={theme}>
-              <use href={icon + '#icon-plus1'}></use>
+              <use href={icon + `${plusSvg}`}></use>
             </PlusIcon>
           </PlusButton>
         </Box>
@@ -142,7 +190,7 @@ const SideBar = ({ active, onClick }) => {
           <NewBoardMainModal setOpenModal={setOpenModal} active={openModal} />
         )}
 
-        <BoardsContainer>
+        <BoardsContainer theme={theme}>
           {boards.map(board => (
             <TitleBox key={board.title}>
               <IconTitle>
@@ -152,37 +200,65 @@ const SideBar = ({ active, onClick }) => {
             </TitleBox>
           ))}
 
-          <TitleBox>
-            <IconTitle>
-              <use href={icon + '#icon-project'}></use>
+          <TitleBox theme={theme}>
+            <IconTitle theme={theme}>
+              <use href={icon + `${projectSvg}`}></use>
             </IconTitle>
-            <Title theme={theme}>Project Name</Title>
+            <Typography
+              variant="body2"
+              sx={{
+                lineHeight: 'normal',
+                fontFamily: 'Poppins',
+                fontWeight: 500,
+                fontSize: '14px',
+                color: 'text.disabled',
+                letterSpacing: '-0.28px',
+              }}
+            >
+              Project Name
+            </Typography>
           </TitleBox>
           <IconsBox theme={theme}>
             <IconButton type="button" onClick={() => handleOpenEditModal()}>
               <Edit>
-                <use href={icon + '#icon-pencil-01'}></use>
+                <use href={icon + `${pencilSvg}`}></use>
               </Edit>
             </IconButton>
 
             <IconLink>
               <Delete>
-                <use href={icon + '#icon-trash'}></use>
+                <use href={icon + `${trashSvg}`}></use>
               </Delete>
             </IconLink>
           </IconsBox>
         </BoardsContainer>
 
         <SectionLight>
-          <IconPuzzle>
-            <use href={icon + '#icon-puzzle'}></use>
+          <IconPuzzle theme={theme}>
+            <use href={icon + `${puzzleSvg}`}></use>
           </IconPuzzle>
-          <p>Neon Light Project</p>
+          <Typography
+            variant="body2"
+            sx={{
+              lineHeight: 'normal',
+              fontFamily: 'Poppins',
+              fontWeight: 500,
+              fontSize: '14px',
+              color: 'text.disabled',
+              letterSpacing: '-0.28px',
+            }}
+          >
+            Neon Ligth Project
+          </Typography>
         </SectionLight>
       </Thumb>
 
       <Thumb>
-        <Help />
+        <Help
+          sx={{
+            backgroundColor: 'background.default',
+          }}
+        />
         <Box
           sx={{
             marginTop: '24px',
