@@ -37,7 +37,7 @@ import AddCardButton from 'components/AddCardButton/AddCardButton';
 //   },
 // });
 
-function Column({ title, description }) {
+function Column({ title, description, boardId, columnId }) {
   const [openModal, setOpenModal] = useState(false);
 
   const handleAddCard = () => {
@@ -50,28 +50,32 @@ function Column({ title, description }) {
 
   return (
     // <ThemeProvider theme={theme}>
-      <div className={css.columnContainer}>
-        <div className={css.columnHeader}>
-          <span className={css.columnHeaderTitle}>{title}</span>
-          <div className={css.columnHeaderControls}>
-            <button className={css.editBtn}>
-              <svg className={css.editSvg} width={16} height={16}>
-                <use href={`${icons}#icon-pencil`} />
-              </svg>
-            </button>
-            <button className={css.deleteBtn}>
-              <svg className={css.deleteSvg} width={16} height={16}>
-                <use href={`${icons}#icon-trash`} />
-              </svg>
-            </button>
-          </div>
+    <div className={css.columnContainer}>
+      <div className={css.columnHeader}>
+        <span className={css.columnHeaderTitle}>{title}</span>
+        <div className={css.columnHeaderControls}>
+          <button className={css.editBtn}>
+            <svg className={css.editSvg} width={16} height={16}>
+              <use href={`${icons}#icon-pencil`} />
+            </svg>
+          </button>
+          <button className={css.deleteBtn}>
+            <svg className={css.deleteSvg} width={16} height={16}>
+              <use href={`${icons}#icon-trash`} />
+            </svg>
+          </button>
         </div>
-        <div className={css.cardListContainer}>
-        <CardFormColumn />
-        </div>
-        <div className={css.BtnContainer}>
-          <AddCardButton />
-          {/* <Button className={css.addCardBtn} onClick={handleAddCard}>
+      </div>
+      <div className={css.cardListContainer}>
+        <ul className={css.cardList}>
+          <li>
+            <CardFormColumn />
+          </li>
+        </ul>
+      </div>
+      <div className={css.BtnContainer}>
+        <AddCardButton />
+        {/* <Button className={css.addCardBtn} onClick={handleAddCard}>
             <svg className={`${css.iconPlus} ${css.iconPlusBlack}`}>
               <use href={`${icons}#icon-plus-black`} />
             </svg>
@@ -81,16 +85,18 @@ function Column({ title, description }) {
             </svg>
             <p>Add another card</p>
           </Button> */}
-          {openModal && (
-            <div className="modalOverlay">
-              <CardFormAdd
-                onSubmit={handleAddCard}
-                onClose={handleCloseModal}
-              />
-            </div>
-          )}
-        </div>
+        {openModal && (
+          <div className="modalOverlay">
+            <CardFormAdd
+              onSubmit={handleAddCard}
+              onClose={handleCloseModal}
+              boardId={boardId}
+              columnId={columnId}
+            />
+          </div>
+        )}
       </div>
+    </div>
     // </ThemeProvider>
   );
 }

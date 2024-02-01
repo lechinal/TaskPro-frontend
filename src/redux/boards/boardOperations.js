@@ -98,6 +98,11 @@ export const addColumn = createAsyncThunk(
   async ({ boardId, data }, thunkAPI) => {
     try {
       const res = await axios.post(`/column/${boardId}`, data);
+      console.log('Add Column Response:', res);
+
+      const columnId = res.data.columnId;
+
+      console.log('ColumnId:', columnId);
       thunkAPI.dispatch(getBoardById(res.data.board));
       return;
     } catch (error) {
@@ -113,6 +118,17 @@ export const updateColumn = createAsyncThunk(
       const res = await axios.put(`/column/${boardId}`, data);
       thunkAPI.dispatch(getBoardById(res.data.board));
       return;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export const getColumnsByBoardId = createAsyncThunk(
+  'columns/getColumnsByBoardId',
+  async (boardId, thunkAPI) => {
+    try {
+      const response = await axios.get(`/columns?boardId=${boardId}`);
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -136,24 +152,6 @@ export const deleteColumn = createAsyncThunk(
 
 // -----  -----  Cards -----  -----  //
 
-  // PATCH @ /tasks/:id
-  // headers: Authorization: Bearer token
- 
-// export const updateTaskPlace = createAsyncThunk(
-//  'cards/updateCardPlace',
-//  async ({ card, oldColumn }, thunkAPI) => {
-//    const { _id, column} = card;
-//    try {
-//      axios.patch(`/cards/${_id}`, {
-//        column,
-//      });
-//      return { card, oldColumn };
-//    } catch (error) {
-//      return thunkAPI.rejectWithValue(error.message);
-//    }
-//  }
-// );
-
 // export const addCard = createAsyncThunk(
 //   'cards/addCard',
 //   async ({ boardId, columnId, data }, thunkAPI) => {
@@ -169,12 +167,18 @@ export const deleteColumn = createAsyncThunk(
 
 export const addCard = createAsyncThunk(
   'cards/addCard',
-  async ({ data }, thunkAPI) => {
+  async ({ boardId, owner, ...cardData }, thunkAPI) => {
     try {
-      const { _id: boardId } = data;
-      const res = await axios.post(`/card/${boardId}`, data);
-      thunkAPI.dispatch(getBoardById(res.data.board));
-      return;
+      const response = await axios.post(`/card/${boardId}`, {
+        owner,
+        ...cardData,
+      });
+
+      // Dispatch the action to get the updated board after adding the card
+      thunkAPI.dispatch(getBoardById(boardId));
+
+      // You can return any relevant data if needed
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
