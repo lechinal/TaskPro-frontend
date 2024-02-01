@@ -56,7 +56,12 @@ function MainDashboard() {
         {boards.length > 0 ? (
           <>
             {columns.map((column, index) => (
-              <Column key={index} title={column.title} />
+              <Column
+                key={index}
+                title={column.title}
+                boardId={boards[0]._id}
+                columnId={column._id}
+              />
             ))}
             <Button
               className={css.mainDashboardButton}

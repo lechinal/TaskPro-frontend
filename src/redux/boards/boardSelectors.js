@@ -19,3 +19,6 @@ export const selectActiveColumn = state => state.columns.activeColumn;
 export const selectColumnsError = state => state.columns.error;
 
 export const selectIsColumnsLoading = state => state.columns.isLoading;
+
+export const selectBoardId = state => state.board.boardId;
+export const selectColumns = state => state.board.columns;

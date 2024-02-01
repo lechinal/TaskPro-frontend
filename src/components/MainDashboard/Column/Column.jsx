@@ -36,7 +36,7 @@ const theme = createTheme({
   },
 });
 
-function Column({ title, description }) {
+function Column({ title, description, boardId, columnId }) {
   const [openModal, setOpenModal] = useState(false);
 
   const handleAddCard = () => {
@@ -88,6 +88,8 @@ function Column({ title, description }) {
               <CardFormAdd
                 onSubmit={handleAddCard}
                 onClose={handleCloseModal}
+                boardId={boardId}
+                columnId={columnId}
               />
             </div>
           )}

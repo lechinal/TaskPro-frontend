@@ -13,12 +13,10 @@ import React, { useState } from 'react';
 import RadioLabel from './RadioLabel';
 import { addCard } from '../../redux/boards/boardOperations';
 import { useDispatch } from 'react-redux';
-export const CardFormAdd = ({ onClose, boardId }) => {
-  // const handleAddCard = () => {
-  //   const newCard = { title, description };
-  //   dispatch(addCard(newCard));
-  //   setTitle('');
-  //   setDescription('');
+
+export const CardFormAdd = ({ onClose, boardId, columnId }) => {
+  console.log('Props:', { onClose, boardId, columnId });
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const dispatch = useDispatch();
@@ -31,6 +29,7 @@ export const CardFormAdd = ({ onClose, boardId }) => {
     setDescription(event.target.value);
   };
   const handleAddCard = () => {
+    console.log('boardId:', boardId);
     if (title.trim() === '' || description.trim() === '') {
       return;
     }
@@ -38,6 +37,7 @@ export const CardFormAdd = ({ onClose, boardId }) => {
     const cardData = {
       title,
       description,
+      owner: columnId,
     };
 
     dispatch(addCard({ boardId, data: cardData }));
