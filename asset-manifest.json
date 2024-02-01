@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/TaskPro-frontend/static/css/main.5ca582fe.css",
-    "main.js": "/TaskPro-frontend/static/js/main.5c6969ec.js",
+    "main.js": "/TaskPro-frontend/static/js/main.551aa5f9.js",
     "static/css/735.db9fc5b3.chunk.css": "/TaskPro-frontend/static/css/735.db9fc5b3.chunk.css",
     "static/js/735.94d60762.chunk.js": "/TaskPro-frontend/static/js/735.94d60762.chunk.js",
     "static/css/786.a1862363.chunk.css": "/TaskPro-frontend/static/css/786.a1862363.chunk.css",
@@ -11,8 +11,7 @@
     "static/css/752.79c5564f.chunk.css": "/TaskPro-frontend/static/css/752.79c5564f.chunk.css",
     "static/js/752.ebd070c5.chunk.js": "/TaskPro-frontend/static/js/752.ebd070c5.chunk.js",
     "static/css/7.081b7f2b.chunk.css": "/TaskPro-frontend/static/css/7.081b7f2b.chunk.css",
-    "static/js/7.64f483a8.chunk.js": "/TaskPro-frontend/static/js/7.64f483a8.chunk.js",
-    "static/js/384.a2fa131f.chunk.js": "/TaskPro-frontend/static/js/384.a2fa131f.chunk.js",
+    "static/js/7.18043749.chunk.js": "/TaskPro-frontend/static/js/7.18043749.chunk.js",
     "static/js/698.e8dce438.chunk.js": "/TaskPro-frontend/static/js/698.e8dce438.chunk.js",
     "static/js/297.b10fca07.chunk.js": "/TaskPro-frontend/static/js/297.b10fca07.chunk.js",
     "static/js/609.5204f8ca.chunk.js": "/TaskPro-frontend/static/js/609.5204f8ca.chunk.js",
@@ -28,7 +27,7 @@
     "static/media/sprite.svg": "/TaskPro-frontend/static/media/sprite.d239a0f6a7a967982c9e68b7bd877245.svg",
     "index.html": "/TaskPro-frontend/index.html",
     "main.5ca582fe.css.map": "/TaskPro-frontend/static/css/main.5ca582fe.css.map",
-    "main.5c6969ec.js.map": "/TaskPro-frontend/static/js/main.5c6969ec.js.map",
+    "main.551aa5f9.js.map": "/TaskPro-frontend/static/js/main.551aa5f9.js.map",
     "735.db9fc5b3.chunk.css.map": "/TaskPro-frontend/static/css/735.db9fc5b3.chunk.css.map",
     "735.94d60762.chunk.js.map": "/TaskPro-frontend/static/js/735.94d60762.chunk.js.map",
     "786.a1862363.chunk.css.map": "/TaskPro-frontend/static/css/786.a1862363.chunk.css.map",
@@ -38,14 +37,13 @@
     "752.79c5564f.chunk.css.map": "/TaskPro-frontend/static/css/752.79c5564f.chunk.css.map",
     "752.ebd070c5.chunk.js.map": "/TaskPro-frontend/static/js/752.ebd070c5.chunk.js.map",
     "7.081b7f2b.chunk.css.map": "/TaskPro-frontend/static/css/7.081b7f2b.chunk.css.map",
-    "7.64f483a8.chunk.js.map": "/TaskPro-frontend/static/js/7.64f483a8.chunk.js.map",
-    "384.a2fa131f.chunk.js.map": "/TaskPro-frontend/static/js/384.a2fa131f.chunk.js.map",
+    "7.18043749.chunk.js.map": "/TaskPro-frontend/static/js/7.18043749.chunk.js.map",
     "698.e8dce438.chunk.js.map": "/TaskPro-frontend/static/js/698.e8dce438.chunk.js.map",
     "297.b10fca07.chunk.js.map": "/TaskPro-frontend/static/js/297.b10fca07.chunk.js.map",
     "609.5204f8ca.chunk.js.map": "/TaskPro-frontend/static/js/609.5204f8ca.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5ca582fe.css",
-    "static/js/main.5c6969ec.js"
+    "static/js/main.551aa5f9.js"
   ]
 }
