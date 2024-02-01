@@ -54,8 +54,7 @@ export const BoardsContainer = styled.div`
   height: 61px;
   width: 225px;
   display: flex;
-  align-items: flex-start;
-
+  align-items: stretch;
   flex-direction: column;
   gap: 10px;
   border-radius: 4px;
@@ -82,6 +81,8 @@ export const Title = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  display: flex;
+  flex-direction: row;
 `;
 
 export const Edit = styled.svg`
@@ -109,20 +110,18 @@ export const BoardLink = styled.link`
 export const IconsBox = styled.div`
   right: 24px;
   gap: 5px;
-  // margin-left: 30px;
+  margin-right: 5px;
   display: flex;
   align-items: center;
-
-  justify-content: center;
+  justify-content: flex-end;
   @media screen and (min-width: 1280px) {
-    margin-left: 40px;
+    margin-right: 10px;
   }
 `;
 export const TitleBox = styled.div`
   display: flex;
 
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 `;
 
 export const IconButton = styled.button`

@@ -193,11 +193,12 @@ const SideBar = ({ active, onClick }) => {
         <BoardsContainer theme={theme}>
           {boards.map(board => (
             <TitleBox key={board.title}>
-              <IconTitle>
-                <use href={icon + '#icon-project'}></use>
-              </IconTitle>
-
-              <Title theme={theme}>{board.title}</Title>
+              <Title theme={theme}>
+                <IconTitle>
+                  <use href={icon + '#icon-project'}></use>
+                </IconTitle>
+                {board.title}
+              </Title>
 
               <IconsBox theme={theme}>
                 <IconButton type="button" onClick={() => handleOpenEditModal()}>
