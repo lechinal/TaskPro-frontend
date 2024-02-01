@@ -78,25 +78,25 @@
 } */
 
 /* afisare iconPlusBlack la hover  */
-
+/* 
 .iconPlusWhite {
   display: none;
-}
+} */
 
-.BtnContainer:hover .iconPlusWhite {
+/* .BtnContainer:hover .iconPlusWhite {
   display: inline-block;
 }
 
 .BtnContainer:hover .iconPlusBlack {
   display: none;
-}
+} */
 
-.iconPlus {
+/* .iconPlus {
   stroke: #000;
   fill: #fff;
   width: 28px;
   height: 28px;
-}
+} */
 .modalOverlay {
   position: fixed;
   top: 0;

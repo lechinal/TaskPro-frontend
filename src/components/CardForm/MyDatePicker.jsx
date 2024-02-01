@@ -1,221 +1,32 @@
-import { Box, Typography, Button, IconButton } from '@mui/material';
-import React, { useState } from 'react';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
-import CreateTwoToneIcon from '@mui/icons-material/CreateTwoTone';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import Modal from '@mui/material/Modal';
-import CloseIcon from '@mui/icons-material/Close';
-import { CardFormEdit } from './CardFormEdit';
-import { useDispatch } from 'react-redux';
-import { deleteCard } from '../../redux/boards/boardOperations';
+import {forwardRef} from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'rgba(21, 21, 21, 1)',
-  border: '1px solid #000',
-  borderRadius: '8px',
-  boxShadow: '0px 4px 16px 0px rgba(190, 219, 176, 0.5)',
-  p: 4,
-};
+import css from "./MyDatePicker.module.css";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-export default function MyDatePicker({ boardId, columnId, cardId }) {
-  const text =
-    'Create a visually stunning and eye-catching watch dial design that embodies our brands essence of sleek aesthetics and modern elegance. Your design should be unique, innovative, and reflective of the latest trends in watch design.';
-  const dispatch = useDispatch();
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const [showMore, setShowMore] = useState(false);
-  const maxCharsToShow = 50;
-  const fixedHeight = 154;
+// const newDate = new Date();
+ 
+export const MyDatePicker = () => {
 
-  const handleToggleShowMore = () => {
-    setShowMore(!showMore);
-  };
+    
+  const CustomInput = forwardRef(({ value, onClick }, ref) => (
+    <div className={css.exampleCustomInput} onClick={onClick} ref={ref}>
+      <p>{value}</p>
+     < KeyboardArrowDownIcon sx={{width:"20px", height:"20px", color:"rgba(190, 219, 176, 1)"}} />      
+    </div>
+  ));
 
-  async function handleDelete() {
-    try {
-      await dispatch(deleteCard({ _id: boardId })).unwrap();
-      Notify.success(`Deleted from column`);
-    } catch (error) {
-      console.log(error);
-    }
-  }
   return (
-    <Box
-      sx={{
-        height: showMore ? 'auto' : `${fixedHeight}px`,
-        overflow: 'hidden',
-        maxHeight: showMore ? '1000px' : `${fixedHeight}px`,
-        overflowY: 'hidden',
-        transition: 'max-height 0.3s ease',
-        padding: '14px 20px 14px 24px',
-        borderRadius: '4px',
-        borderLeft: '4px solid rgba(190, 219, 176, 1)',
-        width: '334px',
-        background: 'rgba(18, 18, 18, 1)',
-      }}
-    >
-      <Box>
-        <Box>
-          <Typography
-            variant="h2"
-            sx={{
-              marginBottom: '8px',
-              fontFamily: 'Poppins',
-              fontWeight: '600',
-              fontSize: '14px',
-              color: 'rgba(255, 255, 255, 1)',
-            }}
-          >
-            Title
-          </Typography>
-        </Box>
-        <Box sx={{ display: 'flex', marginBottom: "5px", borderBottom: "1px solid rgba(255, 255, 255, 0.1)",}}>
-          <Typography
-            variant="body1"
-            gutterBottom
-            sx={{
-              marginBottom: '14px',
-              fontFamily: 'Poppins',
-              fontWeight: '400',
-              fontSize: '12px',
-              color: 'rgba(255, 255, 255, 0.5)',
-            }}
-          >
-            {showMore ? text : `${text.slice(0, maxCharsToShow)}...`}
-          </Typography>
-          {text.length > maxCharsToShow && (
-            <Button
-              onClick={handleToggleShowMore}
-              sx={{
-                color: 'rgba(255, 255, 255, 0.7)',
-                fontSize: '12px',
-                textTransform: 'none',
-                marginTop: 'auto',  
-                alignSelf: 'flex-end',  
-                '&:hover': {
-                  backgroundColor: 'transparent',
-                },
-              }}
-            >
-              {showMore ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-            </Button>
-          )}
-        </Box>
-      </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Box sx={{ display: 'flex', gap: '10px', alignItems: 'end' }}>
-          <Box>
-            <Typography
-              sx={{
-                color: 'rgba(255, 255, 255, 0.5)',
-                fontFamily: 'Poppins',
-                fontWeight: '400',
-                fontSize: '8px',
-              }}
-            >
-              Priority
-            </Typography>
-            <Typography
-              sx={{
-                color: 'rgba(255, 255, 255, 1)',
-                fontFamily: 'Poppins',
-                fontWeight: '400',
-                fontSize: '10px',
-              }}
-            >
-              Culoare x{' '}
-            </Typography>
-          </Box>
-          <Box>
-            <Typography
-              sx={{
-                color: 'rgba(255, 255, 255, 0.5)',
-                fontFamily: 'Poppins',
-                fontWeight: '400',
-                fontSize: '8px',
-              }}
-            >
-              Deadline
-            </Typography>
-            <Typography
-              sx={{
-                color: 'rgba(255, 255, 255, 1)',
-                fontFamily: 'Poppins',
-                fontWeight: '400',
-                fontSize: '10px',
-              }}
-            >
-              Data Deadline
-            </Typography>
-          </Box>
-        </Box>
-        <Box sx={{ display: 'flex', alignItems: 'end' }}>
-          <IconButton
-            sx={{
-              '&:hover': {
-                backgroundColor: 'rgba(18, 18, 18, 1)',
-              },
-            }}
-            onClick={handleDelete}
-          >
-            <DeleteOutlineRoundedIcon
-              fontSize="large"
-              sx={{
-                backgroundColor: 'rgba(18, 18, 18, 1)',
-                fontSize: 20,
-                color: 'rgba(255, 255, 255, 0.5)',
-              }}
-            />
-          </IconButton>
-          <IconButton
-            sx={{
-              '&:hover': {
-                backgroundColor: 'rgba(18, 18, 18, 1)',
-              },
-            }}
-            onClick={handleOpen}
-          >
-            <CreateTwoToneIcon
-              fontSize="large"
-              sx={{
-                backgroundColor: 'rgba(18, 18, 18, 1)',
-                fontSize: 20,
-                color: 'rgba(255, 255, 255, 0.5)',
-              }}
-            />
-          </IconButton>
-        </Box>
-      </Box>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <IconButton
-            aria-label="close"
-            onClick={handleClose}
-            sx={{
-              position: 'absolute',
-              right: 8,
-              top: 8,
-              color: 'rgba(255, 255, 255, 1)',
-            }}
-          >
-            <CloseIcon />
-          </IconButton>
-          <CardFormEdit />
-        </Box>
-      </Modal>
-    </Box>
-  );
+        <div>
+             
+                <span className={css.deadline}>Today, </span>
+            <DatePicker 
+                minDate={new Date()}
+                dateFormat='MMMM d'
+                className={css}
+                customInput={<CustomInput />}
+            />          
+        </div>
+    )
 }
