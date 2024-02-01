@@ -73,12 +73,12 @@ const SideBar = ({ active, onClick }) => {
       ? '#icon-plus-2'
       : '#icon-plus3';
 
-  const puzzleSvg =
-    user.theme === 'light' && user.theme !== 'violet'
-      ? '#icon-puzzle'
-      : user.theme === 'dark'
-      ? '#icon-puzzle-piece-02'
-      : '#icon-puzzle-piece-02';
+  //const puzzleSvg =
+  // user.theme === 'light' && user.theme !== 'violet'
+  //  ? '#icon-puzzle'
+  //   : user.theme === 'dark'
+  //  ? '#icon-puzzle-piece-02'
+  //  : '#icon-puzzle-piece-02';
 
   const pencilSvg =
     user.theme === 'light' && user.theme !== 'violet'
@@ -94,12 +94,12 @@ const SideBar = ({ active, onClick }) => {
       ? '#icon-trash2'
       : '#icon-trash2';
 
-  const projectSvg =
-    user.theme === 'light' && user.theme !== 'violet'
-      ? '#icon-Project'
-      : user.theme === 'dark'
-      ? '#icon-Project-2'
-      : '#icon-Project-2';
+  // const projectSvg =
+  // user.theme === 'light' && user.theme !== 'violet'
+  //    ? '#icon-Project'
+  //    : user.theme === 'dark'
+  //    ? '#icon-Project-2'
+  //    : '#icon-Project-2';
 
   const drawerContent = (
     <SideBarStyled
@@ -193,11 +193,12 @@ const SideBar = ({ active, onClick }) => {
         <BoardsContainer theme={theme}>
           {boards.map(board => (
             <TitleBox key={board.title}>
-              <IconTitle>
-                <use href={icon + '#icon-project'}></use>
-              </IconTitle>
-
-              <Title theme={theme}>{board.title}</Title>
+              <Title theme={theme}>
+                <IconTitle>
+                  <use href={icon + '#icon-project'}></use>
+                </IconTitle>
+                {board.title}
+              </Title>
 
               <IconsBox theme={theme}>
                 <IconButton type="button" onClick={() => handleOpenEditModal()}>
