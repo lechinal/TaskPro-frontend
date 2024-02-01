@@ -28,8 +28,6 @@ import {
   IconLink,
   Title,
   IconButton,
-  // IconPuzzle,
-  // SectionLight,
   PlusButton,
 } from './SideBar.Styled';
 import Help from 'components/Help/Help';
@@ -73,13 +71,6 @@ const SideBar = ({ active, onClick }) => {
       ? '#icon-plus-2'
       : '#icon-plus3';
 
-  //const puzzleSvg =
-  // user.theme === 'light' && user.theme !== 'violet'
-  //  ? '#icon-puzzle'
-  //   : user.theme === 'dark'
-  //  ? '#icon-puzzle-piece-02'
-  //  : '#icon-puzzle-piece-02';
-
   const pencilSvg =
     user.theme === 'light' && user.theme !== 'violet'
       ? '#icon-pencil'
@@ -94,19 +85,12 @@ const SideBar = ({ active, onClick }) => {
       ? '#icon-trash2'
       : '#icon-trash2';
 
-  // const projectSvg =
-  // user.theme === 'light' && user.theme !== 'violet'
-  //    ? '#icon-Project'
-  //    : user.theme === 'dark'
-  //    ? '#icon-Project-2'
-  //    : '#icon-Project-2';
-
   const logoutSvg =
-    user.theme === 'violet' && user.theme !== 'dark'
-      ? '#icon-logout'
-      : user.theme === 'light'
+    user.theme === 'light' && user.theme !== 'dark'
       ? '#icon-logout1'
-      : '#icon-logout1';
+      : user.theme === 'violet'
+      ? '#icon-logout1'
+      : '#icon-logout';
 
   const drawerContent = (
     <SideBarStyled
@@ -187,8 +171,16 @@ const SideBar = ({ active, onClick }) => {
           >
             Create a new board
           </Typography>
-          <PlusButton onClick={handleOpenModal}>
-            <PlusIcon theme={theme}>
+          <PlusButton
+            sx={{
+              marginTop: '-2px',
+              marginRight: '6px',
+              width: '16px',
+              backgroundColor: theme.palette.background.error,
+            }}
+            onClick={handleOpenModal}
+          >
+            <PlusIcon>
               <use href={icon + `${plusSvg}`}></use>
             </PlusIcon>
           </PlusButton>
@@ -222,61 +214,8 @@ const SideBar = ({ active, onClick }) => {
               </IconsBox>
             </TitleBox>
           ))}
-
-          {/* <TitleBox theme={theme}>
-            <IconTitle theme={theme}>
-              <use href={icon + `${projectSvg}`}></use>
-            </IconTitle>
-            <Typography
-              variant="body2"
-              sx={{
-                lineHeight: 'normal',
-                fontFamily: 'Poppins',
-                fontWeight: 500,
-                fontSize: '14px',
-                color: 'primary.info',
-                letterSpacing: '-0.28px',
-              }}
-            >
-              Project Name
-            </Typography>
-          </TitleBox>
-
-          <IconsBox theme={theme}>
-            <IconButton type="button" onClick={() => handleOpenEditModal()}>
-              <Edit>
-                <use href={icon + `${pencilSvg}`}></use>
-              </Edit>
-            </IconButton>
-
-            <IconLink>
-              <Delete>
-                <use href={icon + `${trashSvg}`}></use>
-              </Delete>
-            </IconLink>
-          </IconsBox> */}
         </BoardsContainer>
-
-        {/* <SectionLight>
-          <IconPuzzle theme={theme}>
-            <use href={icon + `${puzzleSvg}`}></use>
-          </IconPuzzle>
-          <Typography
-            variant="body2"
-            sx={{
-              lineHeight: 'normal',
-              fontFamily: 'Poppins',
-              fontWeight: 500,
-              fontSize: '14px',
-              color: 'text.disabled',
-              letterSpacing: '-0.28px',
-            }}
-          >
-            Neon Ligth Project
-          </Typography>
-        </SectionLight> */}
       </Thumb>
-
       <Thumb>
         <Help
           sx={{
