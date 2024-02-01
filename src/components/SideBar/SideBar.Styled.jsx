@@ -58,7 +58,7 @@ export const BoardsContainer = styled.div`
   flex-direction: row;
   border-radius: 4px;
   margin-left: -14px;
-  border-right: 4px solid /* rgba(190, 219, 176, 1) */;
+  border-right: 4px solid;
   padding-left: 20px;
   @media screen and (min-width: 1280px) {
     width: 260px;
