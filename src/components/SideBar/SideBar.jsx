@@ -285,7 +285,7 @@ const SideBar = ({ active, onClick }) => {
           {drawerContent}
         </Drawer>
       </Box>
-      {openEditModal && <EditBoardActive setOpenModal={setOpenEditModal} />} />}
+      {openEditModal && <EditBoardActive setOpenModal={setOpenEditModal} />}
     </>
   );
 };
