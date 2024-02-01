@@ -54,8 +54,10 @@ export const BoardsContainer = styled.div`
   height: 61px;
   width: 225px;
   display: flex;
-  align-items: center;
-  flex-direction: row;
+  align-items: flex-start;
+
+  flex-direction: column;
+  gap: 10px;
   border-radius: 4px;
   margin-left: -14px;
   border-right: 4px solid;
@@ -107,9 +109,10 @@ export const BoardLink = styled.link`
 export const IconsBox = styled.div`
   right: 24px;
   gap: 5px;
-  margin-left: 30px;
+  // margin-left: 30px;
   display: flex;
   align-items: center;
+
   justify-content: center;
   @media screen and (min-width: 1280px) {
     margin-left: 40px;
@@ -117,6 +120,7 @@ export const IconsBox = styled.div`
 `;
 export const TitleBox = styled.div`
   display: flex;
+
   align-items: center;
   justify-content: center;
 `;

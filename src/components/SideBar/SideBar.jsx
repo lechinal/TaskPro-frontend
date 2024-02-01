@@ -28,8 +28,8 @@ import {
   IconLink,
   Title,
   IconButton,
-  IconPuzzle,
-  SectionLight,
+  // IconPuzzle,
+  // SectionLight,
   PlusButton,
 } from './SideBar.Styled';
 import Help from 'components/Help/Help';
@@ -196,11 +196,26 @@ const SideBar = ({ active, onClick }) => {
               <IconTitle>
                 <use href={icon + '#icon-project'}></use>
               </IconTitle>
+
               <Title theme={theme}>{board.title}</Title>
+
+              <IconsBox theme={theme}>
+                <IconButton type="button" onClick={() => handleOpenEditModal()}>
+                  <Edit>
+                    <use href={icon + `${pencilSvg}`}></use>
+                  </Edit>
+                </IconButton>
+
+                <IconLink>
+                  <Delete>
+                    <use href={icon + `${trashSvg}`}></use>
+                  </Delete>
+                </IconLink>
+              </IconsBox>
             </TitleBox>
           ))}
 
-          <TitleBox theme={theme}>
+          {/* <TitleBox theme={theme}>
             <IconTitle theme={theme}>
               <use href={icon + `${projectSvg}`}></use>
             </IconTitle>
@@ -218,6 +233,7 @@ const SideBar = ({ active, onClick }) => {
               Project Name
             </Typography>
           </TitleBox>
+
           <IconsBox theme={theme}>
             <IconButton type="button" onClick={() => handleOpenEditModal()}>
               <Edit>
@@ -230,10 +246,10 @@ const SideBar = ({ active, onClick }) => {
                 <use href={icon + `${trashSvg}`}></use>
               </Delete>
             </IconLink>
-          </IconsBox>
+          </IconsBox> */}
         </BoardsContainer>
 
-        <SectionLight>
+        {/* <SectionLight>
           <IconPuzzle theme={theme}>
             <use href={icon + `${puzzleSvg}`}></use>
           </IconPuzzle>
@@ -250,7 +266,7 @@ const SideBar = ({ active, onClick }) => {
           >
             Neon Ligth Project
           </Typography>
-        </SectionLight>
+        </SectionLight> */}
       </Thumb>
 
       <Thumb>
