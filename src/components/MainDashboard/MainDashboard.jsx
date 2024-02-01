@@ -37,7 +37,9 @@ function MainDashboard() {
               gap: '8px',
               textTransform: 'none',
               borderRadius: '8px',
-              '&:hover': { backgroundColor: '#bedbb0', color: '#000' },
+              color: '#fff',
+              backgroundColor: '#121212',
+              '&:hover': { backgroundColor: '#bedbb0', color: '#121212' },
             }}
             theme={theme}
             className={css.mainDashboardButton}
