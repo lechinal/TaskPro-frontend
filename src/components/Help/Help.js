@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { Box, Typography, Link } from '@mui/material';
 import help from '../../images/help.png';
 import ModalHelp from 'components/ModalHelp/ModalHelp';
 
@@ -19,11 +19,42 @@ export default function Help() {
             width={'54px'}
             src={help}
           ></img>
-          <p className=" text-white text-xs font-normal  w-min-[168px] h-min-[80px] sm:w-min-[172px] sm:h-min-[102px]  mb-[19px]">
-            If you need help with{' '}
-            <span className="text-[#BEDBB0]">TaskPro,</span> check out our
-            support resources or reach out to our customer support team.
-          </p>
+          <Box
+            sx={{
+              marginBottom: '18px',
+            }}
+          >
+            <Typography
+              variant="body2"
+              sx={{
+                fontFamily: 'Poppins',
+                fontWeight: 400,
+                fontSize: '14px',
+                lineHeight: '1.42',
+                letterSpacing: 0.7,
+                color: 'secondary.dark',
+              }}
+            >
+              If you need help with
+              <Link
+                sx={{
+                  fontFamily: 'Poppins',
+                  fontWeight: 400,
+                  fontSize: '14px',
+                  lineHeight: '1.33',
+                  letterSpacing: 0.7,
+                  color: 'primary.main',
+                  textDecoration: 'none',
+                }}
+                /*  onClick={openModal} */
+              >
+                {' '}
+                TaskPro
+              </Link>
+              , check out our support resources or reach out to our customer
+              support team.
+            </Typography>
+          </Box>
 
           <button
             onClick={() => setVisibleModal(true)}
