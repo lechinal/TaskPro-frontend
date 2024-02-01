@@ -21,10 +21,16 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
+const boardsPersistConfig = {
+  key: 'boards',
+  storage,
+  whitelist: ['activeBoard'],
+};
+
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    boards: boardReducer,
+    boards: persistReducer(boardsPersistConfig, boardReducer),
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

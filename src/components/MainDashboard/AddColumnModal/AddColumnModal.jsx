@@ -67,7 +67,8 @@ const theme = createTheme({
 function AddColumnModal({ closeModal, onAddColumn }) {
   const [columnTitle, setColumnTitle] = useState('');
 
-  const handleAddClick = () => {
+  const handleAddClick = event => {
+    event.preventDefault();
     onAddColumn(columnTitle);
     closeModal(false);
   };
@@ -90,27 +91,28 @@ function AddColumnModal({ closeModal, onAddColumn }) {
               <h5>Add column</h5>
             </div>
 
-            <div className={css.inputBox}>
-              <FormControl variant="outlined">
-                <InputLabel
-                  className={css.input}
-                  sx={{
-                    color: 'rgba(255, 255, 255, 0.3)',
-                  }}
-                  type="text"
-                >
-                  Title
-                </InputLabel>
-                <OutlinedInput
-                  label="Title"
-                  fullWidth
-                  sx={{ width: '287px' }}
-                  value={columnTitle}
-                  onChange={e => setColumnTitle(e.target.value)}
-                />
-              </FormControl>
-            </div>
-
+            <form onSubmit={handleAddClick}>
+              <div className={css.inputBox}>
+                <FormControl variant="outlined">
+                  <InputLabel
+                    className={css.input}
+                    sx={{
+                      color: 'rgba(255, 255, 255, 0.3)',
+                    }}
+                    type="text"
+                  >
+                    Title
+                  </InputLabel>
+                  <OutlinedInput
+                    label="Title"
+                    fullWidth
+                    sx={{ width: '287px' }}
+                    value={columnTitle}
+                    onChange={e => setColumnTitle(e.target.value)}
+                  />
+                </FormControl>
+              </div>
+            </form>
             <div className={css.addBtnBox}>
               <Button className={css.addColumnBtn} onClick={handleAddClick}>
                 <svg className={`${css.iconPlus} ${css.iconPlusBlack}`}>

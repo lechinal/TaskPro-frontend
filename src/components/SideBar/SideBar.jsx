@@ -3,10 +3,12 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { Box, Button, Typography, Drawer } from '@mui/material';
 import { useTheme } from '@mui/material';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import icon from '../../images/sprite.svg';
 
 import NewBoardMainModal from 'components/MainDashboard/MainPlaceholder/NewBoardMainModal/NewBoardMainModal';
 
+import { selectBoardsList } from '../../redux/boards/boardSelectors';
 import { logout } from '../../redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -31,9 +33,14 @@ import {
   PlusButton,
 } from './SideBar.Styled';
 import Help from 'components/Help/Help';
+
 const SideBar = ({ active, onClick }) => {
   const [openModal, setOpenModal] = useState(false);
+
+  const boards = useSelector(selectBoardsList);
+
   const [openEditModal, setOpenEditModal] = useState(false);
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -132,19 +139,25 @@ const SideBar = ({ active, onClick }) => {
           </PlusButton>
         </Box>
         {openModal && (
-          <NewBoardMainModal
-            onClick={() => setOpenModal(false)}
-            active={openModal}
-          />
+          <NewBoardMainModal setOpenModal={setOpenModal} active={openModal} />
         )}
+
         <BoardsContainer>
+          {boards.map(board => (
+            <TitleBox key={board.title}>
+              <IconTitle>
+                <use href={icon + '#icon-project'}></use>
+              </IconTitle>
+              <Title theme={theme}>{board.title}</Title>
+            </TitleBox>
+          ))}
+
           <TitleBox>
             <IconTitle>
               <use href={icon + '#icon-project'}></use>
             </IconTitle>
             <Title theme={theme}>Project Name</Title>
           </TitleBox>
-
           <IconsBox theme={theme}>
             <IconButton type="button" onClick={() => handleOpenEditModal()}>
               <Edit>
@@ -153,7 +166,7 @@ const SideBar = ({ active, onClick }) => {
             </IconButton>
             {openEditModal && (
               <CardFormEdit
-                onClick={() => setOpenEditModal(false)}
+                setOpenModal={setOpenEditModal}
                 active={openEditModal}
               />
             )}
@@ -164,6 +177,7 @@ const SideBar = ({ active, onClick }) => {
             </IconLink>
           </IconsBox>
         </BoardsContainer>
+
         <SectionLight>
           <IconPuzzle>
             <use href={icon + '#icon-puzzle'}></use>

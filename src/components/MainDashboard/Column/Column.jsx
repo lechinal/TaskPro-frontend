@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import css from './Column.module.css';
 import icons from '../../../images/sprite.svg';
 
+import CardFormColumn from '../../CardForm/CardFormColumn';
+import { CardFormAdd } from '../../CardForm/CardFormAdd';
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import CardFormColumn from 'components/CardForm/CardFormColumn';
 
 const theme = createTheme({
   components: {
@@ -34,7 +36,17 @@ const theme = createTheme({
   },
 });
 
-function Column({ title }) {
+function Column({ title, description }) {
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleAddCard = () => {
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <div className={css.columnContainer}>
@@ -54,10 +66,14 @@ function Column({ title }) {
           </div>
         </div>
         <div className={css.cardListContainer}>
-     <CardFormColumn/>
+          <ul className={css.cardList}>
+            <li>
+              <CardFormColumn />
+            </li>
+          </ul>
         </div>
         <div className={css.BtnContainer}>
-          <Button className={css.addCardBtn}>
+          <Button className={css.addCardBtn} onClick={handleAddCard}>
             <svg className={`${css.iconPlus} ${css.iconPlusBlack}`}>
               <use href={`${icons}#icon-plus-black`} />
             </svg>
@@ -67,6 +83,14 @@ function Column({ title }) {
             </svg>
             <p>Add another card</p>
           </Button>
+          {openModal && (
+            <div className="modalOverlay">
+              <CardFormAdd
+                onSubmit={handleAddCard}
+                onClose={handleCloseModal}
+              />
+            </div>
+          )}
         </div>
       </div>
     </ThemeProvider>

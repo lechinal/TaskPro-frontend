@@ -81,6 +81,11 @@ function NewBoardMainModal({ setOpenModal }) {
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
+    if (title.trim() === '') {
+      alert('Title cannot be empty');
+      return;
+    }
+
     dispatch(
       addBoard({
         title,
@@ -97,14 +102,36 @@ function NewBoardMainModal({ setOpenModal }) {
     });
   };
 
-  const handleCreate = async () => {
-    if (title.trim() === '') {
-      alert('Title cannot be empty');
-      return;
-    }
-    dispatch(addBoard(title));
+  const handleCreate = event => {
+    event.preventDefault();
     handleSubmit();
   };
+
+  // const handleSubmit = () => {
+  //   dispatch(
+  //     addBoard({
+  //       title,
+  //       icon,
+  //       background: background || 'default',
+  //     })
+  //   ).then(() => {
+  //     if (!isBoardsLoading) {
+  //       toggleModal();
+  //       setTitle('');
+  //       setIcon('icon-project');
+  //       setBackground('default');
+  //     }
+  //   });
+  // };
+
+  // const handleCreate = async () => {
+  //   if (title.trim() === '') {
+  //     alert('Title cannot be empty');
+  //     return;
+  //   }
+  //   dispatch(addBoard(title));
+  //   handleSubmit();
+  // };
 
   return (
     <ThemeProvider theme={theme}>

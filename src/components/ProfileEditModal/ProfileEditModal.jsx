@@ -15,47 +15,47 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import { TextField } from '@mui/material';
-
+//import { useDispatch } from 'react-redux';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 export default function ProfileEditModal() {
   const userAvatar = useSelector(selectUser);
+  // const fileInputRef = useRef(null);
+  // const dispatch = useDispatch();
+  console.log(userAvatar);
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword(show => !show);
   const handleMouseDownPassword = event => {
     event.preventDefault();
   };
-
+  //const initialValues = {
+  //  avatar: userAvatar.avatar || null,
+  //  lname: userAvatar.name || '',
+  //  email: userAvatar.email || '',
+  // password: '',
+  // };
+  //const handleFileInputChange = () => {
+  //fileInputRef.current.click();
+  // };
   // const handlePasswordChange = newPassword => {};
 
-  // const handleSubmit = async e => {
-  //   e.preventDefault();
+  // const handleSubmit = async values => {
+  //   values.preventDefault();
 
-  //    try {
-  //      const response = await fetch('/api/updateUser', {
-  //       method: 'PUT',
-  //      headers: {
-  //         'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(formData),
-  //   });
-
-  //   if (response.ok) {
-  //     const updatedUserData = await response.json();
-  //    onUpdate(updatedUserData.user);
-  //    setSnackbarMessage('User updated successfully');
-  //     setSnackbarOpen(true);
-  //   } else {
-  //     setSnackbarMessage('Failed to update user');
-  //     setSnackbarOpen(true);
-  //    }
-  //   } catch (error) {
-  //     console.error('Error updating user:', error);
-  //     setSnackbarMessage('Error updating user');
-  //     setSnackbarOpen(true);
-  //   }
+  //  try {
+  //    const newData = {
+  //     name: values.name,
+  //     email: values.email,
+  //     password: values.password,
   //   };
+  //  await dispatch(updateUserProfile(newData)).unwrap();
+
+  //  return 'Saved successfully!!!';
+
+  // } catch (error) {
+  // return "Oops, it's looks like something went wrong... Please, try again!";
+  // }
 
   const theme = createTheme({
     components: {
@@ -108,7 +108,6 @@ export default function ProfileEditModal() {
             mt: 1,
             background: 'rgba(21, 21, 21, 1)',
             borderRadius: '8px',
-            // display: active ? 'block' : 'none',
           }}
         >
           <Box>
@@ -156,6 +155,7 @@ export default function ProfileEditModal() {
             name="name"
             required
             id="name"
+            value={userAvatar.name}
             label="Enter your name"
             variant="outlined"
             autoFocus
@@ -163,6 +163,7 @@ export default function ProfileEditModal() {
           <TextField
             required
             id="email"
+            value={userAvatar.email}
             label="Enter your email"
             name="email"
             variant="outlined"
@@ -190,6 +191,7 @@ export default function ProfileEditModal() {
                   </InputAdornment>
                 }
                 label="Create a password*"
+                value={userAvatar.pasword}
                 required
               />
             </FormControl>

@@ -8,7 +8,7 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import { CardFormEdit } from './CardFormEdit';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 // import { deleteCard } from '../../redux/boards/boardOperations';
 
 const style = {

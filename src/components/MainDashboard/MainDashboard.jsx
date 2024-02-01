@@ -44,12 +44,11 @@ function MainDashboard() {
   const [columns, setColumns] = useState([]);
 
   const boards = useSelector(selectBoardsList);
-  console.log(boards);
 
   const handleAddColumn = columnTitle => {
     setColumns(prevColumns => [...prevColumns, { title: columnTitle }]);
+    setOpenModal(false);
   };
-  console.log('MainDashboard is rendered');
 
   return (
     <ThemeProvider theme={theme}>
@@ -76,7 +75,7 @@ function MainDashboard() {
             </Button>
             {openModal && (
               <AddColumnModal
-                closeModal={setOpenModal}
+                closeModal={() => setOpenModal(false)}
                 onAddColumn={handleAddColumn}
               />
             )}

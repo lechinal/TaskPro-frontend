@@ -1,26 +1,51 @@
 import 'react-datepicker/dist/react-datepicker.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 import { Button } from '@mui/material';
 import { Typography } from '@mui/material';
 import { TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import React from 'react';
-import  MyDatepicker  from './MyDatePicker';
-// import { AddCard } from "../../redux/boards/boardOperations"
-// import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+// import MyDatePicker from './MyDatePicker';
+
 import RadioLabel from './RadioLabel';
-
-export const CardFormAdd = () => {
-
+import { addCard } from '../../redux/boards/boardOperations';
+import { useDispatch } from 'react-redux';
+export const CardFormAdd = ({ onClose, boardId }) => {
   // const handleAddCard = () => {
   //   const newCard = { title, description };
   //   dispatch(addCard(newCard));
   //   setTitle('');
   //   setDescription('');
-  // };
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const dispatch = useDispatch();
 
+  const handleTitleChange = event => {
+    setTitle(event.target.value);
+  };
+
+  const handleDescriptionChange = event => {
+    setDescription(event.target.value);
+  };
+  const handleAddCard = () => {
+    if (title.trim() === '' || description.trim() === '') {
+      return;
+    }
+
+    const cardData = {
+      title,
+      description,
+    };
+
+    dispatch(addCard({ boardId, data: cardData }));
+
+    setTitle('');
+    setDescription('');
+    onClose();
+  };
   const theme = createTheme({
     components: {
       MuiButton: {
@@ -65,27 +90,38 @@ export const CardFormAdd = () => {
     },
   });
 
-
-
   return (
     <ThemeProvider theme={theme}>
-      <div>
+      <div
+        style={{
+          position: 'fixed',
+          zIndex: 1000,
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          background: 'rgba(0, 0, 0, 0.5)',
+        }}
+      >
         <Box
-          sx={{
+          style={{
             mt: 1,
             background: 'rgba(21, 21, 21, 1)',
             borderRadius: '8px',
             paddingLeft: '20px',
             paddingRight: '20px',
-            width: '100%',
+            width: '350px',
             height: '425px',
-            '@media (max-width: 375px)': {
+            '@media (maxWidth: 375px)': {
               padding: '24px 5px',
             },
           }}
         >
           <Typography
-            sx={{
+            style={{
               color: '#fff',
               fontFamily: 'Poppins',
               fontWeight: '500',
@@ -96,23 +132,29 @@ export const CardFormAdd = () => {
           >
             Add card
           </Typography>
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+          <Box
+            style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}
+          >
             <TextField
               id="title"
               label="Title"
               name="title"
               variant="outlined"
+              value={title}
+              onChange={handleTitleChange}
             />
             <TextField
               id="outlined-multiline-static"
               label="Description"
               multiline
               rows={4}
-              defaultValue=""
+              // defaultValue=""
+              value={description}
+              onChange={handleDescriptionChange}
             />
           </Box>
           <Typography
-            sx={{
+            style={{
               color: 'rgba(255, 255, 255, 0.3)',
               fontFamily: 'Poppins',
               fontWeight: '400',
@@ -127,7 +169,7 @@ export const CardFormAdd = () => {
 
           <RadioLabel />
           <Typography
-            sx={{
+            style={{
               color: 'rgba(255, 255, 255, 0.3)',
               fontFamily: 'Poppins',
               fontWeight: '400',
@@ -138,9 +180,11 @@ export const CardFormAdd = () => {
           >
             Deadline
           </Typography>
-          <MyDatepicker />
+          {/* <MyDatePicker /> */}
           <Button
-            sx={{
+            // onClick={onClose}
+            onClick={handleAddCard}
+            style={{
               mb: 1,
               background: 'rgba(190, 219, 176, 1)',
               color: 'rgba(22, 22, 22, 1)',
@@ -157,13 +201,13 @@ export const CardFormAdd = () => {
             }}
           >
             <AddBoxIcon
-              sx={{
+              style={{
                 width: '28px',
                 height: '28px',
               }}
             />
             <Typography
-              sx={{
+              style={{
                 color: 'rgba(22, 22, 22, 1)',
                 fontFamily: 'Poppins',
                 fontWeight: '500',
