@@ -32,7 +32,7 @@ export default function Help() {
                 fontSize: '14px',
                 lineHeight: '1.42',
                 letterSpacing: 0.7,
-                color: 'secondary.dark',
+                color: 'primary.error',
               }}
             >
               If you need help with
@@ -46,7 +46,6 @@ export default function Help() {
                   color: 'primary.main',
                   textDecoration: 'none',
                 }}
-                /*  onClick={openModal} */
               >
                 {' '}
                 TaskPro
