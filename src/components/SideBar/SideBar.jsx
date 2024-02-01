@@ -73,12 +73,12 @@ const SideBar = ({ active, onClick }) => {
       ? '#icon-plus-2'
       : '#icon-plus3';
 
-  const puzzleSvg =
-    user.theme === 'light' && user.theme !== 'violet'
-      ? '#icon-puzzle'
-      : user.theme === 'dark'
-      ? '#icon-puzzle-piece-02'
-      : '#icon-puzzle-piece-02';
+  //const puzzleSvg =
+  // user.theme === 'light' && user.theme !== 'violet'
+  //  ? '#icon-puzzle'
+  //   : user.theme === 'dark'
+  //  ? '#icon-puzzle-piece-02'
+  //  : '#icon-puzzle-piece-02';
 
   const pencilSvg =
     user.theme === 'light' && user.theme !== 'violet'
@@ -94,12 +94,12 @@ const SideBar = ({ active, onClick }) => {
       ? '#icon-trash2'
       : '#icon-trash2';
 
-  const projectSvg =
-    user.theme === 'light' && user.theme !== 'violet'
-      ? '#icon-Project'
-      : user.theme === 'dark'
-      ? '#icon-Project-2'
-      : '#icon-Project-2';
+  // const projectSvg =
+  // user.theme === 'light' && user.theme !== 'violet'
+  //    ? '#icon-Project'
+  //    : user.theme === 'dark'
+  //    ? '#icon-Project-2'
+  //    : '#icon-Project-2';
 
   const drawerContent = (
     <SideBarStyled
