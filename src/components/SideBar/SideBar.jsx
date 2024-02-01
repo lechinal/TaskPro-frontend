@@ -101,6 +101,13 @@ const SideBar = ({ active, onClick }) => {
       ? '#icon-Project-2'
       : '#icon-Project-2';
 
+  const logoutSvg =
+    user.theme === 'violet' && user.theme !== 'dark'
+      ? '#icon-logout'
+      : user.theme === 'light'
+      ? '#icon-logout1'
+      : '#icon-logout1';
+
   const drawerContent = (
     <SideBarStyled
       sx={{
@@ -148,7 +155,7 @@ const SideBar = ({ active, onClick }) => {
             fontSize: '12px',
             letterSpacing: 0.7,
             fontWeight: 400,
-            color: '#FFFFFF',
+            color: 'text.disabled',
             opacity: '50%',
           }}
         >
@@ -175,7 +182,7 @@ const SideBar = ({ active, onClick }) => {
               fontWeight: 500,
               fontSize: '14px',
               letterSpacing: 0.7,
-              color: 'text.disabled',
+              color: 'primary.info',
             }}
           >
             Create a new board
@@ -211,7 +218,7 @@ const SideBar = ({ active, onClick }) => {
                 fontFamily: 'Poppins',
                 fontWeight: 500,
                 fontSize: '14px',
-                color: 'text.disabled',
+                color: 'primary.info',
                 letterSpacing: '-0.28px',
               }}
             >
@@ -285,11 +292,11 @@ const SideBar = ({ active, onClick }) => {
             onClick={handleLogout}
           >
             <LogoutIcon theme={theme}>
-              <use href={icon + '#icon-logout'}></use>
+              <use href={icon + `${logoutSvg}`}></use>
             </LogoutIcon>
             <Typography
               sx={{
-                color: '#FFFFFF',
+                color: 'primary.info',
                 fontFamily: 'Poppins',
                 textTransform: 'none',
                 fontWeight: 500,
