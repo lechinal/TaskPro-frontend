@@ -104,7 +104,7 @@ const SideBar = ({ active, onClick }) => {
   const drawerContent = (
     <SideBarStyled
       sx={{
-        bgcolor: 'background.default',
+        bgcolor: 'background.error',
 
         '&::-webkit-scrollbar': {
           backgroundColor: 'background.warning',

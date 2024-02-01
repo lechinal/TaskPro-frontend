@@ -29,14 +29,16 @@ export default function BasicModal() {
   return (
     <div>
       <Button onClick={handleOpen} sx={{ display: 'flex', gap: '5px' }}>
-        <FilterAltOutlinedIcon sx={{ color: '#fff', fontSize: 'large' }} />
+        <FilterAltOutlinedIcon
+          sx={{ color: 'primary.error', fontSize: 'large' }}
+        />
         <Typography
           sx={{
-            color: '#fff',
             textTransform: 'none',
             fontFamily: 'Poppins',
             fontWeight: '500',
             fontSize: '14px',
+            color: 'primary.error',
           }}
         >
           Filters

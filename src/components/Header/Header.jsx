@@ -15,7 +15,7 @@ import { selectUser } from '../../redux/auth/authSelectors';
 import { useSelector } from 'react-redux';
 import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
-
+import { useTheme } from '@emotion/react';
 
 const style = {
   position: 'absolute',
@@ -30,17 +30,15 @@ const style = {
   p: 4,
 };
 
-
 export const Header = ({ onOpenSidebar, onOpenEdit }) => {
   const [auth] = useState(true);
- 
+  const user = useAuth();
+  const theme = useTheme();
   const userAvatar = useSelector(selectUser);
- 
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
- 
 
   const handleDrawerOpen = () => {
     if (typeof onOpenSidebar === 'function') {
@@ -50,18 +48,23 @@ export const Header = ({ onOpenSidebar, onOpenEdit }) => {
     }
   };
 
-  const { user } = useAuth();
-
   return (
     <Box className={styles.headerContainer}>
-      <AppBar position="static" style={{ background: '#161616' }}>
+      <AppBar
+        sx={{
+          bgcolor: 'background.paper',
+        }}
+        position="static"
+      >
         <Toolbar>
           <IconButton
             size="large"
             edge="start"
-            color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2 }}
+            sx={{
+              mr: 2,
+              color: 'primary.error',
+            }}
             onClick={handleDrawerOpen}
           >
             <MenuIcon />
@@ -69,16 +72,18 @@ export const Header = ({ onOpenSidebar, onOpenEdit }) => {
           <div className={styles.themeHeader}>
             <ThemeComponent />
           </div>
+
           <Typography
-            variant="h6"
+            theme={theme}
+            variant="h1"
             component="div"
             sx={{
               flexGrow: 1,
               textAlign: 'right',
-              color: 'white',
               font: 'Poppins',
               fontSize: '14px',
               fontWeight: '500',
+              color: 'red',
             }}
           >
             {user.name}
@@ -104,7 +109,6 @@ export const Header = ({ onOpenSidebar, onOpenEdit }) => {
             </div>
           )}
         </Toolbar>
-        
       </AppBar>
       <Modal
         open={open}
@@ -125,7 +129,7 @@ export const Header = ({ onOpenSidebar, onOpenEdit }) => {
           >
             <CloseIcon />
           </IconButton>
-          <ProfileEditModal/>
+          <ProfileEditModal />
         </Box>
       </Modal>
     </Box>
