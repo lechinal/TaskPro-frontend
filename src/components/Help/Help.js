@@ -32,7 +32,7 @@ export default function Help() {
                 fontSize: '14px',
                 lineHeight: '1.42',
                 letterSpacing: 0.7,
-                color: 'text.disabled',
+                color: 'primary.info',
               }}
             >
               If you need help with
