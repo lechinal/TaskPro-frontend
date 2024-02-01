@@ -29,9 +29,9 @@ export default function ModalHelp({ visible, onClose }) {
   if (!visible) return null;
 
   return (
-    <div className="   sm:mt-0 fixed inset-0 bg-black bg-opacity-30  flex justify-center items-center">
+    <div className=" sm:mt-0 fixed inset-0 bg-black bg-opacity-30  flex justify-center items-center">
       <div className="relative  ">
-        <div className=" rounded-[8px]  max-w-[335px]   bg-[#151515]   ">
+        <div className=" rounded-[8px]  max-w-[335px] border border-[#BEDBB0]   bg-[#151515]   ">
           <button
             onClick={onClose}
             className="pr-[14px] pt-[14px]  absolute right-0  "
