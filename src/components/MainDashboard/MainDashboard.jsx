@@ -32,6 +32,13 @@ function MainDashboard() {
             <Column key={index} title={column.title} />
           ))}
           <Button
+            sx={{
+              display: 'flex',
+              gap: '8px',
+              textTransform: 'none',
+              borderRadius: '8px',
+              '&:hover': { backgroundColor: '#bedbb0', color: '#000' },
+            }}
             theme={theme}
             className={css.mainDashboardButton}
             onClick={() => {
