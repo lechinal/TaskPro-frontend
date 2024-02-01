@@ -32,7 +32,7 @@ export default function Help() {
                 fontSize: '14px',
                 lineHeight: '1.42',
                 letterSpacing: 0.7,
-                color: 'primary.error',
+                color: 'text.disabled',
               }}
             >
               If you need help with
@@ -43,7 +43,7 @@ export default function Help() {
                   fontSize: '14px',
                   lineHeight: '1.33',
                   letterSpacing: 0.7,
-                  color: 'primary.main',
+                  color: 'secondary.light',
                   textDecoration: 'none',
                 }}
               >

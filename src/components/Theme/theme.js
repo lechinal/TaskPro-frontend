@@ -99,7 +99,7 @@ const violetTheme = {
     },
     secondary: {
       main: 'rgba(22, 22, 22, 0.10)',
-      light: '#ECEDFD',
+      light: '#BEDBB0',
       dark: '#FFF',
       info: '#FFFFFF',
       warning: '#B8BCFD',
