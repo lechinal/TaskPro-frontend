@@ -42,7 +42,6 @@ export const ThemeComponent = () => {
         display: 'flex',
         justifyContent: 'left',
         width: '100px',
-        background: '#161616',
       }}
     >
       <Button
@@ -58,7 +57,7 @@ export const ThemeComponent = () => {
           fontStyle: 'normal',
           textTransform: 'capitalize',
           fontWeight: 500,
-          color: 'white',
+          color: 'text.secondary',
         }}
       >
         Theme
@@ -91,7 +90,7 @@ export const ThemeComponent = () => {
           zIndex: '3000',
           '&& .Mui-selected': {
             backgroundColor: 'transparent',
-            bgcolor: 'background:paper', // check !!!
+            bgcolor: 'background.paper', // check !!!
           },
           '&& li.MuiMenuItem-root': {
             width: '100px',
@@ -100,7 +99,7 @@ export const ThemeComponent = () => {
             paddingTop: '18px',
             paddingBottom: '18px',
             border: '1px solid',
-            borderColor: 'secondary:light',
+            borderColor: 'secondary.light',
             borderRadius: '8px',
           },
           '&& .MuiPopover-paper': {
@@ -115,9 +114,9 @@ export const ThemeComponent = () => {
             minHeight: '21px',
             padding: '2px 44px 2px 18px',
             fontFamily: 'Poppins',
-            color: currentTheme === 'light' ? 'text:hint' : 'text:secondary',
+            color: currentTheme === 'light' ? 'text.hint' : 'text.secondary',
             '&:hover': {
-              backgroundColor: 'primary:light',
+              backgroundColor: 'primary.light',
             },
           }}
         >
@@ -130,9 +129,9 @@ export const ThemeComponent = () => {
             minHeight: '21px',
             padding: '2px 44px 2px 18px',
             fontFamily: 'Poppins',
-            color: currentTheme === 'dark' ? 'text:hint' : 'text:secondary',
+            color: currentTheme === 'dark' ? 'text.hint' : 'text.secondary',
             '&:hover': {
-              backgroundColor: 'primary:light',
+              backgroundColor: 'primary.light',
             },
           }}
         >
@@ -145,9 +144,9 @@ export const ThemeComponent = () => {
             minHeight: '21px',
             padding: '2px 44px 2px 18px',
             fontFamily: 'Poppins',
-            color: currentTheme === 'violet' ? 'text:hint' : 'text:secondary',
+            color: currentTheme === 'violet' ? 'text.hint' : 'text.secondary',
             '&:hover': {
-              backgroundColor: 'primary:light',
+              backgroundColor: 'primary.light',
             },
           }}
         >
