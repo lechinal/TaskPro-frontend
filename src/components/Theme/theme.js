@@ -93,7 +93,7 @@ const violetTheme = {
       dark: '#B8BCFD',
       darker: '#ECEDFD',
       contrastText: 'rgba(255, 255, 255, 0.1)',
-      info: 'rgba(22, 22, 22, 0.5)',
+      info: '#ECEDFD',
       error: '#5255BC',
       hint: '#FFF',
     },
