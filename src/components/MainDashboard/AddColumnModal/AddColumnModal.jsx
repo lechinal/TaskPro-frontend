@@ -64,7 +64,7 @@ const theme = createTheme({
   },
 });
 
-function AddColumnModal({ closeModal, onAddColumn }) {
+function AddColumnModal({ closeModal, onAddColumn, boardId, columnId }) {
   const [columnTitle, setColumnTitle] = useState('');
 
   const handleAddClick = event => {

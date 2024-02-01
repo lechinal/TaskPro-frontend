@@ -19,6 +19,7 @@ function MainDashboard() {
   const boards = useSelector(selectBoardsList);
 
   const handleAddColumn = columnTitle => {
+    console.log(' BoardId:', boards[0]._id);
     setColumns(prevColumns => [...prevColumns, { title: columnTitle }]);
     setOpenModal(false);
   };

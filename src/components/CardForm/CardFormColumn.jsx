@@ -1,6 +1,6 @@
 import { Box, Typography, Button, IconButton } from '@mui/material';
 import React, { useState } from 'react';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
 import CreateTwoToneIcon from '@mui/icons-material/CreateTwoTone';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -8,8 +8,8 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import { CardFormEdit } from './CardFormEdit';
-import { useDispatch } from 'react-redux';
-import { deleteCard } from '../../redux/boards/boardOperations';
+// import { useDispatch } from 'react-redux';
+// import { deleteCard } from '../../redux/boards/boardOperations';
 
 const style = {
   position: 'absolute',
@@ -27,7 +27,7 @@ const style = {
 export default function CardFormColumn({ boardId, columnId, cardId }) {
   const text =
     'Create a visually stunning and eye-catching watch dial design that embodies our brands essence of sleek aesthetics and modern elegance. Your design should be unique, innovative, and reflective of the latest trends in watch design.';
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -39,14 +39,14 @@ export default function CardFormColumn({ boardId, columnId, cardId }) {
     setShowMore(!showMore);
   };
 
-  async function handleDelete() {
-    try {
-      await dispatch(deleteCard({ _id: boardId })).unwrap();
-      Notify.success(`Deleted from column`);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // async function handleDelete() {
+  //   try {
+  //     await dispatch(deleteCard({ _id: boardId })).unwrap();
+  //     Notify.success(`Deleted from column`);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
   return (
     <Box
       sx={{
@@ -77,13 +77,7 @@ export default function CardFormColumn({ boardId, columnId, cardId }) {
             Title
           </Typography>
         </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            marginBottom: '5px',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-          }}
-        >
+        <Box sx={{ display: 'flex', marginBottom: "5px", borderBottom: "1px solid rgba(255, 255, 255, 0.1)",}}>
           <Typography
             variant="body1"
             gutterBottom
@@ -101,17 +95,31 @@ export default function CardFormColumn({ boardId, columnId, cardId }) {
             <Button
               onClick={handleToggleShowMore}
               sx={{
-                color: 'rgba(255, 255, 255, 0.7)',
+                color: 'rgba(18, 18, 18, 1)',
                 fontSize: '12px',
                 textTransform: 'none',
-                marginTop: 'auto', // Push the button to the bottom
-                alignSelf: 'flex-end', // Align the button to the end of the container
+                marginTop: 'auto',  
+                alignSelf: 'flex-end',  
+                padding:"0",
+                minWidth: "0",
                 '&:hover': {
                   backgroundColor: 'transparent',
                 },
               }}
             >
-              {showMore ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+              {showMore ? <ExpandLessIcon  sx={{
+                color: '#fff',
+                '&:hover': {
+                  color: "#fff",
+                  backgroundColor: 'transparent',
+                },
+              }}/> : <ExpandMoreIcon sx={{
+                color: '#fff',
+                '&:hover': {
+                  color: "#fff",
+                  backgroundColor: 'transparent',
+                },
+              }}  />}
             </Button>
           )}
         </Box>
@@ -163,16 +171,18 @@ export default function CardFormColumn({ boardId, columnId, cardId }) {
             </Typography>
           </Box>
         </Box>
-        <Box sx={{ display: 'flex', alignItems: 'end' }}>
+        <Box sx={{ display: 'flex', alignItems: 'end', gap: "3px" }}>
+          
           <IconButton
             sx={{
+              padding: "0",
               '&:hover': {
                 backgroundColor: 'rgba(18, 18, 18, 1)',
               },
             }}
-            onClick={handleDelete}
+            onClick={handleOpen}
           >
-            <DeleteOutlineRoundedIcon
+            <CreateTwoToneIcon
               fontSize="large"
               sx={{
                 backgroundColor: 'rgba(18, 18, 18, 1)',
@@ -183,13 +193,14 @@ export default function CardFormColumn({ boardId, columnId, cardId }) {
           </IconButton>
           <IconButton
             sx={{
+              padding: "0",
               '&:hover': {
                 backgroundColor: 'rgba(18, 18, 18, 1)',
               },
             }}
-            onClick={handleOpen}
+            // onClick={handleDelete}
           >
-            <CreateTwoToneIcon
+            <DeleteOutlineRoundedIcon
               fontSize="large"
               sx={{
                 backgroundColor: 'rgba(18, 18, 18, 1)',

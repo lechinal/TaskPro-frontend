@@ -12,7 +12,7 @@ import { selectBoardsList } from '../../redux/boards/boardSelectors';
 import { logout } from '../../redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { CardFormEdit } from 'components/CardForm/CardFormEdit';
+import EditBoardActive from 'components/MainDashboard/MainPlaceholder/EditBoardActive/EditBoardActive';
 import {
   SideBarStyled,
   LogoIcon,
@@ -224,12 +224,7 @@ const SideBar = ({ active, onClick }) => {
                 <use href={icon + `${pencilSvg}`}></use>
               </Edit>
             </IconButton>
-            {openEditModal && (
-              <CardFormEdit
-                setOpenModal={setOpenEditModal}
-                active={openEditModal}
-              />
-            )}
+
             <IconLink>
               <Delete>
                 <use href={icon + `${trashSvg}`}></use>
@@ -366,6 +361,7 @@ const SideBar = ({ active, onClick }) => {
           {drawerContent}
         </Drawer>
       </Box>
+      {openEditModal && <EditBoardActive setOpenModal={setOpenEditModal} />}
     </>
   );
 };
