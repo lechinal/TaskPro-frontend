@@ -141,7 +141,6 @@ export const IconLink = styled.button`
 export const IconPuzzle = styled.svg`
   width: 18px;
   height: 18px;
-
   margin-right: 8px;
   stroke: #ffffff80;
 `;

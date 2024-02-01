@@ -9,7 +9,7 @@ import { selectUser } from '../../redux/auth/authSelectors';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
-
+import { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -18,44 +18,31 @@ import { TextField } from '@mui/material';
 //import { useDispatch } from 'react-redux';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+//import refresh from 'redux/auth/authOperations';
 
 export default function ProfileEditModal() {
+  //const dispatch = useDispatch();
   const userAvatar = useSelector(selectUser);
-  // const fileInputRef = useRef(null);
-  // const dispatch = useDispatch();
-  console.log(userAvatar);
-  const [showPassword, setShowPassword] = React.useState(false);
+
+  const [showPassword, setShowPassword] = useState(false);
+  //const [newName, setNewName] = useState(userAvatar.name);
+  //const [newEmail, setNewEmail] = useState(userAvatar.email);
+  // const [newPassword, setNewPassword] = useState('');
+
   const handleClickShowPassword = () => setShowPassword(show => !show);
   const handleMouseDownPassword = event => {
     event.preventDefault();
   };
-  //const initialValues = {
-  //  avatar: userAvatar.avatar || null,
-  //  lname: userAvatar.name || '',
-  //  email: userAvatar.email || '',
-  // password: '',
+
+  //const handleSaveChanges = () => {
+  // const updatedData = {
+  //   name: newName,
+  //  email: newEmail,
+  // password: newPassword,
   // };
-  //const handleFileInputChange = () => {
-  //fileInputRef.current.click();
-  // };
-  // const handlePasswordChange = newPassword => {};
 
-  // const handleSubmit = async values => {
-  //   values.preventDefault();
-
-  //  try {
-  //    const newData = {
-  //     name: values.name,
-  //     email: values.email,
-  //     password: values.password,
-  //   };
-  //  await dispatch(updateUserProfile(newData)).unwrap();
-
-  //  return 'Saved successfully!!!';
-
-  // } catch (error) {
-  // return "Oops, it's looks like something went wrong... Please, try again!";
-  // }
+  // dispatch(refresh(updatedData));
+  //};
 
   const theme = createTheme({
     components: {
@@ -139,7 +126,6 @@ export default function ProfileEditModal() {
           </button>
         </Box>
         <Box
-          // onSubmit={handleSubmit}
           component="form"
           noValidate
           autoComplete="off"
@@ -158,6 +144,7 @@ export default function ProfileEditModal() {
             value={userAvatar.name}
             label="Enter your name"
             variant="outlined"
+            // onChange={e => setNewName(e.target.value)}
             autoFocus
           />
           <TextField
@@ -167,6 +154,7 @@ export default function ProfileEditModal() {
             label="Enter your email"
             name="email"
             variant="outlined"
+            // onChange={e => setNewEmail(e.target.value)}
           />
           <Box>
             <FormControl sx={{ width: '100%' }} variant="outlined">
@@ -209,6 +197,7 @@ export default function ProfileEditModal() {
               height: '49px',
               marginTop: '20px',
             }}
+            //onClick={handleSaveChanges}
           >
             Send
           </Button>

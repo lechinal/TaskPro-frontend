@@ -8,7 +8,7 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import { CardFormEdit } from './CardFormEdit';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 // import { deleteCard } from '../../redux/boards/boardOperations';
 
 const style = {
@@ -95,17 +95,31 @@ export default function CardFormColumn({ boardId, columnId, cardId }) {
             <Button
               onClick={handleToggleShowMore}
               sx={{
-                color: 'rgba(255, 255, 255, 0.7)',
+                color: 'rgba(18, 18, 18, 1)',
                 fontSize: '12px',
                 textTransform: 'none',
                 marginTop: 'auto',  
                 alignSelf: 'flex-end',  
+                padding:"0",
+                minWidth: "0",
                 '&:hover': {
                   backgroundColor: 'transparent',
                 },
               }}
             >
-              {showMore ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+              {showMore ? <ExpandLessIcon  sx={{
+                color: '#fff',
+                '&:hover': {
+                  color: "#fff",
+                  backgroundColor: 'transparent',
+                },
+              }}/> : <ExpandMoreIcon sx={{
+                color: '#fff',
+                '&:hover': {
+                  color: "#fff",
+                  backgroundColor: 'transparent',
+                },
+              }}  />}
             </Button>
           )}
         </Box>
@@ -157,16 +171,18 @@ export default function CardFormColumn({ boardId, columnId, cardId }) {
             </Typography>
           </Box>
         </Box>
-        <Box sx={{ display: 'flex', alignItems: 'end' }}>
+        <Box sx={{ display: 'flex', alignItems: 'end', gap: "3px" }}>
+          
           <IconButton
             sx={{
+              padding: "0",
               '&:hover': {
                 backgroundColor: 'rgba(18, 18, 18, 1)',
               },
             }}
-            // onClick={handleDelete}
+            onClick={handleOpen}
           >
-            <DeleteOutlineRoundedIcon
+            <CreateTwoToneIcon
               fontSize="large"
               sx={{
                 backgroundColor: 'rgba(18, 18, 18, 1)',
@@ -177,13 +193,14 @@ export default function CardFormColumn({ boardId, columnId, cardId }) {
           </IconButton>
           <IconButton
             sx={{
+              padding: "0",
               '&:hover': {
                 backgroundColor: 'rgba(18, 18, 18, 1)',
               },
             }}
-            onClick={handleOpen}
+            // onClick={handleDelete}
           >
-            <CreateTwoToneIcon
+            <DeleteOutlineRoundedIcon
               fontSize="large"
               sx={{
                 backgroundColor: 'rgba(18, 18, 18, 1)',
